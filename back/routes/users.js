@@ -6,7 +6,9 @@ const jwt = require('jsonwebtoken');
 const dotenv = require('dotenv');
 const User = Models.User;
 dotenv.config();
- 
+const Mail = require('./../config/mailer');
+
+
 /* GET users listing. */
 router.get('/', function(req, res, next) {
   res.send('respond with a resource');
@@ -62,6 +64,7 @@ router.post('/login',async(req,res,next)=>{
       res.status(404).json({'msg':"User not found"});
     }
     res.status(200).json(user);
- }); 
+ });
+ 
  
 module.exports = router;
