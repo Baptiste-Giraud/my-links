@@ -1,2 +1,3 @@
 # my-links
-run back = npm start
+
+run back = back/.env -> npm install -> npm start
