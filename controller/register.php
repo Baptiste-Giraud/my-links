@@ -66,7 +66,7 @@ function register($bdd, $emailuser, $nomuser, $prenomuser, $mdpuser, $usernameus
             $insert->execute();
 
             $last_id = $bdd->lastInsertId();
-            $insert = $bdd->prepare("INSERT INTO page_parameter VALUES (NULL, :id_user, :type_card, :template_url ,:color_page, , :police, :description, :texte_color)");
+            $insert = $bdd->prepare("INSERT INTO page_parameter VALUES (NULL, :id_user, :type_card, :template_url ,:color_page, :police, :description, :texte_color)");
             $insert->bindValue(':id_user', $last_id);
             $insert->bindValue(':type_card', "Couleur");
             $insert->bindValue(':template_url', "");
