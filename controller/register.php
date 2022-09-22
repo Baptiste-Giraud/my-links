@@ -1,6 +1,5 @@
 <?php
 session_start();
-include('../config/db_connect.php');
 
 
 function name_exist($bdd, $name_user){
@@ -28,14 +27,14 @@ function register($bdd, $emailuser, $nomuser, $prenomuser, $mdpuser, $usernameus
         $prenom = htmlspecialchars($prenomuser);
         $mdp = password_hash($mdpuser, PASSWORD_DEFAULT);
         $name_user = htmlspecialchars($usernameuser);
-        $date = date('Y-m-d');
+        $date = date("Y-m-d");
 
         $requnameexist = name_exist($bdd, $name_user);
 
         $userexist = email_exist($bdd, $mail);
 
 
-        if(strlen($_POST['motdepasse']) <= 5){
+        if(strlen($mdpuser) <= 5){
             echo '<script>swal("Oops!", "Mot de passe inferieur a 5 caracteres", "error");</script>';
             exit();
         }else if ($name_user == trim($name_user) && strpos($name_user, ' ') !== false) {
@@ -50,7 +49,7 @@ function register($bdd, $emailuser, $nomuser, $prenomuser, $mdpuser, $usernameus
             for($i=1;$i<$longueurKey;$i++) {
                 $key .= mt_rand(0,9);
             }
-                
+            echo'ok';   
             $insert = $bdd->prepare("INSERT INTO user VALUES (NULL, :name_user ,:email_user, :mdp_user, :nom_user ,:prenom_user , :confirmkey, :uniqid, :path_img, :confirme, :date_creation,:star_account)");
             $insert->bindValue(':name_user', $name_user);
             $insert->bindValue(':email_user', $mail);
@@ -62,7 +61,7 @@ function register($bdd, $emailuser, $nomuser, $prenomuser, $mdpuser, $usernameus
             $insert->bindValue(':path_img', "");
             $insert->bindValue(':confirme', "");
             $insert->bindValue(':date_creation', $date);
-            $insert->bindValue(':star_account',FALSE);
+            $insert->bindValue(':star_account','0');
         
 
 
@@ -101,7 +100,7 @@ function register($bdd, $emailuser, $nomuser, $prenomuser, $mdpuser, $usernameus
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js" integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT" crossorigin="anonymous"></script>
     </html>';
-                    mail($mail, "Confirmation de compte", $message, $header);
+            //         mail($mail, "Confirmation de compte", $message, $header);
             echo '<script>swal("Parfait!", "Votre compte a était crée, veuillez confirmer votre adresse email", "success");</script>';
         }
 }
@@ -115,7 +114,8 @@ function connexion($bdd, $email, $mdpenter){
 		$userexist = $requser->rowCount();
 		if($userexist == 1){
             $userinfo = $requser->fetch();
-            if (password_verify($mdpenter, password_hash($userinfo['mdp_user'], PASSWORD_DEFAULT))) {
+            var_dump($userinfo);
+            if (password_verify($mdpenter, $userinfo['mdp_user'])) {
                 $userinfo = $requser->fetch();
                 $_SESSION['id_user'] = $userinfo['id_user'];
                 $_SESSION['email_user'] = $userinfo['email_user'];
