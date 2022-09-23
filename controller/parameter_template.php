@@ -23,4 +23,35 @@ function update_parameter_template($bdd, $type_composition, $template_url, $colo
 				}
 }
 
+
+function select_parameter_by_current_user($bdd){
+	$iduser = $_SESSION['id_user'];
+	$pdoStats = "SELECT * FROM page_parameter WHERE id_user='".$iduser."' ";
+	$stmts = $bdd->prepare($pdoStats);
+	$stmts->execute(array(':id_user' => $iduser));
+	$dataparam = $stmts->fetch(PDO::FETCH_BOTH);
+	$stmts->closeCursor();
+	return($dataparam);
+}
+
+function select_parameter_current_user_by_id_user($bdd, $id){
+	$iduser = $id;
+	$pdoStats = "SELECT * FROM page_parameter WHERE id_user='".$iduser."' ";
+	$stmts = $bdd->prepare($pdoStats);
+	$stmts->execute(array(':id_user' => $iduser));
+	$dataparam = $stmts->fetch(PDO::FETCH_BOTH);
+	$stmts->closeCursor();
+	return($dataparam);
+}
+
+
+function select_parameter_current_user_by_name($bdd, $name){
+	$pdoStats = "SELECT page_parameter.* FROM user LEFT JOIN page_parameter ON user.id_user = page_parameter.id_user WHERE name_user = '".$name."' ";
+	$stmts = $bdd->prepare($pdoStats);
+	$result = $stmts->execute(array(':name_user' => $name));
+	$dataparam = $stmts->fetch(PDO::FETCH_BOTH);
+	$stmts->closeCursor();
+	return($dataparam);
+}
+
 ?>

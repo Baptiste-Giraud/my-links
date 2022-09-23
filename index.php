@@ -2,12 +2,25 @@
 session_start();
 include("function.php");
 //function_connexion($bdd, "baptiste.giraud@epitech.eu", "azerty83");
+// $data = function_select_parameter_current_user_by_id_user($bdd, 2);
+// var_dump($data);
+
+// $data = select_parameter_current_user_by_name($bdd, "baba");
+// var_dump($data);
 //$data = function_selectcardbyusername($bdd, "baba");
 //var_dump($data);
+
+
+
+
+//$data = function_select_parameter_and_card_by_current_user($bdd, "baba");
+//var_dump($data);
+
+
 
 // function_insertcard($bdd, 1, "type", "effect", "url", "color_card", "texte");
 // $value = function_selectcard($bdd);
 //var_dump($value);
 //function_insertcard($bdd, 1, "sqdqs", "dfff", "sqdqsd", "dsfdsf", "qdsdqsdqsfff");
-deletecard($bdd, 7);
+//deletecard($bdd, 7);
 ?>

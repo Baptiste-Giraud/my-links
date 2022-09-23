@@ -5,7 +5,9 @@ include('controller/confirmation.php');
 include('controller/register.php');
 include('controller/parameter_template.php');
 include('controller/card.php');
+include('controller/card_parameter_template.php');
 include('config/db_connect.php');
+
 
 //test des fonction ici
 
@@ -64,6 +66,30 @@ function function_deconnexion(){
 //deletecard($bdd, 1)
 function function_deletecard($bdd , $id){
     deletecard($bdd, $id);
+}
+
+//fonction qui permet de get les parametres de page pour le current user
+//select_parameter_by_current_user($bdd)
+function function_select_parameter_current_user($bdd){
+   return (select_parameter_by_current_user($bdd));
+}
+
+//fonction qui permet de get les parametres de page par l'id
+//select_parameter_current_user_by_id_user($bdd,7)
+function function_select_parameter_current_user_by_id_user($bdd, $id){
+    return(select_parameter_current_user_by_id_user($bdd,$id));
+}
+
+//fonction qui permet de get les parametres de page par le name
+//select_parameter_current_user_by_name($bdd, "baba")
+function function_select_parameter_current_user_by_name($bdd, $name){
+    return(select_parameter_current_user_by_name($bdd, $name));
+}
+
+//a finir
+//select_parameter_and_card_by_current_user($bdd, "baba")
+function function_select_parameter_and_card_by_current_user($bdd, $name){
+    return(select_parameter_and_card_by_current_user($bdd, $name));
 }
 
 ?>
