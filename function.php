@@ -61,4 +61,11 @@ function function_deconnexion(){
     echo '400';
 }
 
+
+function deletecard($bdd , $id){
+    $id_user = $_SESSION['id_user'];
+    $bdd->query("DELETE FROM card WHERE id='".$id."' AND id_user = '".$id_user."'");
+
+}
+
 ?>
