@@ -9,8 +9,7 @@ include('controller/card_parameter_template.php');
 include('config/db_connect.php');
 
 
-//test des fonction ici
-
+//fonction d'inscription avec envoie de mail
 // register($bdd, "eddy.mahmoud@epitech.eu", "eddy", "mhd", "azerty83", "edman");
 function function_register($bdd, $emailuser, $nomuser, $prenomuser, $mdpuser, $usernameuser){
     register($bdd, $emailuser, $nomuser, $prenomuser, $mdpuser, $usernameuser);
