@@ -51,4 +51,13 @@ function selectcardbyusername($bdd, $username){
 			return($data);
 }
 
+function deletecard($bdd, $id) {
+	$id_user = $_SESSION['id_user'];
+    $result = $bdd->query("DELETE FROM card WHERE id='".$id."' AND id_user = '".$id_user."'");
+    if($result == TRUE ){
+        echo '400';
+    }else{
+        echo '500';
+    }
+}
 ?>
