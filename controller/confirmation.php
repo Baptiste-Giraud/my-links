@@ -1,5 +1,5 @@
 <?php
-   session_start();
+//confirmation mail
 
 if(isset($_GET['name_user'], $_GET['key']) AND !empty($_GET['name_user']) AND !empty($_GET['key'])) {
    $pseudo = htmlspecialchars(urldecode($_GET['name_user']));

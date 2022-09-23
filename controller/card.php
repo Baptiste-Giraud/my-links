@@ -1,5 +1,4 @@
 <?php
-// session_start();
 
 function insertcard($bdd, $forme, $type, $effect, $url, $color_card, $texte){
 	$iduser = $_SESSION['id_user'];

@@ -1,5 +1,4 @@
 <?php
-session_start();
 
 function name_exist($bdd, $name_user){
         $requname = $bdd->prepare('SELECT * FROM user WHERE name_user = ?');

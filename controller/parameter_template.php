@@ -1,5 +1,4 @@
 <?php
-session_start();
 
 function update_parameter_template($bdd, $type_composition, $template_url, $color_page, $description, $texte_color, $police, $views_count){		
 	$iduser = $_SESSION['id_user'];
