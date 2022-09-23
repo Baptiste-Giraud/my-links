@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost:8889
--- Généré le : jeu. 22 sep. 2022 à 13:07
+-- Généré le : ven. 23 sep. 2022 à 08:13
 -- Version du serveur :  5.7.34
 -- Version de PHP : 7.3.29
 
@@ -59,10 +59,11 @@ CREATE TABLE `follow` (
 CREATE TABLE `page_parameter` (
   `id` int(11) NOT NULL,
   `id_user` int(11) NOT NULL,
-  `type_card` text NOT NULL,
+  `type_composition` text NOT NULL,
   `template_url` text NOT NULL,
   `color_page` text NOT NULL,
   `police` text NOT NULL,
+  `views_count` text NOT NULL,
   `description` text,
   `texte_color` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -162,19 +163,19 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT pour la table `card`
 --
 ALTER TABLE `card`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=98;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT pour la table `page_parameter`
 --
 ALTER TABLE `page_parameter`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT pour la table `recup_mdp`
 --
 ALTER TABLE `recup_mdp`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT pour la table `type_media`
@@ -186,7 +187,7 @@ ALTER TABLE `type_media`
 -- AUTO_INCREMENT pour la table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

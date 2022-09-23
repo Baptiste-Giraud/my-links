@@ -1,9 +1,8 @@
-<?php 
+<?php
 session_start();
-
-include('controller/confirmation.php');
-include('controller/register.php');
-
-//test des fonction ici
-echo 'coucou';
+include("function.php");
+//function_connexion($bdd, "baptiste.giraud@epitech.eu", "azerty83");
+// function_insertcard($bdd, 1, "type", "effect", "url", "color_card", "texte");
+// $value = function_selectcard($bdd);
+// var_dump($value);
 ?>

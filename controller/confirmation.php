@@ -1,5 +1,6 @@
 <?php
-	include('../config/db_connect.php');
+   session_start();
+
 if(isset($_GET['name_user'], $_GET['key']) AND !empty($_GET['name_user']) AND !empty($_GET['key'])) {
    $pseudo = htmlspecialchars(urldecode($_GET['name_user']));
    $key = htmlspecialchars($_GET['key']);
