@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost:8889
--- Généré le : ven. 23 sep. 2022 à 08:13
+-- Généré le : ven. 23 sep. 2022 à 18:10
 -- Version du serveur :  5.7.34
 -- Version de PHP : 7.3.29
 
@@ -38,6 +38,13 @@ CREATE TABLE `card` (
   `effect` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Déchargement des données de la table `card`
+--
+
+INSERT INTO `card` (`id`, `id_user`, `url`, `type`, `texte`, `forme`, `couleur_card`, `effect`) VALUES
+(7, 3, 'momol\'hommo', 'tglSFS', '1éééDDQSD', 1, 'zdfdsqcqsddsqdsqd', 'dsqdqsdsQQQ');
+
 -- --------------------------------------------------------
 
 --
@@ -67,6 +74,13 @@ CREATE TABLE `page_parameter` (
   `description` text,
   `texte_color` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Déchargement des données de la table `page_parameter`
+--
+
+INSERT INTO `page_parameter` (`id`, `id_user`, `type_composition`, `template_url`, `color_page`, `police`, `views_count`, `description`, `texte_color`) VALUES
+(1, 3, 'ttt', 'aa', 'dd', 'dqqd', '0', 'sss', 'dd');
 
 -- --------------------------------------------------------
 
@@ -122,6 +136,13 @@ CREATE TABLE `user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
+-- Déchargement des données de la table `user`
+--
+
+INSERT INTO `user` (`id_user`, `name_user`, `email_user`, `mdp_user`, `nom_user`, `prenom_user`, `confirmkey`, `uniqid`, `path_img`, `confirme`, `date_creation`, `star_account`) VALUES
+(3, 'baba', 'baptiste.giraud@epitech.eu', '$2y$10$LSTuBCOzzah.vGvVpHFII.uTCySt20z2G4zOju0FhsDDQkzJNEfPC', 'giraud', 'baptiste', '73237430244945', '632d6ca36d58e', '', '', '2022-09-23', 0);
+
+--
 -- Index pour les tables déchargées
 --
 
@@ -163,13 +184,13 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT pour la table `card`
 --
 ALTER TABLE `card`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT pour la table `page_parameter`
 --
 ALTER TABLE `page_parameter`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT pour la table `recup_mdp`
@@ -187,7 +208,7 @@ ALTER TABLE `type_media`
 -- AUTO_INCREMENT pour la table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
