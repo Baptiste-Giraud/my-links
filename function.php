@@ -9,8 +9,7 @@ include('config/db_connect.php');
 
 //test des fonction ici
 
-//fonction d'inscription
-//register($bdd, "baptiste.giraud@epitech.eu", "giraud", "baptiste", "azerty83", "baba");
+// register($bdd, "eddy.mahmoud@epitech.eu", "eddy", "mhd", "azerty83", "edman");
 function function_register($bdd, $emailuser, $nomuser, $prenomuser, $mdpuser, $usernameuser){
     register($bdd, $emailuser, $nomuser, $prenomuser, $mdpuser, $usernameuser);
 
@@ -61,15 +60,10 @@ function function_deconnexion(){
     echo '400';
 }
 
-
-function deletecard($bdd , $id){
-    $id_user = $_SESSION['id_user'];
-    $result = $bdd->query("DELETE FROM card WHERE id='".$id."' AND id_user = '".$id_user."'");
-    if($result == TRUE ){
-        echo '400';
-    }else{
-        echo '500';
-    }
+//fonction qui permet de supprimer le lien par l'ID
+//deletecard($bdd, 1)
+function function_deletecard($bdd , $id){
+    deletecard($bdd, $id);
 }
 
 ?>
