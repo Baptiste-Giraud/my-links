@@ -47,4 +47,12 @@ function function_selectcardbyuserid($bdd, $id){
    return( selectcardbyuserid($bdd, $id));
 }
 
+//fonction qui deconnecte l'utilisateur courant
+//function_deconnexion();
+function function_deconnexion(){
+    session_destroy();
+    unset( $_SESSION );
+    echo '400';
+}
+
 ?>
