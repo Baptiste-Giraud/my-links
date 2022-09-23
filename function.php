@@ -66,4 +66,10 @@ function function_deletecard($bdd , $id){
     deletecard($bdd, $id);
 }
 
+// A FINIR POUR NE PAS TOUT MODIFER LES ELEMENTS
+//fonction qui permet de update le lien par
+// updatecard($bdd, 2, "http://facebook.fr", "url", "ça marche", 1, "rouge", "fe");
+function function_updatecard($bdd, $id, $url, $type, $texte, $forme, $couleur_card, $effect){
+    updatecard($bdd, $id, $url, $type, $texte, $forme, $couleur_card, $effect);
+}
 ?>
