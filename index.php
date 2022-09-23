@@ -13,8 +13,8 @@ include("function.php");
 
 
 
-//$data = function_select_parameter_and_card_by_current_user($bdd, "baba");
-//var_dump($data);
+// $data = function_select_parameter_and_card_by_current_user($bdd, "baba");
+// var_dump($data);
 
 
 

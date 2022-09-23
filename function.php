@@ -83,14 +83,14 @@ function function_select_parameter_current_user_by_name($bdd, $name){
     return(select_parameter_current_user_by_name($bdd, $name));
 }
 
-//a finir
+//fonction qui permet de get les parametres de la page + les liens de la page par le name
 //select_parameter_and_card_by_current_user($bdd, "baba")
 function function_select_parameter_and_card_by_current_user($bdd, $name){
     return(select_parameter_and_card_by_current_user($bdd, $name));
 }
 
 // A FINIR POUR NE PAS TOUT MODIFER LES ELEMENTS
-//fonction qui permet de update le lien par
+//fonction qui permet de update le lien par l'id (user deja connecter)
 // updatecard($bdd, 2, "http://facebook.fr", "url", "ça marche", 1, "rouge", "fe");
 function function_updatecard($bdd, $id, $url, $type, $texte, $forme, $couleur_card, $effect){
     updatecard($bdd, $id, $url, $type, $texte, $forme, $couleur_card, $effect);
