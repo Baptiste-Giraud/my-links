@@ -92,4 +92,10 @@ function function_select_parameter_and_card_by_current_user($bdd, $name){
     return(select_parameter_and_card_by_current_user($bdd, $name));
 }
 
+// A FINIR POUR NE PAS TOUT MODIFER LES ELEMENTS
+//fonction qui permet de update le lien par
+// updatecard($bdd, 2, "http://facebook.fr", "url", "ça marche", 1, "rouge", "fe");
+function function_updatecard($bdd, $id, $url, $type, $texte, $forme, $couleur_card, $effect){
+    updatecard($bdd, $id, $url, $type, $texte, $forme, $couleur_card, $effect);
+}
 ?>

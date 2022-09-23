@@ -1,5 +1,5 @@
 <?php
-session_start();
+// session_start();
 
 function insertcard($bdd, $forme, $type, $effect, $url, $color_card, $texte){
 	$iduser = $_SESSION['id_user'];
@@ -60,4 +60,29 @@ function deletecard($bdd, $id) {
         echo '500';
     }
 }
+
+function updatecard($bdd, $id, $url, $type, $texte, $forme, $couleur_card, $effect){
+	$iduser = $_SESSION['id_user'];
+				$datas = [
+					'url' => htmlspecialchars($url),
+					'type' => htmlspecialchars($type),
+					'texte' => htmlspecialchars($texte),
+					'forme' => htmlspecialchars($forme),
+					'couleur_card' => htmlspecialchars($couleur_card),
+					'effect' => htmlspecialchars($effect),
+				];
+				$sql = "UPDATE card SET url=:url, type=:type, texte=:texte, forme=:forme, couleur_card=:couleur_card , effect=:effect WHERE id='".$id."' AND id_user = '".$iduser."'";
+				$stmt= $bdd->prepare($sql);
+				$resultat = $stmt->execute($datas);
+				echo($url);
+				echo($id);
+				echo($couleur_card);
+
+				if($resultat == TRUE){
+					echo '400';
+				}else{
+					echo '500';
+				}
+}
+
 ?>

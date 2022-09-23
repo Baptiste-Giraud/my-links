@@ -22,5 +22,4 @@ include("function.php");
 // $value = function_selectcard($bdd);
 //var_dump($value);
 //function_insertcard($bdd, 1, "sqdqs", "dfff", "sqdqsd", "dsfdsf", "qdsdqsdqsfff");
-//deletecard($bdd, 7);
 ?>
