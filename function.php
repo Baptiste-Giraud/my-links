@@ -47,6 +47,12 @@ function function_selectcardbyuserid($bdd, $id){
    return( selectcardbyuserid($bdd, $id));
 }
 
+//fonction get lien par rapport a l'username
+//selectcardbyuserid($bdd, fazzeurwhite);
+function function_selectcardbyusername($bdd, $username){
+    return( selectcardbyusername($bdd, $username));
+ }
+
 //fonction qui deconnecte l'utilisateur courant
 //function_deconnexion();
 function function_deconnexion(){

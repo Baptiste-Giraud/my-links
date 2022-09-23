@@ -40,4 +40,15 @@ function selectcardbyuserid($bdd, $id){
 			return($data);
 }
 
+
+function selectcardbyusername($bdd, $username){
+	$name_user = $username;
+			$pdoStat = "SELECT card.* FROM user LEFT JOIN card ON user.id_user = card.id_user WHERE name_user = '".$name_user."' ";
+			$stmt = $bdd->prepare($pdoStat);
+			$result = $stmt->execute(array(':name_user' => $name_user));
+			$data = $stmt->fetchAll(PDO::FETCH_BOTH);
+			$stmt->closeCursor();
+			return($data);
+}
+
 ?>
