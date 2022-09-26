@@ -1,14 +1,14 @@
 <?php
 
-function insertcard($bdd, $forme, $type, $effect, $url, $color_card, $texte){
+function insertlink($bdd, $forme, $type, $effect, $url, $color_link, $texte){
 	$iduser = $_SESSION['id_user'];
-				$insert = $bdd->prepare("INSERT INTO card VALUES (NULL, :id_user ,:url, :type, :texte, :forme, :couleur_card, :effect)");
+				$insert = $bdd->prepare("INSERT INTO link VALUES (NULL, :id_user ,:url, :type, :texte, :forme, :couleur_card, :effect)");
 				$insert->bindValue(':id_user', $iduser);
 				$insert->bindValue(':url', $url);
 				$insert->bindValue(':type', $type);
 				$insert->bindValue(':texte', $texte);
 				$insert->bindValue(':forme', $forme);
-				$insert->bindValue(':couleur_card', $color_card);
+				$insert->bindValue(':couleur_card', $color_link);
 				$insert->bindValue(':effect', $effect);
 				$result = $insert->execute();
 
@@ -19,9 +19,9 @@ function insertcard($bdd, $forme, $type, $effect, $url, $color_card, $texte){
 				}
 }
 
-function selectcard($bdd){
+function selectlink($bdd){
 	$iduser = $_SESSION['id_user'];
-			$pdoStat = "SELECT * FROM card WHERE id_user='".$iduser."' ";
+			$pdoStat = "SELECT * FROM link WHERE id_user='".$iduser."' ";
 			$stmt = $bdd->prepare($pdoStat);
 			$result = $stmt->execute(array(':id_user' => $iduser));
 			$data = $stmt->fetchAll(PDO::FETCH_BOTH);
@@ -29,9 +29,9 @@ function selectcard($bdd){
 			return($data);
 }
 
-function selectcardbyuserid($bdd, $id){
+function selectlinkbyuserid($bdd, $id){
 	$iduser = $id;
-			$pdoStat = "SELECT * FROM card WHERE id_user='".$iduser."' ";
+			$pdoStat = "SELECT * FROM link WHERE id_user='".$iduser."' ";
 			$stmt = $bdd->prepare($pdoStat);
 			$result = $stmt->execute(array(':id_user' => $iduser));
 			$data = $stmt->fetchAll(PDO::FETCH_BOTH);
@@ -40,9 +40,9 @@ function selectcardbyuserid($bdd, $id){
 }
 
 
-function selectcardbyusername($bdd, $username){
+function selectlinkbyusername($bdd, $username){
 	$name_user = $username;
-			$pdoStat = "SELECT card.* FROM user LEFT JOIN card ON user.id_user = card.id_user WHERE name_user = '".$name_user."' ";
+			$pdoStat = "SELECT link.* FROM user LEFT JOIN link ON user.id_user = link.id_user WHERE name_user = '".$name_user."' ";
 			$stmt = $bdd->prepare($pdoStat);
 			$result = $stmt->execute(array(':name_user' => $name_user));
 			$data = $stmt->fetchAll(PDO::FETCH_BOTH);
@@ -50,9 +50,9 @@ function selectcardbyusername($bdd, $username){
 			return($data);
 }
 
-function deletecard($bdd, $id) {
+function deletelink($bdd, $id) {
 	$id_user = $_SESSION['id_user'];
-    $result = $bdd->query("DELETE FROM card WHERE id='".$id."' AND id_user = '".$id_user."'");
+    $result = $bdd->query("DELETE FROM link WHERE id='".$id."' AND id_user = '".$id_user."'");
     if($result == TRUE ){
         echo '400';
     }else{
@@ -60,22 +60,22 @@ function deletecard($bdd, $id) {
     }
 }
 
-function updatecard($bdd, $id, $url, $type, $texte, $forme, $couleur_card, $effect){
+function updatelink($bdd, $id, $url, $type, $texte, $forme, $couleur_link, $effect){
 	$iduser = $_SESSION['id_user'];
 				$datas = [
 					'url' => htmlspecialchars($url),
 					'type' => htmlspecialchars($type),
 					'texte' => htmlspecialchars($texte),
 					'forme' => htmlspecialchars($forme),
-					'couleur_card' => htmlspecialchars($couleur_card),
+					'couleur_card' => htmlspecialchars($couleur_link),
 					'effect' => htmlspecialchars($effect),
 				];
-				$sql = "UPDATE card SET url=:url, type=:type, texte=:texte, forme=:forme, couleur_card=:couleur_card , effect=:effect WHERE id='".$id."' AND id_user = '".$iduser."'";
+				$sql = "UPDATE link SET url=:url, type=:type, texte=:texte, forme=:forme, couleur_card=:couleur_card , effect=:effect WHERE id='".$id."' AND id_user = '".$iduser."'";
 				$stmt= $bdd->prepare($sql);
 				$resultat = $stmt->execute($datas);
 				echo($url);
 				echo($id);
-				echo($couleur_card);
+				echo($couleur_link);
 
 				if($resultat == TRUE){
 					echo '400';

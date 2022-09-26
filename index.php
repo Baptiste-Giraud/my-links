@@ -7,18 +7,18 @@ include("function.php");
 
 // $data = select_parameter_current_user_by_name($bdd, "baba");
 // var_dump($data);
-//$data = function_selectcardbyusername($bdd, "baba");
+//$data = function_selectlinkbyusername($bdd, "baba");
 //var_dump($data);
 
 
 
-// $data = function_select_parameter_and_card_by_current_user($bdd, "baba");
+// $data = function_select_parameter_and_link_by_current_user($bdd, "baba");
 // var_dump($data);
 
 
 
-// function_insertcard($bdd, 1, "type", "effect", "url", "color_card", "texte");
-// $value = function_selectcard($bdd);
+// function_insertlink($bdd, 1, "type", "effect", "url", "color_link", "texte");
+// $value = function_selectlink($bdd);
 //var_dump($value);
-//function_insertcard($bdd, 1, "sqdqs", "dfff", "sqdqsd", "dsfdsf", "qdsdqsdqsfff");
+//function_insertlink($bdd, 1, "sqdqs", "dfff", "sqdqsd", "dsfdsf", "qdsdqsdqsfff");
 ?>

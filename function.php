@@ -2,8 +2,8 @@
 include('controller/confirmation.php');
 include('controller/register.php');
 include('controller/parameter_template.php');
-include('controller/card.php');
-include('controller/card_parameter_template.php');
+include('controller/link.php');
+include('controller/link_parameter_template.php');
 include('config/db_connect.php');
 
 
@@ -29,26 +29,26 @@ function function_update_parameter_template($bdd, $type_composition, $template_u
 }
 
 //fonction insert lien
-//insertcard($bdd, 1, "type", "effect", "url", "color_card", "texte");
-function function_insertcard($bdd, $forme, $type, $effect, $url, $color_card, $texte){
-    insertcard($bdd, $forme, $type, $effect, $url, $color_card, $texte);
+//insertlink($bdd, 1, "type", "effect", "url", "color_link", "texte");
+function function_insertlink($bdd, $forme, $type, $effect, $url, $color_link, $texte){
+    insertlink($bdd, $forme, $type, $effect, $url, $color_link, $texte);
 }
 //fonction get lien par rapport a l'utilisateur connecter
-//selectcard($bdd);
-function function_selectcard($bdd){
-    return(selectcard($bdd));
+//selectlink($bdd);
+function function_selectlink($bdd){
+    return(selectlink($bdd));
 }
 
 //fonction get lien par rapport a l'id
-//selectcardbyuserid($bdd, 3);
-function function_selectcardbyuserid($bdd, $id){
-   return( selectcardbyuserid($bdd, $id));
+//selectlinkbyuserid($bdd, 3);
+function function_selectlinkbyuserid($bdd, $id){
+   return( selectlinkbyuserid($bdd, $id));
 }
 
 //fonction get lien par rapport a l'username
-//selectcardbyuserid($bdd, fazzeurwhite);
-function function_selectcardbyusername($bdd, $username){
-    return( selectcardbyusername($bdd, $username));
+//selectlinkbyuserid($bdd, fazzeurwhite);
+function function_selectlinkbyusername($bdd, $username){
+    return( selectlinkbyusername($bdd, $username));
  }
 
 //fonction qui deconnecte l'utilisateur courant
@@ -60,9 +60,9 @@ function function_deconnexion(){
 }
 
 //fonction qui permet de supprimer le lien par l'ID
-//deletecard($bdd, 1)
-function function_deletecard($bdd , $id){
-    deletecard($bdd, $id);
+//deletelink($bdd, 1)
+function function_deletelink($bdd , $id){
+    deletelink($bdd, $id);
 }
 
 //fonction qui permet de get les parametres de page pour le current user
@@ -84,15 +84,15 @@ function function_select_parameter_current_user_by_name($bdd, $name){
 }
 
 //fonction qui permet de get les parametres de la page + les liens de la page par le name
-//select_parameter_and_card_by_current_user($bdd, "baba")
-function function_select_parameter_and_card_by_current_user($bdd, $name){
-    return(select_parameter_and_card_by_current_user($bdd, $name));
+//select_parameter_and_link_by_current_user($bdd, "baba")
+function function_select_parameter_and_link_by_current_user($bdd, $name){
+    return(select_parameter_and_link_by_current_user($bdd, $name));
 }
 
 // A FINIR POUR NE PAS TOUT MODIFER LES ELEMENTS
 //fonction qui permet de update le lien par l'id (user deja connecter)
-// updatecard($bdd, 2, "http://facebook.fr", "url", "ça marche", 1, "rouge", "fe");
-function function_updatecard($bdd, $id, $url, $type, $texte, $forme, $couleur_card, $effect){
-    updatecard($bdd, $id, $url, $type, $texte, $forme, $couleur_card, $effect);
+// updatelink($bdd, 2, "http://facebook.fr", "url", "ça marche", 1, "rouge", "fe");
+function function_updatelink($bdd, $id, $url, $type, $texte, $forme, $couleur_link, $effect){
+    updatelink($bdd, $id, $url, $type, $texte, $forme, $couleur_link, $effect);
 }
 ?>
