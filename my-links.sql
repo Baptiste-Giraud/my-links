@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost:8889
--- Généré le : lun. 26 sep. 2022 à 12:52
+-- Généré le : lun. 26 sep. 2022 à 15:21
 -- Version du serveur :  5.7.34
 -- Version de PHP : 7.3.29
 
@@ -20,6 +20,21 @@ SET time_zone = "+00:00";
 --
 -- Base de données : `my-links`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `background_theme_user`
+--
+
+CREATE TABLE `background_theme_user` (
+  `id` int(11) NOT NULL,
+  `label` text NOT NULL,
+  `file_path` text NOT NULL,
+  `type` text NOT NULL,
+  `status` tinyint(1) NOT NULL,
+  `couleur` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -67,6 +82,13 @@ CREATE TABLE `page_parameter` (
   `description` text,
   `texte_color` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Déchargement des données de la table `page_parameter`
+--
+
+INSERT INTO `page_parameter` (`id`, `id_user`, `type_composition`, `template_url`, `color_page`, `police`, `views_count`, `description`, `texte_color`) VALUES
+(3, 3, 'Couleur', '', '#ffff', '', '', '', 'rgb(255, 255, 255);');
 
 -- --------------------------------------------------------
 
@@ -122,8 +144,21 @@ CREATE TABLE `user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
+-- Déchargement des données de la table `user`
+--
+
+INSERT INTO `user` (`id_user`, `name_user`, `email_user`, `mdp_user`, `nom_user`, `prenom_user`, `confirmkey`, `uniqid`, `path_img`, `confirme`, `date_creation`, `star_account`) VALUES
+(3, 'edman', 'eddy.mahmoud@epitech.eu', '$2y$10$ersUzH7gpsJI7vy9HecDx.WYYdolTbd6ceX128LTS9BMniQNnwSuG', 'eddy', 'mhd', '18121310828289', '6331a1d189498', '', '', '2022-09-26', 0);
+
+--
 -- Index pour les tables déchargées
 --
+
+--
+-- Index pour la table `background_theme_user`
+--
+ALTER TABLE `background_theme_user`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Index pour la table `link`
@@ -162,6 +197,12 @@ ALTER TABLE `user`
 --
 
 --
+-- AUTO_INCREMENT pour la table `background_theme_user`
+--
+ALTER TABLE `background_theme_user`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT pour la table `link`
 --
 ALTER TABLE `link`
@@ -171,7 +212,7 @@ ALTER TABLE `link`
 -- AUTO_INCREMENT pour la table `page_parameter`
 --
 ALTER TABLE `page_parameter`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT pour la table `recup_mdp`
@@ -189,7 +230,7 @@ ALTER TABLE `type_media`
 -- AUTO_INCREMENT pour la table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Contraintes pour les tables déchargées
