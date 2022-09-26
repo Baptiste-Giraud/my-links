@@ -87,8 +87,8 @@ include('config/db_connect.php');
 // - Link -
 //
 
-    //fonction qui permet de update le lien par l'id (user deja connecter) A FINIR
-    // updatelink($bdd, 2, "http://facebook.fr", "url", "ça marche", 1, "rouge", "fe");
+    //fonction qui permet de update le lien par l'id (user deja connecter)
+    // updatelink($bdd, 2, "http://facebook.fr", "test", "toto", 1, "rouge", "rond");
     function function_updatelink($bdd, $id, $url, $type, $texte, $forme, $couleur_link, $effect){
         updatelink($bdd, $id, $url, $type, $texte, $forme, $couleur_link, $effect);
     }
