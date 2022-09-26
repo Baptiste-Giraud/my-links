@@ -47,7 +47,6 @@ function register($bdd, $emailuser, $nomuser, $prenomuser, $mdpuser, $usernameus
             for($i=1;$i<$longueurKey;$i++) {
                 $key .= mt_rand(0,9);
             }
-            echo'ok';   
             $insert = $bdd->prepare("INSERT INTO user VALUES (NULL, :name_user ,:email_user, :mdp_user, :nom_user ,:prenom_user , :confirmkey, :uniqid, :path_img, :confirme, :date_creation,:star_account)");
             $insert->bindValue(':name_user', $name_user);
             $insert->bindValue(':email_user', $mail);
