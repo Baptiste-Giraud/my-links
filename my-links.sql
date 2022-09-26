@@ -36,6 +36,7 @@ CREATE TABLE `background_theme_user` (
   `couleur` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+
 -- --------------------------------------------------------
 
 --
