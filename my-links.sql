@@ -24,10 +24,10 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Structure de la table `card`
+-- Structure de la table `link`
 --
 
-CREATE TABLE `card` (
+CREATE TABLE `link` (
   `id` int(11) NOT NULL,
   `id_user` int(11) NOT NULL,
   `url` text NOT NULL,
@@ -39,10 +39,10 @@ CREATE TABLE `card` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Déchargement des données de la table `card`
+-- Déchargement des données de la table `link`
 --
 
-INSERT INTO `card` (`id`, `id_user`, `url`, `type`, `texte`, `forme`, `couleur_card`, `effect`) VALUES
+INSERT INTO `link` (`id`, `id_user`, `url`, `type`, `texte`, `forme`, `couleur_card`, `effect`) VALUES
 (7, 3, 'momol\'hommo', 'tglSFS', '1éééDDQSD', 1, 'zdfdsqcqsddsqdsqd', 'dsqdqsdsQQQ');
 
 -- --------------------------------------------------------
@@ -147,9 +147,9 @@ INSERT INTO `user` (`id_user`, `name_user`, `email_user`, `mdp_user`, `nom_user`
 --
 
 --
--- Index pour la table `card`
+-- Index pour la table `link`
 --
-ALTER TABLE `card`
+ALTER TABLE `link`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -181,9 +181,9 @@ ALTER TABLE `user`
 --
 
 --
--- AUTO_INCREMENT pour la table `card`
+-- AUTO_INCREMENT pour la table `link`
 --
-ALTER TABLE `card`
+ALTER TABLE `link`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
