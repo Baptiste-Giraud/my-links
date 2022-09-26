@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de données : `my-links`
+-- Base de données : `gbatxnzb_my-linksdev`
 --
 
 -- --------------------------------------------------------
