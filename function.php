@@ -5,11 +5,12 @@ include('controller/parameter_template.php');
 include('controller/link.php');
 include('controller/link_parameter_template.php');
 include('controller/background_theme_user.php');
+include('controller/user.php');
 include('config/db_connect.php');
 
 
 //
-// - Connexion - Inscription - Déconnexion -
+// - Connexion - Inscription - Déconnexion - 
 //
 
 
@@ -148,4 +149,16 @@ include('config/db_connect.php');
         insertbackground_theme_userid($bdd, $label, $file_path, $type, $status, $couleur);
     }
 
+// -----------------------------------------
+
+
+//
+// - Update parameter User -
+//
+
+//fonction qui permet de mettre à jour les données de l'utilisateur nom, email...
+//updateinfouser($bdd, 1, "edman", "eddy.mahmoud@epitech.eu", "eddy", "mhd");
+function function_updateinfouser($bdd, $iduser, $name_user, $email_user, $nom_user, $prenom_user){
+    updateinfouser($bdd, $iduser, $name_user, $email_user, $nom_user, $prenom_user);
+}
 ?>
