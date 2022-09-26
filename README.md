@@ -36,3 +36,5 @@ STEP 4 -> Setup de l'environnement
 ```
 
 Pour merge sur le serveur validation de la merge request par un membre du groupe.
+
+__ Si scss npm run sass pour compiler__

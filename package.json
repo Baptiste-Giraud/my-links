@@ -1,0 +1,19 @@
+{
+  "name": "my-links",
+  "version": "1.0.0",
+  "description": "Projet avec mise en prod automatique au PUSH",
+  "main": "index.js",
+  "scripts": {
+    "sass": "sass --watch ./asset/front/sass/main.scss:./asset/front/css/style.css"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Baptiste-Giraud/my-links.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Baptiste-Giraud/my-links/issues"
+  },
+  "homepage": "https://github.com/Baptiste-Giraud/my-links#readme"
+}
