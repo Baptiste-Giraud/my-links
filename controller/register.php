@@ -125,7 +125,6 @@ function connexion($bdd, $email, $mdpenter){
                 $_SESSION['confirme'] = $userinfo['confirme'];
                 $_SESSION['star_account'] = $userinfo['star_account'];
                 $_SESSION['path_img'] = $userinfo['path_img'];
-			echo 'vous etes connecter';
             } else {
                 echo '<script>swal("Oops!", "Erreur de login!", "error");</script>';
                 exit();

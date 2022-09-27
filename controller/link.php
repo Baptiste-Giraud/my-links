@@ -62,21 +62,23 @@ function deletelink($bdd, $id) {
 
 function updatelink($bdd, $id, $url, $type, $texte, $forme, $couleur_link, $effect){
 	$iduser = $_SESSION['id_user'];
-				$datas = [
-					'url' => htmlspecialchars($url),
-					'type' => htmlspecialchars($type),
-					'texte' => htmlspecialchars($texte),
-					'forme' => htmlspecialchars($forme),
-					'couleur_card' => htmlspecialchars($couleur_link),
-					'effect' => htmlspecialchars($effect),
-				];
-				$sql = "UPDATE link SET url=:url, type=:type, texte=:texte, forme=:forme, couleur_card=:couleur_card , effect=:effect WHERE id='".$id."' AND id_user = '".$iduser."'";
+				$sql = "UPDATE link SET
+					url=:url,
+					type=:type,
+					texte=:texte,
+					forme=:forme,
+					couleur_card=:couleur_card,
+					effect=:effect
+					WHERE id='".$id."' AND id_user = '".$iduser."'";
 				$stmt= $bdd->prepare($sql);
-				$resultat = $stmt->execute($datas);
-				echo($url);
-				echo($id);
-				echo($couleur_link);
-
+				$stmt->bindParam(':url', $url, PDO::PARAM_STR);
+				$stmt->bindParam(':type', $type, PDO::PARAM_STR);
+				$stmt->bindParam(':texte', $texte, PDO::PARAM_STR);
+				$stmt->bindParam(':forme', $forme, PDO::PARAM_STR);
+				$stmt->bindParam(':couleur_card', $couleur_link, PDO::PARAM_STR);
+				$stmt->bindParam(':effect', $effect, PDO::PARAM_STR);
+				$resultat = $stmt->execute();
+	
 				if($resultat == TRUE){
 					echo '400';
 				}else{

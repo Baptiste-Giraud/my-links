@@ -10,8 +10,11 @@ include("function.php");
 //$data = function_selectlinkbyusername($bdd, "baba");
 //var_dump($data);
 
-register($bdd, "eddy.mahmoud@epitech.eu", "eddy", "mhd", "azerty83", "edman");
+//function_register($bdd, "eddy.mahmoud@epitech.eu", "eddy", "mhd", "azerty83", "edman");
+function_connexion($bdd, "eddy.mahmoud@epitech.eu", "azerty83");
 
+
+//function_updateinfouser($bdd, 3, "baba", "eddy.mahmoud@epitech.eu", "eddy", "mhd");
 // $data = function_select_parameter_and_link_by_current_user($bdd, "baba");
 // var_dump($data);
 
