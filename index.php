@@ -15,7 +15,8 @@ $url = rtrim($url, '?');
 //var_dump($data);
 
 //function_register($bdd, "eddy.mahmoud@epitech.eu", "eddy", "mhd", "azerty83", "edman");
-//function_connexion($bdd, "eddy.mahmoud@epitech.eu", "azerty83");
+function_connexion($bdd, "eddy.mahmoud@epitech.eu", "azerty83");
+function_insertlink($bdd, 1, "type", "effect", "url", "color_link", "texte exemple");
 $value = selectinfouserbypseudo($bdd ,$url);
 if($value == false){
     echo "l'user ".$url." existe pas";
@@ -35,7 +36,6 @@ if($value == false){
 
 
 
-// function_insertlink($bdd, 1, "type", "effect", "url", "color_link", "texte");
 // $value = function_selectlink($bdd);
 //var_dump($value);
 //function_insertlink($bdd, 1, "sqdqs", "dfff", "sqdqsd", "dsfdsf", "qdsdqsdqsfff");
