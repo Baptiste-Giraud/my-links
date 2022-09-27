@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost:8889
--- Généré le : lun. 26 sep. 2022 à 15:21
+-- Généré le : mar. 27 sep. 2022 à 10:50
 -- Version du serveur :  5.7.34
 -- Version de PHP : 7.3.29
 
@@ -35,7 +35,6 @@ CREATE TABLE `background_theme_user` (
   `status` tinyint(1) NOT NULL,
   `couleur` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
 
 -- --------------------------------------------------------
 
@@ -149,7 +148,27 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id_user`, `name_user`, `email_user`, `mdp_user`, `nom_user`, `prenom_user`, `confirmkey`, `uniqid`, `path_img`, `confirme`, `date_creation`, `star_account`) VALUES
-(3, 'edman', 'eddy.mahmoud@epitech.eu', '$2y$10$ersUzH7gpsJI7vy9HecDx.WYYdolTbd6ceX128LTS9BMniQNnwSuG', 'eddy', 'mhd', '18121310828289', '6331a1d189498', '', '', '2022-09-26', 0);
+(3, 'baba', 'eddy.mahmoud@epitech.eu', '$2y$10$ersUzH7gpsJI7vy9HecDx.WYYdolTbd6ceX128LTS9BMniQNnwSuG', '', '', '18121310828289', '6331a1d189498', '', '', '2022-09-26', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `views_count_insert`
+--
+
+CREATE TABLE `views_count_insert` (
+  `id` int(11) NOT NULL,
+  `ip` text NOT NULL,
+  `date` date NOT NULL,
+  `id_user` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Déchargement des données de la table `views_count_insert`
+--
+
+INSERT INTO `views_count_insert` (`id`, `ip`, `date`, `id_user`) VALUES
+(6, '::1', '2022-09-27', 3);
 
 --
 -- Index pour les tables déchargées
@@ -194,6 +213,13 @@ ALTER TABLE `user`
   ADD PRIMARY KEY (`id_user`);
 
 --
+-- Index pour la table `views_count_insert`
+--
+ALTER TABLE `views_count_insert`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_useronuser` (`id_user`);
+
+--
 -- AUTO_INCREMENT pour les tables déchargées
 --
 
@@ -234,6 +260,12 @@ ALTER TABLE `user`
   MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
+-- AUTO_INCREMENT pour la table `views_count_insert`
+--
+ALTER TABLE `views_count_insert`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
 -- Contraintes pour les tables déchargées
 --
 
@@ -248,6 +280,12 @@ ALTER TABLE `link`
 --
 ALTER TABLE `page_parameter`
   ADD CONSTRAINT `page_parameter_user_id` FOREIGN KEY (`id_user`) REFERENCES `user` (`id_user`);
+
+--
+-- Contraintes pour la table `views_count_insert`
+--
+ALTER TABLE `views_count_insert`
+  ADD CONSTRAINT `id_useronuser` FOREIGN KEY (`id_user`) REFERENCES `user` (`id_user`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

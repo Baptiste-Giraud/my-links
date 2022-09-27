@@ -23,4 +23,13 @@ function updateinfouser($bdd, $iduser, $name_user, $email_user, $nom_user, $pren
 					echo 'fonctione pas';
 				}
 }
+
+function selectinfouserbypseudo($bdd, $name_user){
+	$pdoStats = "SELECT id_user, name_user, email_user, nom_user, prenom_user FROM user WHERE name_user='".$name_user."' ";
+	$stmts = $bdd->prepare($pdoStats);
+	$stmts->execute(array(':name_user' => $name_user));
+	$dataparam = $stmts->fetch(PDO::FETCH_BOTH);
+	$stmts->closeCursor();
+	return($dataparam);
+}
 ?>

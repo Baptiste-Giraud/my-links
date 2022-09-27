@@ -6,6 +6,7 @@ include('controller/link.php');
 include('controller/link_parameter_template.php');
 include('controller/background_theme_user.php');
 include('controller/user.php');
+include('controller/views_count.php');
 include('config/db_connect.php');
 
 
@@ -160,5 +161,24 @@ include('config/db_connect.php');
 //updateinfouser($bdd, 1, "edman", "eddy.mahmoud@epitech.eu", "eddy", "mhd");
 function function_updateinfouser($bdd, $iduser, $name_user, $email_user, $nom_user, $prenom_user){
     updateinfouser($bdd, $iduser, $name_user, $email_user, $nom_user, $prenom_user);
+}
+
+function function_selectinfouserbypseudo($bdd, $name_user){
+    return(selectinfouserbypseudo($bdd, $name_user));
+}
+
+
+//
+// - Views of page -
+//
+
+//fonction qui rajoute 1 vue quand une personne vois la page d'un user
+// views_count_insert($bdd, 1);
+function function_views_count_insert($bdd, $user_id){
+    return(views_count_insert($bdd, $user_id));
+}
+
+function function_views_count_select_by_total($bdd){
+    return(views_count_select_by_total($bdd));
 }
 ?>
