@@ -26,7 +26,7 @@ if($value == false){
     function_views_count_insert($bdd, $value['id_user']);
     $links = function_selectlinkbyuserid($bdd,  $value['id_user']);
     foreach ($links as $link){
-        echo '<div>'.$link['texte'].'</div><br>';
+        echo '<a href="'.$link['url'].'">'.$link['texte'].'</a><br>';
     }
 }
 //echo $val = function_views_count_select_by_total($bdd);
