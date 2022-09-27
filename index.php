@@ -22,7 +22,7 @@ if($value == false){
     echo "l'user ".$url." existe pas";
     
 }else{
-    echo "l'user ".$url." existe";
+    echo "l'user ".$url." existe<br>";
     function_views_count_insert($bdd, $value['id_user']);
     $links = function_selectlinkbyuserid($bdd,  $value['id_user']);
     foreach ($links as $link){
