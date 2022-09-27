@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost:8889
--- Généré le : mar. 27 sep. 2022 à 10:50
+-- Généré le : mar. 27 sep. 2022 à 14:12
 -- Version du serveur :  5.7.34
 -- Version de PHP : 7.3.29
 
@@ -30,6 +30,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `background_theme_user` (
   `id` int(11) NOT NULL,
   `label` text NOT NULL,
+  `slug` text NOT NULL,
   `file_path` text NOT NULL,
   `type` text NOT NULL,
   `status` tinyint(1) NOT NULL,
@@ -62,7 +63,8 @@ CREATE TABLE `link` (
   `texte` text NOT NULL,
   `forme` int(11) DEFAULT NULL,
   `couleur_card` text NOT NULL,
-  `effect` text NOT NULL
+  `effect` text NOT NULL,
+  `text_color_link` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -75,20 +77,12 @@ CREATE TABLE `page_parameter` (
   `id` int(11) NOT NULL,
   `id_user` int(11) NOT NULL,
   `type_composition` text NOT NULL,
-  `template_url` text NOT NULL,
+  `theme_id` int(11) NOT NULL,
   `color_page` text NOT NULL,
   `police` text NOT NULL,
   `views_count` text NOT NULL,
-  `description` text,
   `texte_color` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Déchargement des données de la table `page_parameter`
---
-
-INSERT INTO `page_parameter` (`id`, `id_user`, `type_composition`, `template_url`, `color_page`, `police`, `views_count`, `description`, `texte_color`) VALUES
-(3, 3, 'Couleur', '', '#ffff', '', '', '', 'rgb(255, 255, 255);');
 
 -- --------------------------------------------------------
 
@@ -138,17 +132,11 @@ CREATE TABLE `user` (
   `confirmkey` text NOT NULL,
   `uniqid` text NOT NULL,
   `path_img` text NOT NULL,
+  `description` text NOT NULL,
   `confirme` text NOT NULL,
   `date_creation` date NOT NULL,
   `star_account` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Déchargement des données de la table `user`
---
-
-INSERT INTO `user` (`id_user`, `name_user`, `email_user`, `mdp_user`, `nom_user`, `prenom_user`, `confirmkey`, `uniqid`, `path_img`, `confirme`, `date_creation`, `star_account`) VALUES
-(3, 'baba', 'eddy.mahmoud@epitech.eu', '$2y$10$ersUzH7gpsJI7vy9HecDx.WYYdolTbd6ceX128LTS9BMniQNnwSuG', '', '', '18121310828289', '6331a1d189498', '', '', '2022-09-26', 0);
 
 -- --------------------------------------------------------
 
@@ -162,13 +150,6 @@ CREATE TABLE `views_count_insert` (
   `date` date NOT NULL,
   `id_user` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Déchargement des données de la table `views_count_insert`
---
-
-INSERT INTO `views_count_insert` (`id`, `ip`, `date`, `id_user`) VALUES
-(6, '::1', '2022-09-27', 3);
 
 --
 -- Index pour les tables déchargées
@@ -192,7 +173,8 @@ ALTER TABLE `link`
 --
 ALTER TABLE `page_parameter`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `page_parameter_user_id` (`id_user`);
+  ADD KEY `page_parameter_user_id` (`id_user`),
+  ADD KEY `theme_id` (`theme_id`);
 
 --
 -- Index pour la table `recup_mdp`
@@ -233,7 +215,7 @@ ALTER TABLE `background_theme_user`
 -- AUTO_INCREMENT pour la table `link`
 --
 ALTER TABLE `link`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT pour la table `page_parameter`
@@ -279,7 +261,8 @@ ALTER TABLE `link`
 -- Contraintes pour la table `page_parameter`
 --
 ALTER TABLE `page_parameter`
-  ADD CONSTRAINT `page_parameter_user_id` FOREIGN KEY (`id_user`) REFERENCES `user` (`id_user`);
+  ADD CONSTRAINT `page_parameter_user_id` FOREIGN KEY (`id_user`) REFERENCES `user` (`id_user`),
+  ADD CONSTRAINT `theme_id` FOREIGN KEY (`theme_id`) REFERENCES `background_theme_user` (`id`);
 
 --
 -- Contraintes pour la table `views_count_insert`

@@ -20,7 +20,7 @@ function selectbackground_theme_userlabel($bdd, $label){
 
 
 function insertbackground_theme_userid($bdd, $label, $file_path, $type, $status, $couleur){
-				$insert = $bdd->prepare("INSERT INTO background_theme_user VALUES (NULL, :label ,:file_path, :type, :status, :couleur)");
+				$insert = $bdd->prepare("INSERT INTO background_theme_user VALUES (NULL, :label, :slug ,:file_path, :type, :status, :couleur)");
 				$insert->bindValue(':label', $label);
 				$insert->bindValue(':file_path', $file_path);
 				$insert->bindValue(':type', $type);
@@ -33,6 +33,16 @@ function insertbackground_theme_userid($bdd, $label, $file_path, $type, $status,
 				}else{
 					echo '500';
 				}
+}
+
+
+function background_theme_user_by_page_parameter($bdd , $theme_id){
+	$pdoStats = "SELECT background_theme_user.* FROM background_theme_user LEFT JOIN page_parameter ON background_theme_user.id = page_parameter.theme_id WHERE theme_id = '".$theme_id."' ";
+	$stmts = $bdd->prepare($pdoStats);
+	$result = $stmts->execute(array(':theme_id' => $theme_id));
+	$dataparam = $stmts->fetch(PDO::FETCH_BOTH);
+	$stmts->closeCursor();
+	return($dataparam);
 }
 
 ?>

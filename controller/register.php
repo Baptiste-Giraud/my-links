@@ -47,7 +47,7 @@ function register($bdd, $emailuser, $nomuser, $prenomuser, $mdpuser, $usernameus
             for($i=1;$i<$longueurKey;$i++) {
                 $key .= mt_rand(0,9);
             }
-            $insert = $bdd->prepare("INSERT INTO user VALUES (NULL, :name_user ,:email_user, :mdp_user, :nom_user ,:prenom_user , :confirmkey, :uniqid, :path_img, :confirme, :date_creation,:star_account)");
+            $insert = $bdd->prepare("INSERT INTO user VALUES (NULL, :name_user ,:email_user, :mdp_user, :nom_user ,:prenom_user , :confirmkey, :uniqid, :path_img, :description ,:confirme, :date_creation,:star_account)");
             $insert->bindValue(':name_user', $name_user);
             $insert->bindValue(':email_user', $mail);
             $insert->bindValue(':mdp_user', $mdp);
@@ -56,6 +56,7 @@ function register($bdd, $emailuser, $nomuser, $prenomuser, $mdpuser, $usernameus
             $insert->bindValue(':confirmkey', $key);
             $insert->bindValue(':uniqid', uniqid());
             $insert->bindValue(':path_img', "");
+            $insert->bindValue(':description', "");
             $insert->bindValue(':confirme', "");
             $insert->bindValue(':date_creation', $date);
             $insert->bindValue(':star_account','0');
@@ -66,14 +67,13 @@ function register($bdd, $emailuser, $nomuser, $prenomuser, $mdpuser, $usernameus
             if($resultats == TRUE){
 
                 $last_id = $bdd->lastInsertId();
-                $insert = $bdd->prepare("INSERT INTO page_parameter VALUES (NULL, :id_user, :type_composition, :template_url ,:color_page, :police, :views_count ,:description, :texte_color)");
+                $insert = $bdd->prepare("INSERT INTO page_parameter VALUES (NULL, :id_user, :type_composition, :theme_id ,:color_page, :police, :views_count, :texte_color)");
                 $insert->bindValue(':id_user', $last_id);
                 $insert->bindValue(':type_composition', "Couleur");
-                $insert->bindValue(':template_url', "");
+                $insert->bindValue(':theme_id', 1);
                 $insert->bindValue(':color_page', "#ffff");
                 $insert->bindValue(':police', "");
                 $insert->bindValue(':views_count', "");
-                $insert->bindValue(':description', "");
                 $insert->bindValue(':texte_color', "rgb(255, 255, 255);");
                 $insert->execute();
                 $my_from='support@my-links.fans';
@@ -125,6 +125,7 @@ function connexion($bdd, $email, $mdpenter){
                 $_SESSION['confirme'] = $userinfo['confirme'];
                 $_SESSION['star_account'] = $userinfo['star_account'];
                 $_SESSION['path_img'] = $userinfo['path_img'];
+                $_SESSION['description'] = $userinfo['description'];
             } else {
                 echo '<script>swal("Oops!", "Erreur de login!", "error");</script>';
                 exit();

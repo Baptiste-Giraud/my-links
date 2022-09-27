@@ -16,19 +16,14 @@ $url = rtrim($url, '?');
 
 //function_register($bdd, "eddy.mahmoud@epitech.eu", "eddy", "mhd", "azerty83", "edman");
 function_connexion($bdd, "eddy.mahmoud@epitech.eu", "azerty83");
-function_insertlink($bdd, 1, "type", "effect", "url", "color_link", "texte exemple");
-$value = selectinfouserbypseudo($bdd ,$url);
-if($value == false){
-    echo "l'user ".$url." existe pas";
+//function_insertlink($bdd, 1, "type", "effect", "url", "color_link", "texte exemple", 'red');
+//$value = selectinfouserbypseudo($bdd ,$url);
+// if($value == false){
+//     echo "l'user ".$url." existe pas";
     
-}else{
-    echo "l'user ".$url." existe";
-    function_views_count_insert($bdd, $value['id_user']);
-    $links = function_selectlinkbyuserid($bdd,  $value['id_user']);
-    foreach ($links as $link){
-        echo '<a href="'.$link['url'].'">'.$link['texte'].'</a><br>';
-    }
-}
+// }else{
+    include 'templates/user.php';
+// }
 //echo $val = function_views_count_select_by_total($bdd);
 //function_updateinfouser($bdd, 3, "baba", "eddy.mahmoud@epitech.eu", "eddy", "mhd");
 // $data = function_select_parameter_and_link_by_current_user($bdd, "baba");

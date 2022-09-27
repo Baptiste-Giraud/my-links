@@ -63,9 +63,9 @@ include('config/db_connect.php');
     }
 
     //fonction parametre de la page des lien de l'utilisateur
-    //update_parameter_template($bdd, "ttt", "aa", "dd", "sss", "dd", "dqqd", "0");
-    function function_update_parameter_template($bdd, $type_composition, $template_url, $color_page, $description, $texte_color, $police, $views_count){
-        update_parameter_template($bdd, $type_composition, $template_url, $color_page, $description, $texte_color, $police, $views_count);
+    //update_parameter_template($bdd, "ttt", 1, "dd", "sss", "dd", "dqqd", "0");
+    function function_update_parameter_template($bdd, $type_composition, $theme_id, $color_page, $description, $texte_color, $police, $views_count){
+        update_parameter_template($bdd, $type_composition, $theme_id, $color_page, $description, $texte_color, $police, $views_count);
 
     }
 
@@ -91,8 +91,8 @@ include('config/db_connect.php');
 
     //fonction qui permet de update le lien par l'id (user deja connecter)
     // updatelink($bdd, 2, "http://facebook.fr", "test", "toto", 1, "rouge", "rond");
-    function function_updatelink($bdd, $id, $url, $type, $texte, $forme, $couleur_link, $effect){
-        updatelink($bdd, $id, $url, $type, $texte, $forme, $couleur_link, $effect);
+    function function_updatelink($bdd, $id, $url, $type, $texte, $forme, $couleur_link, $effect, $text_color_link){
+        updatelink($bdd, $id, $url, $type, $texte, $forme, $couleur_link, $effect, $text_color_link);
     }
 
     //fonction qui permet de supprimer le lien par l'ID
@@ -103,8 +103,8 @@ include('config/db_connect.php');
 
     //fonction insert lien
     //insertlink($bdd, 1, "type", "effect", "url", "color_link", "texte");
-    function function_insertlink($bdd, $forme, $type, $effect, $url, $color_link, $texte){
-        insertlink($bdd, $forme, $type, $effect, $url, $color_link, $texte);
+    function function_insertlink($bdd, $forme, $type, $effect, $url, $color_link, $texte, $text_color_link){
+        insertlink($bdd, $forme, $type, $effect, $url, $color_link, $texte, $text_color_link);
     }
     //fonction get lien par rapport a l'utilisateur connecter
     //selectlink($bdd);
@@ -150,17 +150,21 @@ include('config/db_connect.php');
         insertbackground_theme_userid($bdd, $label, $file_path, $type, $status, $couleur);
     }
 
+    function function_background_theme_user_by_page_parameter($bdd , $theme_id){
+        return(background_theme_user_by_page_parameter($bdd, $theme_id));
+    }
+
 // -----------------------------------------
 
 
 //
-// - Update parameter User -
+// - User infos  -
 //
 
 //fonction qui permet de mettre à jour les données de l'utilisateur nom, email...
 //updateinfouser($bdd, 1, "edman", "eddy.mahmoud@epitech.eu", "eddy", "mhd");
-function function_updateinfouser($bdd, $iduser, $name_user, $email_user, $nom_user, $prenom_user){
-    updateinfouser($bdd, $iduser, $name_user, $email_user, $nom_user, $prenom_user);
+function function_updateinfouser($bdd, $iduser, $name_user, $email_user, $nom_user, $prenom_user, $description){
+    updateinfouser($bdd, $iduser, $name_user, $email_user, $nom_user, $prenom_user, $description);
 }
 
 function function_selectinfouserbypseudo($bdd, $name_user){
