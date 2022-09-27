@@ -167,6 +167,9 @@ function function_selectinfouserbypseudo($bdd, $name_user){
     return(selectinfouserbypseudo($bdd, $name_user));
 }
 
+// -----------------------------------------
+
+
 
 //
 // - Views of page -
@@ -178,6 +181,9 @@ function function_views_count_insert($bdd, $user_id){
     return(views_count_insert($bdd, $user_id));
 }
 
+
+//fonction qui donne le nombre total de vue de l'utilisateur
+// views_count_insert($bdd, 1);
 function function_views_count_select_by_total($bdd){
     return(views_count_select_by_total($bdd));
 }
