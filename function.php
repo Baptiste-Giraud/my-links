@@ -154,7 +154,7 @@ include('config/db_connect.php');
 
 
 //
-// - Update parameter User -
+// - User infos  -
 //
 
 //fonction qui permet de mettre à jour les données de l'utilisateur nom, email...
