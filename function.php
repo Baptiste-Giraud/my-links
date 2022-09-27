@@ -146,8 +146,8 @@ include('config/db_connect.php');
 
     //fonction qui permet de crée un theme pour la page de l'user
     //insertbackground_theme_userid($bdd, "toto", "/asset/template/svg/template1.svg", "svg", true, "orange");
-    function function_insertbackground_theme_userid($bdd, $label, $file_path, $type, $status, $couleur){
-        insertbackground_theme_userid($bdd, $label, $file_path, $type, $status, $couleur);
+    function function_insertbackground_theme_userid($bdd, $label, $slug, $file_path, $type, $status, $couleur){
+        insertbackground_theme_userid($bdd, $label, $slug, $file_path, $type, $status, $couleur);
     }
 
     function function_background_theme_user_by_page_parameter($bdd , $theme_id){

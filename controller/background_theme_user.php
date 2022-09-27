@@ -19,9 +19,10 @@ function selectbackground_theme_userlabel($bdd, $label){
 }
 
 
-function insertbackground_theme_userid($bdd, $label, $file_path, $type, $status, $couleur){
+function insertbackground_theme_userid($bdd, $label, $slug, $file_path, $type, $status, $couleur){
 				$insert = $bdd->prepare("INSERT INTO background_theme_user VALUES (NULL, :label, :slug ,:file_path, :type, :status, :couleur)");
 				$insert->bindValue(':label', $label);
+				$insert->bindValue(':slug', $slug);
 				$insert->bindValue(':file_path', $file_path);
 				$insert->bindValue(':type', $type);
 				$insert->bindValue(':status', $status);

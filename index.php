@@ -14,8 +14,9 @@ $url = rtrim($url, '?');
 //$data = function_selectlinkbyusername($bdd, "baba");
 //var_dump($data);
 
+//function_insertbackground_theme_userid($bdd, "Template 4", "template-4", "", "css", 1, "blue green");
 //function_register($bdd, "eddy.mahmoud@epitech.eu", "eddy", "mhd", "azerty83", "edman");
-function_connexion($bdd, "eddy.mahmoud@epitech.eu", "azerty83");
+//function_connexion($bdd, "eddy.mahmoud@epitech.eu", "azerty83");
 //function_insertlink($bdd, 1, "type", "effect", "url", "color_link", "texte exemple", 'red');
 //$value = selectinfouserbypseudo($bdd ,$url);
 // if($value == false){
