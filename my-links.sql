@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost:8889
--- Généré le : mar. 27 sep. 2022 à 10:50
+-- Généré le : mer. 28 sep. 2022 à 13:34
 -- Version du serveur :  5.7.34
 -- Version de PHP : 7.3.29
 
@@ -30,10 +30,30 @@ SET time_zone = "+00:00";
 CREATE TABLE `background_theme_user` (
   `id` int(11) NOT NULL,
   `label` text NOT NULL,
+  `slug` text NOT NULL,
   `file_path` text NOT NULL,
   `type` text NOT NULL,
   `status` tinyint(1) NOT NULL,
   `couleur` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Déchargement des données de la table `background_theme_user`
+--
+
+INSERT INTO `background_theme_user` (`id`, `label`, `slug`, `file_path`, `type`, `status`, `couleur`) VALUES
+(1, 'theme1', 'theme1', '/file/to/path', 'svg', 1, 'orange');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `dashboard_parameters`
+--
+
+CREATE TABLE `dashboard_parameters` (
+  `id` int(11) NOT NULL,
+  `type` text NOT NULL,
+  `parameter` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -62,8 +82,19 @@ CREATE TABLE `link` (
   `texte` text NOT NULL,
   `forme` int(11) DEFAULT NULL,
   `couleur_card` text NOT NULL,
-  `effect` text NOT NULL
+  `effect` text NOT NULL,
+  `text_color_link` text NOT NULL,
+  `icon` text,
+  `position` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Déchargement des données de la table `link`
+--
+
+INSERT INTO `link` (`id`, `id_user`, `url`, `type`, `texte`, `forme`, `couleur_card`, `effect`, `text_color_link`, `icon`, `position`) VALUES
+(5, 7, 'url', 'type', 'texte exemple', 1, 'color_link', 'effect', 'red', NULL, 0),
+(6, 7, 'url', 'type', 'texte exemple', 1, 'color_link', 'effect', 'red', NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -75,11 +106,10 @@ CREATE TABLE `page_parameter` (
   `id` int(11) NOT NULL,
   `id_user` int(11) NOT NULL,
   `type_composition` text NOT NULL,
-  `template_url` text NOT NULL,
+  `theme_id` int(11) NOT NULL,
   `color_page` text NOT NULL,
   `police` text NOT NULL,
   `views_count` text NOT NULL,
-  `description` text,
   `texte_color` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -87,8 +117,8 @@ CREATE TABLE `page_parameter` (
 -- Déchargement des données de la table `page_parameter`
 --
 
-INSERT INTO `page_parameter` (`id`, `id_user`, `type_composition`, `template_url`, `color_page`, `police`, `views_count`, `description`, `texte_color`) VALUES
-(3, 3, 'Couleur', '', '#ffff', '', '', '', 'rgb(255, 255, 255);');
+INSERT INTO `page_parameter` (`id`, `id_user`, `type_composition`, `theme_id`, `color_page`, `police`, `views_count`, `texte_color`) VALUES
+(6, 7, 'Couleur', 1, '#ffff', '', '', 'rgb(255, 255, 255);');
 
 -- --------------------------------------------------------
 
@@ -138,6 +168,7 @@ CREATE TABLE `user` (
   `confirmkey` text NOT NULL,
   `uniqid` text NOT NULL,
   `path_img` text NOT NULL,
+  `description` text NOT NULL,
   `confirme` text NOT NULL,
   `date_creation` date NOT NULL,
   `star_account` int(11) NOT NULL
@@ -147,8 +178,8 @@ CREATE TABLE `user` (
 -- Déchargement des données de la table `user`
 --
 
-INSERT INTO `user` (`id_user`, `name_user`, `email_user`, `mdp_user`, `nom_user`, `prenom_user`, `confirmkey`, `uniqid`, `path_img`, `confirme`, `date_creation`, `star_account`) VALUES
-(3, 'baba', 'eddy.mahmoud@epitech.eu', '$2y$10$ersUzH7gpsJI7vy9HecDx.WYYdolTbd6ceX128LTS9BMniQNnwSuG', '', '', '18121310828289', '6331a1d189498', '', '', '2022-09-26', 0);
+INSERT INTO `user` (`id_user`, `name_user`, `email_user`, `mdp_user`, `nom_user`, `prenom_user`, `confirmkey`, `uniqid`, `path_img`, `description`, `confirme`, `date_creation`, `star_account`) VALUES
+(7, 'edman', 'eddy.mahmoud@epitech.eu', '$2y$10$UwLTkpcUsZdbeO2VewkWf.gHahuqo5pr.TM7ZlqK.rOwKNRs92Y56', 'eddy', 'mhd', '24060532928566', '63330b062a93d', '', '', '', '2022-09-27', 0);
 
 -- --------------------------------------------------------
 
@@ -164,13 +195,6 @@ CREATE TABLE `views_count_insert` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Déchargement des données de la table `views_count_insert`
---
-
-INSERT INTO `views_count_insert` (`id`, `ip`, `date`, `id_user`) VALUES
-(6, '::1', '2022-09-27', 3);
-
---
 -- Index pour les tables déchargées
 --
 
@@ -178,6 +202,12 @@ INSERT INTO `views_count_insert` (`id`, `ip`, `date`, `id_user`) VALUES
 -- Index pour la table `background_theme_user`
 --
 ALTER TABLE `background_theme_user`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Index pour la table `dashboard_parameters`
+--
+ALTER TABLE `dashboard_parameters`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -192,7 +222,8 @@ ALTER TABLE `link`
 --
 ALTER TABLE `page_parameter`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `page_parameter_user_id` (`id_user`);
+  ADD KEY `page_parameter_user_id` (`id_user`),
+  ADD KEY `theme_id` (`theme_id`);
 
 --
 -- Index pour la table `recup_mdp`
@@ -227,19 +258,25 @@ ALTER TABLE `views_count_insert`
 -- AUTO_INCREMENT pour la table `background_theme_user`
 --
 ALTER TABLE `background_theme_user`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT pour la table `dashboard_parameters`
+--
+ALTER TABLE `dashboard_parameters`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT pour la table `link`
 --
 ALTER TABLE `link`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT pour la table `page_parameter`
 --
 ALTER TABLE `page_parameter`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT pour la table `recup_mdp`
@@ -257,13 +294,13 @@ ALTER TABLE `type_media`
 -- AUTO_INCREMENT pour la table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT pour la table `views_count_insert`
 --
 ALTER TABLE `views_count_insert`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- Contraintes pour les tables déchargées
@@ -279,7 +316,8 @@ ALTER TABLE `link`
 -- Contraintes pour la table `page_parameter`
 --
 ALTER TABLE `page_parameter`
-  ADD CONSTRAINT `page_parameter_user_id` FOREIGN KEY (`id_user`) REFERENCES `user` (`id_user`);
+  ADD CONSTRAINT `page_parameter_user_id` FOREIGN KEY (`id_user`) REFERENCES `user` (`id_user`),
+  ADD CONSTRAINT `theme_id` FOREIGN KEY (`theme_id`) REFERENCES `background_theme_user` (`id`);
 
 --
 -- Contraintes pour la table `views_count_insert`

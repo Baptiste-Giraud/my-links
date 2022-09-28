@@ -5,7 +5,7 @@ require_once '../vendor/autoload.php';
 // init configuration
 $clientID = '179209385922-inf2tn66d0pphkkihl0v5pcqnre2f0l2.apps.googleusercontent.com';
 $clientSecret = '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';
-$redirectUri = 'http://localhost/my-links/controller/google_authentification.php';
+$redirectUri = 'http://localhost/my-links/controller/google_authentification';
    
 // create Client Request to access Google API
 $client = new Google\Client();

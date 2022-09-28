@@ -1,8 +1,8 @@
 <?php
 
-function insertlink($bdd, $forme, $type, $effect, $url, $color_link, $texte){
+function insertlink($bdd, $forme, $type, $effect, $url, $color_link, $texte, $text_color_link, $icon, $position){
 	$iduser = $_SESSION['id_user'];
-				$insert = $bdd->prepare("INSERT INTO link VALUES (NULL, :id_user ,:url, :type, :texte, :forme, :couleur_card, :effect)");
+				$insert = $bdd->prepare("INSERT INTO link VALUES (NULL, :id_user ,:url, :type, :texte, :forme, :couleur_card, :effect, :text_color_link, icon, position)");
 				$insert->bindValue(':id_user', $iduser);
 				$insert->bindValue(':url', $url);
 				$insert->bindValue(':type', $type);
@@ -10,6 +10,9 @@ function insertlink($bdd, $forme, $type, $effect, $url, $color_link, $texte){
 				$insert->bindValue(':forme', $forme);
 				$insert->bindValue(':couleur_card', $color_link);
 				$insert->bindValue(':effect', $effect);
+				$insert->bindValue(':text_color_link', $text_color_link);
+				$insert->bindValue(':icon', $icon);
+				$insert->bindValue(':position', $position);
 				$result = $insert->execute();
 
 				if($result == TRUE){
@@ -21,7 +24,7 @@ function insertlink($bdd, $forme, $type, $effect, $url, $color_link, $texte){
 
 function selectlink($bdd){
 	$iduser = $_SESSION['id_user'];
-			$pdoStat = "SELECT * FROM link WHERE id_user='".$iduser."' ";
+			$pdoStat = "SELECT * FROM link WHERE id_user='".$iduser."' ORDER BY position";
 			$stmt = $bdd->prepare($pdoStat);
 			$result = $stmt->execute(array(':id_user' => $iduser));
 			$data = $stmt->fetchAll(PDO::FETCH_BOTH);
@@ -31,7 +34,7 @@ function selectlink($bdd){
 
 function selectlinkbyuserid($bdd, $id){
 	$iduser = $id;
-			$pdoStat = "SELECT * FROM link WHERE id_user='".$iduser."' ";
+			$pdoStat = "SELECT * FROM link WHERE id_user='".$iduser."' ORDER BY position";
 			$stmt = $bdd->prepare($pdoStat);
 			$result = $stmt->execute(array(':id_user' => $iduser));
 			$data = $stmt->fetchAll(PDO::FETCH_BOTH);
@@ -42,7 +45,7 @@ function selectlinkbyuserid($bdd, $id){
 
 function selectlinkbyusername($bdd, $username){
 	$name_user = $username;
-			$pdoStat = "SELECT link.* FROM user LEFT JOIN link ON user.id_user = link.id_user WHERE name_user = '".$name_user."' ";
+			$pdoStat = "SELECT link.* FROM user LEFT JOIN link ON user.id_user = link.id_user WHERE name_user = '".$name_user."' ORDER BY position";
 			$stmt = $bdd->prepare($pdoStat);
 			$result = $stmt->execute(array(':name_user' => $name_user));
 			$data = $stmt->fetchAll(PDO::FETCH_BOTH);
@@ -60,7 +63,7 @@ function deletelink($bdd, $id) {
     }
 }
 
-function updatelink($bdd, $id, $url, $type, $texte, $forme, $couleur_link, $effect){
+function updatelink($bdd, $id, $url, $type, $texte, $forme, $couleur_link, $effect, $text_color_link, $icon, $position){
 	$iduser = $_SESSION['id_user'];
 				$sql = "UPDATE link SET
 					url=:url,
@@ -68,7 +71,10 @@ function updatelink($bdd, $id, $url, $type, $texte, $forme, $couleur_link, $effe
 					texte=:texte,
 					forme=:forme,
 					couleur_card=:couleur_card,
-					effect=:effect
+					effect=:effect,
+					text_color_link=:text_color_link,
+					icon=:icon,
+					position=:position
 					WHERE id='".$id."' AND id_user = '".$iduser."'";
 				$stmt= $bdd->prepare($sql);
 				$stmt->bindParam(':url', $url, PDO::PARAM_STR);
@@ -77,6 +83,9 @@ function updatelink($bdd, $id, $url, $type, $texte, $forme, $couleur_link, $effe
 				$stmt->bindParam(':forme', $forme, PDO::PARAM_STR);
 				$stmt->bindParam(':couleur_card', $couleur_link, PDO::PARAM_STR);
 				$stmt->bindParam(':effect', $effect, PDO::PARAM_STR);
+				$stmt->bindParam(':text_color_link', $text_color_link, PDO::PARAM_STR);
+				$stmt->bindParam(':text_color_link', $icon, PDO::PARAM_STR);
+				$stmt->bindParam(':text_color_link', $position, PDO::PARAM_INT);
 				$resultat = $stmt->execute();
 	
 				if($resultat == TRUE){

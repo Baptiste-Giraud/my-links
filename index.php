@@ -14,6 +14,7 @@ $url = rtrim($url, '?');
 //$data = function_selectlinkbyusername($bdd, "baba");
 //var_dump($data);
 
+//function_insertbackground_theme_userid($bdd, "Template 8", "template-8", "", "svg", 1, "purple pink");
 //function_register($bdd, "eddy.mahmoud@epitech.eu", "eddy", "mhd", "azerty83", "edman");
 //function_connexion($bdd, "eddy.mahmoud@epitech.eu", "azerty83");
 //function_insertlink($bdd, 1, "type", "effect", "url", "color_link", "texte exemple");
@@ -22,13 +23,16 @@ if($value == false){
     echo "l'user ".$url." existe pas";
     
 }else{
-    echo "l'user ".$url." existe<br>";
     function_views_count_insert($bdd, $value['id_user']);
-    $links = function_selectlinkbyuserid($bdd,  $value['id_user']);
-    foreach ($links as $link){
-        echo '<a href="'.$link['url'].'">'.$link['texte'].'</a><br>';
-    }
+    include 'templates/user.php';
 }
+//function_insertlink($bdd, 1, "type", "effect", "url", "color_link", "texte exemple", 'red', "facebook", 1);
+//$value = selectinfouserbypseudo($bdd ,$url);
+// if($value == false){
+//     echo "l'user ".$url." existe pas";
+    
+// }else{
+// }
 //echo $val = function_views_count_select_by_total($bdd);
 //function_updateinfouser($bdd, 3, "baba", "eddy.mahmoud@epitech.eu", "eddy", "mhd");
 // $data = function_select_parameter_and_link_by_current_user($bdd, "baba");
