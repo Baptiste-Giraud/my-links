@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.0
+-- version 4.9.7
 -- https://www.phpmyadmin.net/
 --
--- Hôte : localhost:8889
--- Généré le : mer. 28 sep. 2022 à 14:43
--- Version du serveur :  5.7.34
--- Version de PHP : 7.3.29
+-- Hôte : localhost:3306
+-- Généré le : mer. 28 sep. 2022 à 17:01
+-- Version du serveur :  10.2.44-MariaDB
+-- Version de PHP : 7.4.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -18,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de données : `my-links`
+-- Base de données : `gbatxnzb_my-linksdev`
 --
 
 -- --------------------------------------------------------
@@ -42,7 +43,14 @@ CREATE TABLE `background_theme_user` (
 --
 
 INSERT INTO `background_theme_user` (`id`, `label`, `slug`, `file_path`, `type`, `status`, `couleur`) VALUES
-(1, 'theme1', 'theme1', '/file/to/path', 'svg', 1, 'orange');
+(1, 'template 1', 'template-1', '/asset/template/svg/template-1.svg', 'svg', 1, 'orange'),
+(2, 'template 2', 'template-2', '/asset/template/svg/template-2.svg', 'svg', 1, 'orange'),
+(3, 'template 3', 'template-3', '/asset/template/svg/template-3.svg', 'svg', 1, 'orange'),
+(4, 'template 4', 'template-4', '/asset/template/svg/template-4.svg', 'svg', 1, 'orange'),
+(5, 'template 5', 'template-5', '/asset/template/svg/template-5.svg', 'svg', 1, 'orange'),
+(6, 'template 6', 'template-6', '/asset/template/svg/template-6.svg', 'svg', 1, 'orange'),
+(7, 'template 7', 'template-7', '/asset/template/svg/template-7.svg', 'svg', 1, 'orange'),
+(8, 'template 8', 'template-8', '/asset/template/svg/template-8.svg', 'svg', 1, 'orange');
 
 -- --------------------------------------------------------
 
@@ -84,7 +92,7 @@ CREATE TABLE `link` (
   `couleur_card` text NOT NULL,
   `effect` text NOT NULL,
   `text_color_link` text NOT NULL,
-  `icon` text,
+  `icon` text DEFAULT NULL,
   `position` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -93,8 +101,8 @@ CREATE TABLE `link` (
 --
 
 INSERT INTO `link` (`id`, `id_user`, `url`, `type`, `texte`, `forme`, `couleur_card`, `effect`, `text_color_link`, `icon`, `position`) VALUES
-(5, 7, 'url', 'type', 'texte exemple', 1, 'color_link', 'effect', 'red', NULL, 0),
-(6, 7, 'url', 'type', 'texte exemple', 1, 'color_link', 'effect', 'red', NULL, 0);
+(5, 7, 'url', 'type', 'texte exemple', 1, '', 'effect', '', NULL, 1),
+(6, 7, 'url', 'type', 'texte exemple 2', 1, '', 'effect', '', NULL, 2);
 
 -- --------------------------------------------------------
 
@@ -118,7 +126,7 @@ CREATE TABLE `page_parameter` (
 --
 
 INSERT INTO `page_parameter` (`id`, `id_user`, `type_composition`, `theme_id`, `color_page`, `police`, `views_count`, `texte_color`) VALUES
-(6, 7, 'Couleur', 1, '#ffff', '', '', 'rgb(255, 255, 255);');
+(6, 7, 'bg-top', 1, '', '', '', 'rgb(255, 255, 255);');
 
 -- --------------------------------------------------------
 
@@ -167,7 +175,7 @@ CREATE TABLE `user` (
   `prenom_user` text NOT NULL,
   `confirmkey` text NOT NULL,
   `uniqid` text NOT NULL,
-  `path_img` text NOT NULL,
+  `path_img` text DEFAULT NULL,
   `description` text NOT NULL,
   `confirme` text NOT NULL,
   `date_creation` date NOT NULL,
@@ -179,7 +187,7 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id_user`, `name_user`, `email_user`, `mdp_user`, `nom_user`, `prenom_user`, `confirmkey`, `uniqid`, `path_img`, `description`, `confirme`, `date_creation`, `star_account`) VALUES
-(7, 'edman', 'eddy.mahmoud@epitech.eu', '$2y$10$UwLTkpcUsZdbeO2VewkWf.gHahuqo5pr.TM7ZlqK.rOwKNRs92Y56', 'eddy', 'mhd', '24060532928566', '63330b062a93d', '', '', '', '2022-09-27', 0);
+(7, 'edman', 'eddy.mahmoud@epitech.eu', '$2y$10$UwLTkpcUsZdbeO2VewkWf.gHahuqo5pr.TM7ZlqK.rOwKNRs92Y56', 'eddy', 'mhd', '24060532928566', '63330b062a93d', NULL, '', '', '2022-09-27', 0);
 
 -- --------------------------------------------------------
 
@@ -199,7 +207,8 @@ CREATE TABLE `views_count_insert` (
 --
 
 INSERT INTO `views_count_insert` (`id`, `ip`, `date`, `id_user`) VALUES
-(1, '::1', '2022-09-28', 7);
+(1, '::1', '2022-09-28', 7),
+(2, '80.13.106.214', '2022-09-28', 7);
 
 --
 -- Index pour les tables déchargées
@@ -265,7 +274,7 @@ ALTER TABLE `views_count_insert`
 -- AUTO_INCREMENT pour la table `background_theme_user`
 --
 ALTER TABLE `background_theme_user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT pour la table `dashboard_parameters`
@@ -307,7 +316,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT pour la table `views_count_insert`
 --
 ALTER TABLE `views_count_insert`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Contraintes pour les tables déchargées
