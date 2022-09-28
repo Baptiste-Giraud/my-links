@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost:8889
--- Généré le : mar. 27 sep. 2022 à 14:12
+-- Généré le : mer. 28 sep. 2022 à 13:34
 -- Version du serveur :  5.7.34
 -- Version de PHP : 7.3.29
 
@@ -37,6 +37,25 @@ CREATE TABLE `background_theme_user` (
   `couleur` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Déchargement des données de la table `background_theme_user`
+--
+
+INSERT INTO `background_theme_user` (`id`, `label`, `slug`, `file_path`, `type`, `status`, `couleur`) VALUES
+(1, 'theme1', 'theme1', '/file/to/path', 'svg', 1, 'orange');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `dashboard_parameters`
+--
+
+CREATE TABLE `dashboard_parameters` (
+  `id` int(11) NOT NULL,
+  `type` text NOT NULL,
+  `parameter` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 -- --------------------------------------------------------
 
 --
@@ -64,8 +83,18 @@ CREATE TABLE `link` (
   `forme` int(11) DEFAULT NULL,
   `couleur_card` text NOT NULL,
   `effect` text NOT NULL,
-  `text_color_link` text NOT NULL
+  `text_color_link` text NOT NULL,
+  `icon` text,
+  `position` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Déchargement des données de la table `link`
+--
+
+INSERT INTO `link` (`id`, `id_user`, `url`, `type`, `texte`, `forme`, `couleur_card`, `effect`, `text_color_link`, `icon`, `position`) VALUES
+(5, 7, 'url', 'type', 'texte exemple', 1, 'color_link', 'effect', 'red', NULL, 0),
+(6, 7, 'url', 'type', 'texte exemple', 1, 'color_link', 'effect', 'red', NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -83,6 +112,13 @@ CREATE TABLE `page_parameter` (
   `views_count` text NOT NULL,
   `texte_color` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Déchargement des données de la table `page_parameter`
+--
+
+INSERT INTO `page_parameter` (`id`, `id_user`, `type_composition`, `theme_id`, `color_page`, `police`, `views_count`, `texte_color`) VALUES
+(6, 7, 'Couleur', 1, '#ffff', '', '', 'rgb(255, 255, 255);');
 
 -- --------------------------------------------------------
 
@@ -138,6 +174,13 @@ CREATE TABLE `user` (
   `star_account` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Déchargement des données de la table `user`
+--
+
+INSERT INTO `user` (`id_user`, `name_user`, `email_user`, `mdp_user`, `nom_user`, `prenom_user`, `confirmkey`, `uniqid`, `path_img`, `description`, `confirme`, `date_creation`, `star_account`) VALUES
+(7, 'edman', 'eddy.mahmoud@epitech.eu', '$2y$10$UwLTkpcUsZdbeO2VewkWf.gHahuqo5pr.TM7ZlqK.rOwKNRs92Y56', 'eddy', 'mhd', '24060532928566', '63330b062a93d', '', '', '', '2022-09-27', 0);
+
 -- --------------------------------------------------------
 
 --
@@ -159,6 +202,12 @@ CREATE TABLE `views_count_insert` (
 -- Index pour la table `background_theme_user`
 --
 ALTER TABLE `background_theme_user`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Index pour la table `dashboard_parameters`
+--
+ALTER TABLE `dashboard_parameters`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -209,19 +258,25 @@ ALTER TABLE `views_count_insert`
 -- AUTO_INCREMENT pour la table `background_theme_user`
 --
 ALTER TABLE `background_theme_user`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT pour la table `dashboard_parameters`
+--
+ALTER TABLE `dashboard_parameters`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT pour la table `link`
 --
 ALTER TABLE `link`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT pour la table `page_parameter`
 --
 ALTER TABLE `page_parameter`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT pour la table `recup_mdp`
@@ -239,13 +294,13 @@ ALTER TABLE `type_media`
 -- AUTO_INCREMENT pour la table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT pour la table `views_count_insert`
 --
 ALTER TABLE `views_count_insert`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- Contraintes pour les tables déchargées
