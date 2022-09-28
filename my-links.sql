@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost:8889
--- Généré le : mer. 28 sep. 2022 à 13:34
+-- Généré le : mer. 28 sep. 2022 à 14:43
 -- Version du serveur :  5.7.34
 -- Version de PHP : 7.3.29
 
@@ -195,6 +195,13 @@ CREATE TABLE `views_count_insert` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
+-- Déchargement des données de la table `views_count_insert`
+--
+
+INSERT INTO `views_count_insert` (`id`, `ip`, `date`, `id_user`) VALUES
+(1, '::1', '2022-09-28', 7);
+
+--
 -- Index pour les tables déchargées
 --
 
@@ -300,7 +307,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT pour la table `views_count_insert`
 --
 ALTER TABLE `views_count_insert`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Contraintes pour les tables déchargées
