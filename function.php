@@ -7,6 +7,7 @@ include('controller/link_parameter_template.php');
 include('controller/background_theme_user.php');
 include('controller/user.php');
 include('controller/views_count.php');
+include('controller/dashboard_parameters.php');
 include('config/db_connect.php');
 
 
@@ -90,9 +91,9 @@ include('config/db_connect.php');
 //
 
     //fonction qui permet de update le lien par l'id (user deja connecter)
-    // updatelink($bdd, 2, "http://facebook.fr", "test", "toto", 1, "rouge", "rond");
-    function function_updatelink($bdd, $id, $url, $type, $texte, $forme, $couleur_link, $effect, $text_color_link){
-        updatelink($bdd, $id, $url, $type, $texte, $forme, $couleur_link, $effect, $text_color_link);
+    // updatelink($bdd, 2, "http://facebook.fr", "test", "toto", 1, "rouge", "rond", "facebook", 1);
+    function function_updatelink($bdd, $id, $url, $type, $texte, $forme, $couleur_link, $effect, $text_color_link, $icon, $position){
+        updatelink($bdd, $id, $url, $type, $texte, $forme, $couleur_link, $effect, $text_color_link, $icon, $position);
     }
 
     //fonction qui permet de supprimer le lien par l'ID
@@ -102,9 +103,9 @@ include('config/db_connect.php');
     }
 
     //fonction insert lien
-    //insertlink($bdd, 1, "type", "effect", "url", "color_link", "texte");
-    function function_insertlink($bdd, $forme, $type, $effect, $url, $color_link, $texte, $text_color_link){
-        insertlink($bdd, $forme, $type, $effect, $url, $color_link, $texte, $text_color_link);
+    //insertlink($bdd, 1, "type", "effect", "url", "color_link", "texte",  "facebook", 1);
+    function function_insertlink($bdd, $forme, $type, $effect, $url, $color_link, $texte, $text_color_link, $icon, $position){
+        insertlink($bdd, $forme, $type, $effect, $url, $color_link, $texte, $text_color_link, $icon, $position);
     }
     //fonction get lien par rapport a l'utilisateur connecter
     //selectlink($bdd);
@@ -191,4 +192,27 @@ function function_views_count_insert($bdd, $user_id){
 function function_views_count_select_by_total($bdd){
     return(views_count_select_by_total($bdd));
 }
+
+// -----------------------------------------
+
+
+//
+// - Dashboard parameters -
+//
+
+function function_insert_dashboard_parameters($bdd, $type, $parameter){
+    insert_dashboard_parameters($bdd, $type, $parameter);
+}
+
+function function_select_dashboard_parameters_by_type($bdd, $type){
+    return(select_dashboard_parameters_by_type($bdd, $type));
+}
+
+function function_select_dashboard_parameters_id($bdd, $id){
+    return(select_dashboard_parameters_id($bdd, $id));
+}
+
+
+// -----------------------------------------
+
 ?>
