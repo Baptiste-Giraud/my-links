@@ -16,14 +16,15 @@ $url = rtrim($url, '?');
 
 //function_insertbackground_theme_userid($bdd, "Template 8", "template-8", "", "svg", 1, "purple pink");
 //function_register($bdd, "eddy.mahmoud@epitech.eu", "eddy", "mhd", "azerty83", "edman");
-//function_connexion($bdd, "eddy.mahmoud@epitech.eu", "azerty83");
+// function_connexion($bdd, "eddy.mahmoud@epitech.eu", "azerty83");
+// echo $_SESSION['token'];
 //function_insertlink($bdd, 1, "type", "effect", "url", "color_link", "texte exemple", 'red', "facebook", 1);
 //$value = selectinfouserbypseudo($bdd ,$url);
 // if($value == false){
 //     echo "l'user ".$url." existe pas";
     
 // }else{
-    include 'templates/user.php';
+    //include 'templates/user.php';
 // }
 //echo $val = function_views_count_select_by_total($bdd);
 //function_updateinfouser($bdd, 3, "baba", "eddy.mahmoud@epitech.eu", "eddy", "mhd");
