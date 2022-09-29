@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost:3306
--- Généré le : mer. 28 sep. 2022 à 17:01
+-- Généré le : jeu. 29 sep. 2022 à 10:52
 -- Version du serveur :  10.2.44-MariaDB
 -- Version de PHP : 7.4.30
 
@@ -208,7 +208,9 @@ CREATE TABLE `views_count_insert` (
 
 INSERT INTO `views_count_insert` (`id`, `ip`, `date`, `id_user`) VALUES
 (1, '::1', '2022-09-28', 7),
-(2, '80.13.106.214', '2022-09-28', 7);
+(2, '80.13.106.214', '2022-09-28', 7),
+(3, '81.65.135.109', '2022-09-28', 7),
+(4, '81.65.135.109', '2022-09-29', 7);
 
 --
 -- Index pour les tables déchargées
@@ -316,7 +318,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT pour la table `views_count_insert`
 --
 ALTER TABLE `views_count_insert`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Contraintes pour les tables déchargées
