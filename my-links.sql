@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost:8889
--- Généré le : jeu. 29 sep. 2022 à 11:24
+-- Généré le : ven. 30 sep. 2022 à 10:43
 -- Version du serveur :  5.7.34
 -- Version de PHP : 7.3.29
 
@@ -94,16 +94,19 @@ CREATE TABLE `link` (
   `effect` text NOT NULL,
   `text_color_link` text NOT NULL,
   `icon` text,
-  `position` int(11) NOT NULL
+  `position` int(11) NOT NULL,
+  `link_show` tinyint(1) NOT NULL DEFAULT '1',
+  `date_start_show` datetime DEFAULT NULL,
+  `date_finish_show` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `link`
 --
 
-INSERT INTO `link` (`id`, `id_user`, `url`, `type`, `texte`, `forme`, `couleur_card`, `effect`, `text_color_link`, `icon`, `position`) VALUES
-(5, 7, 'url', 'type', 'texte exemple', 1, '', 'effect', '', NULL, 1),
-(6, 7, 'url', 'type', 'texte exemple 2', 1, '', 'effect', '', NULL, 2);
+INSERT INTO `link` (`id`, `id_user`, `url`, `type`, `texte`, `forme`, `couleur_card`, `effect`, `text_color_link`, `icon`, `position`, `link_show`, `date_start_show`, `date_finish_show`) VALUES
+(5, 7, 'url', 'type', 'texte exemple', 1, '', 'effect', '', NULL, 1, 1, NULL, NULL),
+(6, 7, 'url', 'type', 'texte exemple 2', 1, '', 'effect', '', NULL, 2, 1, '2022-09-30 00:00:00', '2022-09-30 23:59:59');
 
 -- --------------------------------------------------------
 
@@ -176,7 +179,7 @@ CREATE TABLE `user` (
   `prenom_user` text NOT NULL,
   `confirmkey` text NOT NULL,
   `uniqid` text NOT NULL,
-  `token` text NOT NULL,
+  `token` text,
   `path_img` text,
   `description` text NOT NULL,
   `confirme` text NOT NULL,
@@ -213,7 +216,8 @@ INSERT INTO `views_count_insert` (`id`, `ip`, `date`, `id_user`) VALUES
 (2, '80.13.106.214', '2022-09-28', 7),
 (3, '81.65.135.109', '2022-09-28', 7),
 (4, '81.65.135.109', '2022-09-29', 7),
-(5, '::1', '2022-09-29', 7);
+(5, '::1', '2022-09-29', 7),
+(6, '::1', '2022-09-30', 7);
 
 --
 -- Index pour les tables déchargées
@@ -321,7 +325,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT pour la table `views_count_insert`
 --
 ALTER TABLE `views_count_insert`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- Contraintes pour les tables déchargées
