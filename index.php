@@ -20,6 +20,9 @@ $url = rtrim($url, '?');
 // echo $_SESSION['token'];
 //function_insertlink($bdd, 1, "type", "effect", "url", "color_link", "texte exemple", 'red', "facebook", 1);
 $value = selectinfouserbypseudo($bdd ,$url);
+//function_insertlink($bdd, 1, "type", "effect", "url", "color_link", "texte", "red", "facebook", 1, 1);
+
+
 // if($value == false){
 //     echo "l'user ".$url." existe pas";
     
