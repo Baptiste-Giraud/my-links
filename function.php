@@ -212,7 +212,6 @@ function function_select_dashboard_parameters_id($bdd, $id){
     return(select_dashboard_parameters_id($bdd, $id));
 }
 
-
 // -----------------------------------------
 
 ?>

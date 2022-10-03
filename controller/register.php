@@ -47,25 +47,26 @@ function register($bdd, $emailuser, $nomuser, $prenomuser, $mdpuser, $usernameus
             for($i=1;$i<$longueurKey;$i++) {
                 $key .= mt_rand(0,9);
             }
-            $insert = $bdd->prepare("INSERT INTO user VALUES (NULL, :name_user ,:email_user, :mdp_user, :nom_user ,:prenom_user , :token, :confirmkey, :uniqid, :token,:path_img, :description ,:confirme, :date_creation,:star_account)");
+            $insert = $bdd->prepare("INSERT INTO user VALUES (NULL, :name_user ,:email_user, :mdp_user, :nom_user ,:prenom_user , :confirmkey, :uniqid, :token,:path_img, :description ,:confirme, :date_creation,:star_account, :type_account)");
             $insert->bindValue(':name_user', $name_user);
             $insert->bindValue(':email_user', $mail);
             $insert->bindValue(':mdp_user', $mdp);
             $insert->bindValue(':nom_user', $nom);
             $insert->bindValue(':prenom_user', $prenom);
-            $insert->bindValue(':token', NULL);
             $insert->bindValue(':confirmkey', $key);
             $insert->bindValue(':uniqid', uniqid());
-            $insert->bindValue(':token', "");
+            $insert->bindValue(':token', NULL);
             $insert->bindValue(':path_img', "");
             $insert->bindValue(':description', "");
             $insert->bindValue(':confirme', "");
             $insert->bindValue(':date_creation', $date);
             $insert->bindValue(':star_account','0');
+            $insert->bindValue(':type_account','normal');
         
 
 
             $resultats = $insert->execute();
+            var_dump($resultats);
             if($resultats == TRUE){
 
                 $last_id = $bdd->lastInsertId();

@@ -5,6 +5,8 @@ include("function.php");
 $url = $_SERVER['REQUEST_URI'];
 $url = str_replace("/", "", $url);
 $url = rtrim($url, '?');
+
+// include("controller/google_authentification.php");
 //function_connexion($bdd, "baptiste.giraud@epitech.eu", "azerty83");
 // $data = function_select_parameter_current_user_by_id_user($bdd, 2);
 // var_dump($data);
