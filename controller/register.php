@@ -60,7 +60,7 @@ function register($bdd, $emailuser, $nomuser, $prenomuser, $mdpuser, $usernameus
             $insert->bindValue(':description', "");
             $insert->bindValue(':confirme', "");
             $insert->bindValue(':date_creation', $date);
-            $insert->bindValue(':star_account','0');
+            $insert->bindValue(':star_account',0);
             $insert->bindValue(':type_account','normal');
         
 
