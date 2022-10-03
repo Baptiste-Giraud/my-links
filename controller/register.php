@@ -47,14 +47,16 @@ function register($bdd, $emailuser, $nomuser, $prenomuser, $mdpuser, $usernameus
             for($i=1;$i<$longueurKey;$i++) {
                 $key .= mt_rand(0,9);
             }
-            $insert = $bdd->prepare("INSERT INTO user VALUES (NULL, :name_user ,:email_user, :mdp_user, :nom_user ,:prenom_user , :confirmkey, :uniqid, :path_img, :description ,:confirme, :date_creation,:star_account)");
+            $insert = $bdd->prepare("INSERT INTO user VALUES (NULL, :name_user ,:email_user, :mdp_user, :nom_user ,:prenom_user , :token, :confirmkey, :uniqid, :token,:path_img, :description ,:confirme, :date_creation,:star_account)");
             $insert->bindValue(':name_user', $name_user);
             $insert->bindValue(':email_user', $mail);
             $insert->bindValue(':mdp_user', $mdp);
             $insert->bindValue(':nom_user', $nom);
             $insert->bindValue(':prenom_user', $prenom);
+            $insert->bindValue(':token', NULL);
             $insert->bindValue(':confirmkey', $key);
             $insert->bindValue(':uniqid', uniqid());
+            $insert->bindValue(':token', "");
             $insert->bindValue(':path_img', "");
             $insert->bindValue(':description', "");
             $insert->bindValue(':confirme', "");
@@ -107,6 +109,7 @@ function register($bdd, $emailuser, $nomuser, $prenomuser, $mdpuser, $usernameus
         }
 }
 
+
 //login
 function connexion($bdd, $email, $mdpenter){
 		$mailconnect = htmlspecialchars($email);
@@ -126,6 +129,8 @@ function connexion($bdd, $email, $mdpenter){
                 $_SESSION['star_account'] = $userinfo['star_account'];
                 $_SESSION['path_img'] = $userinfo['path_img'];
                 $_SESSION['description'] = $userinfo['description'];
+                $_SESSION['token'] = uniqid()."".rand(100,999)."".date("dmY")."t";
+                updatetoken($bdd, $userinfo['id_user'], $_SESSION['token']);
             } else {
                 echo '<script>swal("Oops!", "Erreur de login!", "error");</script>';
                 exit();
@@ -135,4 +140,20 @@ function connexion($bdd, $email, $mdpenter){
             exit();
 		}
 	}
+
+    //token
+function updatetoken($bdd, $iduser, $token){
+    $sql = "UPDATE user SET
+        token=:token
+        WHERE id_user = '".$iduser."'";
+    $stmt= $bdd->prepare($sql);
+    $stmt->bindParam(':token', $token, PDO::PARAM_STR);
+    $resultat = $stmt->execute();
+    var_dump($resultat);
+    if($resultat == TRUE){
+        echo '400';
+    }else{
+        echo '500';
+    }
+}
 ?>

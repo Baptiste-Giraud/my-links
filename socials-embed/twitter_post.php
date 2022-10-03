@@ -1,0 +1,1 @@
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">What are your best Vitality memories?</p>&mdash; Team Vitality (@TeamVitality) <a href="https://twitter.com/TeamVitality/status/1575455585495126018?ref_src=twsrc%5Etfw">September 29, 2022</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>

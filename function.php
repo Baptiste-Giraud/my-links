@@ -91,9 +91,9 @@ include('config/db_connect.php');
 //
 
     //fonction qui permet de update le lien par l'id (user deja connecter)
-    // updatelink($bdd, 2, "http://facebook.fr", "test", "toto", 1, "rouge", "rond", "facebook", 1);
-    function function_updatelink($bdd, $id, $url, $type, $texte, $forme, $couleur_link, $effect, $text_color_link, $icon, $position){
-        updatelink($bdd, $id, $url, $type, $texte, $forme, $couleur_link, $effect, $text_color_link, $icon, $position);
+    // updatelink($bdd, 2, "http://facebook.fr", "test", "toto", 1, "rouge", "rond", "facebook", 1, 0, "2022-10-10 17:16:18", "2022-10-10 18:00:00");
+    function function_updatelink($bdd, $id, $url, $type, $texte, $forme, $couleur_link, $effect, $text_color_link, $icon, $position, $link_show, $date_start_show,$date_finish_show){
+        updatelink($bdd, $id, $url, $type, $texte, $forme, $couleur_link, $effect, $text_color_link, $icon, $position, $link_show, $date_start_show, $date_finish_show);
     }
 
     //fonction qui permet de supprimer le lien par l'ID
@@ -103,14 +103,14 @@ include('config/db_connect.php');
     }
 
     //fonction insert lien
-    //insertlink($bdd, 1, "type", "effect", "url", "color_link", "texte",  "facebook", 1);
-    function function_insertlink($bdd, $forme, $type, $effect, $url, $color_link, $texte, $text_color_link, $icon, $position){
-        insertlink($bdd, $forme, $type, $effect, $url, $color_link, $texte, $text_color_link, $icon, $position);
+    //insertlink($bdd, 1, "type", "effect", "url", "color_link", "texte", "red", "facebook", 1, 1, "", "");
+    function function_insertlink($bdd, $forme, $type, $effect, $url, $color_link, $texte, $text_color_link, $icon, $position, $link_show, $date_start_show, $date_finish_show){
+        insertlink($bdd, $forme, $type, $effect, $url, $color_link, $texte, $text_color_link, $icon, $position, $link_show, $date_start_show, $date_finish_show);
     }
     //fonction get lien par rapport a l'utilisateur connecter
-    //selectlink($bdd);
-    function function_selectlink($bdd){
-        return(selectlink($bdd));
+    //selectalllinkuser($bdd);
+    function function_selectalllinkuser($bdd){
+        return(selectalllinkuser($bdd));
     }
 
     //fonction get lien par rapport a l'id

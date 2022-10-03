@@ -26,8 +26,13 @@ if($value == false){
     function_views_count_insert($bdd, $value['id_user']);
     include 'templates/user.php';
 }
+// function_connexion($bdd, "eddy.mahmoud@epitech.eu", "azerty83");
+// echo $_SESSION['token'];
 //function_insertlink($bdd, 1, "type", "effect", "url", "color_link", "texte exemple", 'red', "facebook", 1);
 //$value = selectinfouserbypseudo($bdd ,$url);
+//function_insertlink($bdd, 1, "type", "effect", "url", "color_link", "texte", "red", "facebook", 1, 1);
+
+
 // if($value == false){
 //     echo "l'user ".$url." existe pas";
     

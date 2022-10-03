@@ -12,6 +12,29 @@ function getIp(){
     return $ip;
   }
 
+
+  function check_device(){
+    $value_return = NULL;
+    //mobile
+    $isMob = is_numeric(strpos(strtolower($_SERVER["HTTP_USER_AGENT"]), "mobile"));
+    $isTab = is_numeric(strpos(strtolower($_SERVER["HTTP_USER_AGENT"]), "tablet"));
+    $isDesktop = !$isMob && !$isTab;
+
+    if($isMob != null){
+      $value_return =  "mobile";
+    }else if ($isTab != null){
+      $value_return =  "tablet";
+    }
+    else if($isDesktop){
+      $value_return =  "desktop";
+    }
+ 
+    //  TABLET CHECK
+ 
+    // (C) DESKTOP?
+    return($value_return);
+  }
+
 function views_count_insert($bdd, $user_id){
         $viewsofday = views_count_select_security($bdd);
         if($viewsofday == 1){
@@ -19,10 +42,13 @@ function views_count_insert($bdd, $user_id){
         }else{
             $date =  date("Y-m-d");
             $ip = getIp();
-            	$insert = $bdd->prepare("INSERT INTO views_count_insert VALUES (NULL, :ip ,:date, :id_user)");
+            $device = check_device();
+            var_dump($device);
+            	$insert = $bdd->prepare("INSERT INTO views_count_insert VALUES (NULL, :ip ,:date, :id_user, :device)");
 				$insert->bindValue(':ip', $ip);
 				$insert->bindValue(':date', $date);
-                $insert->bindValue(':id_user', $user_id);
+        $insert->bindValue(':id_user', $user_id);
+        $insert->bindValue(':device', $device);
 				$result = $insert->execute();
 
 				if($result == TRUE){
