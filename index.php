@@ -21,9 +21,9 @@ $url = rtrim($url, '?');
 //function_connexion($bdd, "eddy.mahmoud@epitech.eu", "azerty83");
 // echo $_SESSION['token'];
 
-$value = selectinfouserbypseudo($bdd ,$url);
-function_insertlink($bdd, 1, "type", "test", "https://onlyfans.porn/eddyass", "", "", "", "", 1, 1, NULL, NULL, 0);
-$value = selectinfouserbypseudo($bdd ,$url);
+// $value = selectinfouserbypseudo($bdd ,$url);
+//function_insertlink($bdd, 1, "type", "test", "https://onlyfans.porn/eddyass", "", "", "", "", 1, 1, NULL, NULL, 0);
+//$value = selectinfouserbypseudo($bdd ,$url);
 
 
 // if($value == false){

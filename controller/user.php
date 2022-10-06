@@ -26,6 +26,25 @@ function updateinfouser($bdd, $iduser, $name_user, $email_user, $nom_user, $pren
 				}
 }
 
+
+function updatenameuser($bdd, $iduser, $name_user){
+	$iduser = $_SESSION['id_user'];
+				$sql = "UPDATE user SET
+					name_user=:name_user,
+					description=:description
+					WHERE id_user = '".$iduser."'";
+
+				$stmt= $bdd->prepare($sql);
+				$stmt->bindParam(':name_user', $name_user, PDO::PARAM_STR);
+				$resultat = $stmt->execute();
+
+				if($resultat == TRUE){
+					echo 'ça fonctionne';
+				}else{
+					echo 'fonctione pas';
+				}
+}
+
 function selectinfouserbypseudo($bdd, $name_user){
 	$pdoStats = "SELECT id_user, name_user, email_user, nom_user, prenom_user, path_img, description  FROM user WHERE name_user='".$name_user."' ";
 	$stmts = $bdd->prepare($pdoStats);

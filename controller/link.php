@@ -74,7 +74,7 @@ function selectlinkbyuserid($bdd, $id){
 	$iduser = $id;
 	$date_start_show = date("Y-m-d H:i:s");
 	$date_finish_show = date("Y-m-d H:i:s");
-			$pdoStat = "SELECT * FROM link WHERE id_user='".$iduser."' AND link_show = 1 AND date_start_show <='".$date_start_show."' AND date_finish_show >='".$date_finish_show."' OR  date_start_show IS NULL AND date_finish_show IS NULL ORDER BY position";
+			$pdoStat = "SELECT * FROM link WHERE id_user='".$iduser."' AND link_show = 1 AND date_start_show <='".$date_start_show."' AND date_finish_show >='".$date_finish_show."' OR id_user='".$iduser."' AND link_show = 1 AND  date_start_show IS NULL AND date_finish_show IS NULL ORDER BY position";
 			$stmt = $bdd->prepare($pdoStat);
 			$result = $stmt->execute(array(':id_user' => $iduser));
 			$data = $stmt->fetchAll(PDO::FETCH_BOTH);
@@ -87,7 +87,7 @@ function selectlinkbyusername($bdd, $username){
 	$name_user = $username;
 	$date_start_show = date("Y-m-d H:i:s");
 	$date_finish_show = date("Y-m-d H:i:s");
-			$pdoStat = "SELECT link.* FROM user LEFT JOIN link ON user.id_user = link.id_user WHERE name_user = '".$name_user."' AND link_show = 1 AND date_start_show <='".$date_start_show."' AND date_finish_show >='".$date_finish_show."' OR  date_start_show IS NULL AND date_finish_show IS NULL  ORDER BY position";
+			$pdoStat = "SELECT link.* FROM user LEFT JOIN link ON user.id_user = link.id_user WHERE name_user = '".$name_user."' AND link_show = 1 AND date_start_show <='".$date_start_show."' AND date_finish_show >='".$date_finish_show."' OR name_user='".$name_user."' AND link_show = 1 AND  date_start_show IS NULL AND date_finish_show IS NULL  ORDER BY position";
 			$stmt = $bdd->prepare($pdoStat);
 			$result = $stmt->execute(array(':name_user' => $name_user));
 			$data = $stmt->fetchAll(PDO::FETCH_BOTH);
