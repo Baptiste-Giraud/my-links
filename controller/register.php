@@ -19,7 +19,7 @@ function email_exist($bdd,$mail){
 
 
 //inscription
-function register($bdd, $emailuser, $nomuser, $prenomuser, $mdpuser, $usernameuser){
+function register($bdd, $emailuser, $nomuser, $prenomuser, $mdpuser, $usernameuser, $mdpsuruser){
         $mail = htmlspecialchars($emailuser);
         $nom = htmlspecialchars($nomuser);
         $prenom = htmlspecialchars($prenomuser);
@@ -30,10 +30,11 @@ function register($bdd, $emailuser, $nomuser, $prenomuser, $mdpuser, $usernameus
         $requnameexist = name_exist($bdd, $name_user);
 
         $userexist = email_exist($bdd, $mail);
-
-
-        if(strlen($mdpuser) <= 5){
-            echo '<script>swal("Oops!", "Mot de passe inferieur a 5 caracteres", "error");</script>';
+        if($mdpuser != $mdpsuruser){
+            echo '<script>swal("Oops!", "Vos mot de passes sont différents", "error");</script>';
+            exit();
+        }else if(strlen($mdpuser) <= 7){
+            echo '<script>swal("Oops!", "Mot de passe inferieur a 7 caracteres", "error");</script>';
             exit();
         }else if ($name_user == trim($name_user) && strpos($name_user, ' ') !== false) {
             echo '<script>swal("Oops!", "Identifiant impossible avec espace", "error");</script>';
