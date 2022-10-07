@@ -9,6 +9,7 @@ include('controller/user.php');
 include('controller/views_count.php');
 include('controller/dashboard_parameters.php');
 include('controller/giphy.php');
+include('controller/scrap.php');
 include('config/db_connect.php');
 
 
@@ -236,6 +237,16 @@ function function_search_giphy_giph($search, $offset){
     search_giphy_giph($search, $offset);
 }
 
+// -----------------------------------------
+
+
+//
+// - scrap -
+//
+
+function function_scrap_linktree($url){
+    scrap_linktree($url);
+}
 
 // -----------------------------------------
 ?>
