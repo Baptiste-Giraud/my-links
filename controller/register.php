@@ -67,7 +67,6 @@ function register($bdd, $emailuser, $nomuser, $prenomuser, $mdpuser, $usernameus
 
 
             $resultats = $insert->execute();
-            var_dump($resultats);
             if($resultats == TRUE){
 
                 $last_id = $bdd->lastInsertId();
@@ -116,8 +115,8 @@ function register($bdd, $emailuser, $nomuser, $prenomuser, $mdpuser, $usernameus
 function connexion($bdd, $email, $mdpenter){
 		$mailconnect = htmlspecialchars($email);
 	
-		$requser = $bdd->prepare('SELECT * FROM user WHERE email_user = ?');
-		$requser->execute(array($mailconnect));
+		$requser = $bdd->prepare('SELECT * FROM user WHERE email_user = ? OR  name_user = ?');
+		$requser->execute(array($mailconnect, $mailconnect));
 		$userexist = $requser->rowCount();
 		if($userexist == 1){
             $userinfo = $requser->fetch();

@@ -17,8 +17,8 @@ $url = rtrim($url, '?');
 //var_dump($data);
 
 //function_insertbackground_theme_userid($bdd, "Template 8", "template-8", "", "svg", 1, "purple pink");
-// function_register($bdd, "admin@my-links.fans", "admin", "admin", "azerty83", "my-links");
-function_connexion($bdd, "eddy.mahmoud@epitech.eu", "azerty83");
+//function_register($bdd, "admin@my-links.fans", "admin", "admin", "azerty83", "my-links", "azerty83");
+function_connexion($bdd, "edman", "azerty83");
 // echo $_SESSION['token'];
 
 // $value = selectinfouserbypseudo($bdd ,$url);
