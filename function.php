@@ -18,7 +18,7 @@ include('config/db_connect.php');
 
 
     //fonction d'inscription avec envoie de mail
-    // register($bdd, "eddy.mahmoud@epitech.eu", "eddy", "mhd", "azerty83", "edman", "azerty83@");
+    // register($bdd, "eddy.mahmoud@epitech.eu", "eddy", "mhd", "azerty83", "edman", "azerty83");
     function function_register($bdd, $emailuser, $nomuser, $prenomuser, $mdpuser, $usernameuser, $mdpsueruser){
         register($bdd, $emailuser, $nomuser, $prenomuser, $mdpuser, $usernameuser, $mdpsueruser);
 
