@@ -8,6 +8,7 @@ include('controller/background_theme_user.php');
 include('controller/user.php');
 include('controller/views_count.php');
 include('controller/dashboard_parameters.php');
+include('controller/giphy.php');
 include('config/db_connect.php');
 
 
@@ -214,4 +215,27 @@ function function_select_dashboard_parameters_id($bdd, $id){
 
 // -----------------------------------------
 
+
+//
+// - giphy -
+//
+
+function function_trend_giphy_sticker_search($search, $offset){
+    trend_giphy_sticker_search($search, $offset);
+}
+
+function function_trend_giphy_sticker(){
+    trend_giphy_sticker();
+}
+
+function function_trend_giphy_giph(){
+    trend_giphy_giph();
+}
+
+function function_search_giphy_giph($search, $offset){
+    search_giphy_giph($search, $offset);
+}
+
+
+// -----------------------------------------
 ?>

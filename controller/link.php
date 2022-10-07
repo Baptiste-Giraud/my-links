@@ -23,10 +23,6 @@ function insertlink($bdd, $forme, $type, $effect, $url, $color_link, $texte, $te
 			$final_sensitive = 1;
 		}else if(strstr($url, 'xxx')){
 			$final_sensitive = 1;
-		}else if(strstr($url, 'prono')){
-			$final_sensitive = 1;
-		}else if(strstr($url, 'casino')){
-			$final_sensitive = 1;
 		}
 		else if(verifSensiteLink($bdd, $url) == 1){
 			$final_sensitive = 1;
@@ -116,12 +112,7 @@ function updatelink($bdd, $id, $url, $type, $texte, $forme, $couleur_link, $effe
 			$final_sensitive = 1;
 		}else if(strstr($url, 'xxx')){
 			$final_sensitive = 1;
-		}else if(strstr($url, 'prono')){
-			$final_sensitive = 1;
-		}else if(strstr($url, 'casino')){
-			$final_sensitive = 1;
-		}
-		else if(verifSensiteLink($bdd, $url) == 1){
+		}else if(verifSensiteLink($bdd, $url) == 1){
 			$final_sensitive = 1;
 		}else{
 			$final_sensitive = 0;
