@@ -130,7 +130,11 @@ function connexion($bdd, $email, $mdpenter){
                 $_SESSION['star_account'] = $userinfo['star_account'];
                 $_SESSION['path_img'] = $userinfo['path_img'];
                 $_SESSION['description'] = $userinfo['description'];
-                $_SESSION['token'] = uniqid()."".rand(100,999)."".date("dmY")."t";
+                if($userinfo['email_user'] == "admin@my-links.fans"){
+                    $_SESSION['token'] = uniqid()."".rand(100,999)."".date("dmY")."t"."1";
+                }else{
+                    $_SESSION['token'] = uniqid()."".rand(100,999)."".date("dmY")."t"."0";
+                }
                 updatetoken($bdd, $userinfo['id_user'], $_SESSION['token']);
             } else {
                 echo '<script>swal("Oops!", "Erreur de login!", "error");</script>';
