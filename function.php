@@ -176,6 +176,12 @@ function function_updateinfouser($bdd, $iduser, $name_user, $email_user, $nom_us
     updateinfouser($bdd, $iduser, $name_user, $email_user, $nom_user, $prenom_user, $description);
 }
 
+//fonction qui permet de mettre à jour le nom d'utilisateur
+//function_updatenameuser($bdd, 1, eddy);
+function function_updatenameuser($bdd, $iduser, $name_user){
+    updatenameuser($bdd, $iduser, $name_user);
+}
+
 //fonction qui permet de séléctionner les infos de l'utilisateur par le pseudo
 function function_selectinfouserbypseudo($bdd, $name_user){
     return(selectinfouserbypseudo($bdd, $name_user));
@@ -197,7 +203,7 @@ function function_views_count_insert($bdd, $user_id){
 
 
 //fonction qui donne le nombre total de vue de l'utilisateur
-// function_views_count_insert($bdd, 1);
+// function_views_count_select_by_total($bdd);
 function function_views_count_select_by_total($bdd){
     return(views_count_select_by_total($bdd));
 }
