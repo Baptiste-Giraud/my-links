@@ -25,7 +25,7 @@ include('config/db_connect.php');
 
     }
 
-    //fonction de connexion
+    //fonction qui permet de se connecter
     //function_connexion($bdd, "baptiste.giraud@epitech.eu", "azerty83");
     function function_connexion($bdd, $email, $mdpenter){
         return(connexion($bdd, $email, $mdpenter));
@@ -65,7 +65,7 @@ include('config/db_connect.php');
         return(select_parameter_current_user_by_name($bdd, $name));
     }
 
-    //fonction parametre de la page des lien de l'utilisateur
+    //fonction qui permet de mettre à jour les parametres de la page des liens de l'utilisateur (le thème, la police, le texte, la couleur de la page...)
     //function_update_parameter_template($bdd, "ttt", 1, "dd", "sss", "dd", "dqqd", "0");
     function function_update_parameter_template($bdd, $type_composition, $theme_id, $color_page, $description, $texte_color, $police, $views_count){
         update_parameter_template($bdd, $type_composition, $theme_id, $color_page, $description, $texte_color, $police, $views_count);
@@ -92,7 +92,7 @@ include('config/db_connect.php');
 // - Link -
 //
 
-    //fonction qui permet de update le lien par l'id (user deja connecter)
+    //fonction qui permet de mettre à jour le lien par l'id (user deja connecter)
     // function_updatelink($bdd, 2, "http://facebook.fr", "test", "toto", 1, "rouge", "rond", "facebook", 1, 0, "2022-10-10 17:16:18", "2022-10-10 18:00:00", 1);
     function function_updatelink($bdd, $id, $url, $type, $texte, $forme, $couleur_link, $effect, $text_color_link, $icon, $position, $link_show, $date_start_show,$date_finish_show, $sensitive){
         updatelink($bdd, $id, $url, $type, $texte, $forme, $couleur_link, $effect, $text_color_link, $icon, $position, $link_show, $date_start_show, $date_finish_show, $sensitive);
@@ -104,24 +104,24 @@ include('config/db_connect.php');
         deletelink($bdd, $id);
     }
 
-    //fonction insert lien
+    //fonction qui permet d'inserer un lien
     //function_insertlink($bdd, 1, "type", "effect", "url", "color_link", "texte", "red", "facebook", 1, 1, "", "", 1);
     function function_insertlink($bdd, $forme, $type, $effect, $url, $color_link, $texte, $text_color_link, $icon, $position, $link_show, $date_start_show, $date_finish_show, $sensitive){
         insertlink($bdd, $forme, $type, $effect, $url, $color_link, $texte, $text_color_link, $icon, $position, $link_show, $date_start_show, $date_finish_show, $sensitive);
     }
-    //fonction get lien par rapport a l'utilisateur connecter
+    //fonction qui permet de get le lien par rapport a l'utilisateur connecter
     //function_selectalllinkuser($bdd);
     function function_selectalllinkuser($bdd){
         return(selectalllinkuser($bdd));
     }
 
-    //fonction get lien par rapport a l'id
+    //fonction qui permet de get le lien par rapport a l'id
     //function_selectlinkbyuserid($bdd, 3);
     function function_selectlinkbyuserid($bdd, $id){
     return( selectlinkbyuserid($bdd, $id));
     }
 
-    //fonction get lien par rapport a l'username
+    //fonction qui permet de get le lien par rapport a l'username
     //function_selectlinkbyuserid($bdd, fazzeurwhite);
     function function_selectlinkbyusername($bdd, $username){
         return( selectlinkbyusername($bdd, $username));
@@ -134,20 +134,20 @@ include('config/db_connect.php');
 // - Background_theme_user -
 //
 
-    //fonction qui permet de select un theme pour la page de l'user par l'id du theme
+    //fonction qui permet de selectionner un theme lors de la configuration de la page de l'utilisateur par l'id du theme
     //function_selectbackground_theme_userid($bdd, 1);
     function function_selectbackground_theme_userid($bdd, $id){
         selectbackground_theme_userid($bdd, $id);
     }
 
-    //fonction qui permet de select un theme pour la page de l'user par le label du theme
+    //fonction qui permet de selectionner un theme lors de la configuration de la page de l'utilisateur par le label du theme
     //function_selectbackground_theme_userid($bdd, "toto");
     function function_selectbackground_theme_userlabel($bdd, $label){
         selectbackground_theme_userlabel($bdd, $label);
     }
 
 
-    //fonction qui permet de crée un theme pour la page de l'user
+    //fonction qui permet d'insérer une image en background lors de la configuration de sa page
     //function_insertbackground_theme_userid($bdd, "toto", "/asset/template/svg/template1.svg", "svg", true, "orange");
     function function_insertbackground_theme_userid($bdd, $label, $slug, $file_path, $type, $status, $couleur){
         insertbackground_theme_userid($bdd, $label, $slug, $file_path, $type, $status, $couleur);
@@ -170,6 +170,7 @@ function function_updateinfouser($bdd, $iduser, $name_user, $email_user, $nom_us
     updateinfouser($bdd, $iduser, $name_user, $email_user, $nom_user, $prenom_user, $description);
 }
 
+//fonction qui permet de séléctionner les infos de l'utilisateur par le pseudo
 function function_selectinfouserbypseudo($bdd, $name_user){
     return(selectinfouserbypseudo($bdd, $name_user));
 }
@@ -182,7 +183,7 @@ function function_selectinfouserbypseudo($bdd, $name_user){
 // - Views of page -
 //
 
-//fonction qui rajoute 1 vue quand une personne vois la page d'un user
+//fonction qui rajoute 1 vue quand une personne vois la page de utilisateur
 // function_views_count_insert($bdd, 1);
 function function_views_count_insert($bdd, $user_id){
     return(views_count_insert($bdd, $user_id));
@@ -221,6 +222,7 @@ function function_select_dashboard_parameters_id($bdd, $id){
 // - giphy -
 //
 
+//fonction qui permet de chercher un sticker avec Giphy
 function function_trend_giphy_sticker_search($search, $offset){
     trend_giphy_sticker_search($search, $offset);
 }
@@ -233,6 +235,7 @@ function function_trend_giphy_giph(){
     trend_giphy_giph();
 }
 
+//fonction qui permet de chercher un Gif avec Giphy
 function function_search_giphy_giph($search, $offset){
     search_giphy_giph($search, $offset);
 }
@@ -243,7 +246,9 @@ function function_search_giphy_giph($search, $offset){
 //
 // - scrap -
 //
+//cela permet de faciliter le changement de plateforme des utilisateurs afin qu'ils s'inscrivent chez nous
 
+//fonction qui permet de récupérer les liens des utilisateurs qui on un compte sur Linktree 
 function function_scrap_linktree($url){
     scrap_linktree($url);
 }
