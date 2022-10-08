@@ -92,8 +92,14 @@ include('config/db_connect.php');
 // - Link -
 //
 
+    //fonction que permet de vérifier si le lien est un contenu sensible
+    //function_verifSensiteLink($bdd, "https://mym.fans");
+    function function_verifSensiteLink($bdd, $url){
+        verifSensiteLink($bdd, $url);
+    }
+
     //fonction qui permet de mettre à jour le lien par l'id (user deja connecter)
-    // function_updatelink($bdd, 2, "http://facebook.fr", "test", "toto", 1, "rouge", "rond", "facebook", 1, 0, "2022-10-10 17:16:18", "2022-10-10 18:00:00", 1);
+    //function_updatelink($bdd, 2, "http://facebook.fr", "test", "toto", 1, "rouge", "rond", "facebook", 1, 0, "2022-10-10 17:16:18", "2022-10-10 18:00:00", 1);
     function function_updatelink($bdd, $id, $url, $type, $texte, $forme, $couleur_link, $effect, $text_color_link, $icon, $position, $link_show, $date_start_show,$date_finish_show, $sensitive){
         updatelink($bdd, $id, $url, $type, $texte, $forme, $couleur_link, $effect, $text_color_link, $icon, $position, $link_show, $date_start_show, $date_finish_show, $sensitive);
     }
