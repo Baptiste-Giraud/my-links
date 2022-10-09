@@ -99,9 +99,9 @@ include('config/db_connect.php');
     }
 
     //fonction qui permet de mettre à jour le lien par l'id (user deja connecter)
-    //function_updatelink($bdd, 2, "http://facebook.fr", "test", "toto", 1, "rouge", "rond", "facebook", 1, 0, "2022-10-10 17:16:18", "2022-10-10 18:00:00", 1);
-    function function_updatelink($bdd, $id, $url, $type, $texte, $forme, $couleur_link, $effect, $text_color_link, $icon, $position, $link_show, $date_start_show,$date_finish_show, $sensitive){
-        updatelink($bdd, $id, $url, $type, $texte, $forme, $couleur_link, $effect, $text_color_link, $icon, $position, $link_show, $date_start_show, $date_finish_show, $sensitive);
+    //function_updatelink($bdd, 2, "http://facebook.fr", "test", "toto", 1, "rouge", "rond", "facebook", 1, 0, "2022-10-10 17:16:18", "2022-10-10 18:00:00", 1, NULL);
+    function function_updatelink($bdd, $id, $url, $type, $texte, $forme, $couleur_link, $effect, $text_color_link, $icon, $position, $link_show, $date_start_show,$date_finish_show, $sensitive, $private_pass){
+        updatelink($bdd, $id, $url, $type, $texte, $forme, $couleur_link, $effect, $text_color_link, $icon, $position, $link_show, $date_start_show, $date_finish_show, $sensitive,$private_pass);
     }
 
     //fonction qui permet de supprimer le lien par l'ID
@@ -111,9 +111,9 @@ include('config/db_connect.php');
     }
 
     //fonction qui permet d'inserer un lien
-    //function_insertlink($bdd, 1, "type", "effect", "url", "color_link", "texte", "red", "facebook", 1, 1, "", "", 1);
-    function function_insertlink($bdd, $forme, $type, $effect, $url, $color_link, $texte, $text_color_link, $icon, $position, $link_show, $date_start_show, $date_finish_show, $sensitive){
-        insertlink($bdd, $forme, $type, $effect, $url, $color_link, $texte, $text_color_link, $icon, $position, $link_show, $date_start_show, $date_finish_show, $sensitive);
+    //function_insertlink($bdd, 1, "type", "effect", "url", "color_link", "texte", "red", "facebook", 1, 1, "", "", 1, NULL);
+    function function_insertlink($bdd, $forme, $type, $effect, $url, $color_link, $texte, $text_color_link, $icon, $position, $link_show, $date_start_show, $date_finish_show, $sensitive, $private_pass){
+        insertlink($bdd, $forme, $type, $effect, $url, $color_link, $texte, $text_color_link, $icon, $position, $link_show, $date_start_show, $date_finish_show, $sensitive, $private_pass);
     }
     //fonction qui permet de get le lien par rapport a l'utilisateur connecter
     //function_selectalllinkuser($bdd);
