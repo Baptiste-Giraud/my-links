@@ -3,21 +3,38 @@
 
  include('simple_html_dom.php');
 
-// $val = scrap('https://beacons.ai/lola83');
-// var_dump($val);
+//$val = scrap('https://snipfeed.co/cecerose');
+//var_dump($val);
  function scrap($url){
     $value = parse_url($url);
     if($value["host"] == "linktr.ee"){
         return(scrap_linktree($url));
-    }else if ($value["host"] == "beacons.ai"){
-        echo 'baecons';
-
     }else if($value["host"] == "snipfeed.co"){
-        echo 'snip';
+       return(scrap_snip($url));
     }else{
         http_response_code(500);
     }
  } 
+
+
+ function scrap_snip($url){
+    $html = file_get_html($url);
+    $img = $html->find('img .buoXYj');
+    $array = [];
+    foreach($html->find('a') as $key=>$element) {
+        $val = stripos($url = $element->href, "snipfeed");
+        if($val === false){
+            $array[$key]['text'] = remplacerSautDeLigne($element->plaintext);
+            $array[$key]['url'] = $element->href;
+        }else{
+        }
+    }
+    $array['logo'] = $img[0]->src;
+    return($array);
+
+ }
+
+
 
 
 

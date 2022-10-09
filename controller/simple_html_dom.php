@@ -73,7 +73,8 @@ function file_get_html(
 	$context = stream_context_create(
 		array(
 			'http' => array(
-				'follow_location' => false
+				'follow_location' => false,
+				"header" => "User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36"
 			),
 			'ssl' => array(
 				"verify_peer"=>false,
