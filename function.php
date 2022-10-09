@@ -260,9 +260,10 @@ function function_search_giphy_giph($search, $offset){
 //
 //cela permet de faciliter le changement de plateforme des utilisateurs afin qu'ils s'inscrivent chez nous
 
-//fonction qui permet de récupérer les liens des utilisateurs qui on un compte sur Linktree 
-function function_scrap_linktree($url){
-    scrap_linktree($url);
+//fonction qui permet de récupérer les liens des utilisateurs qui on un compte sur Linktree ou snipfeed
+//function function_scrap('https://snipfeed.co/cecerose');
+function function_scrap($url){
+    scrap($url);
 }
 
 // -----------------------------------------
