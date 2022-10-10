@@ -10,6 +10,7 @@ include('controller/views_count.php');
 include('controller/dashboard_parameters.php');
 include('controller/giphy.php');
 include('controller/scrap.php');
+include('controller/newsletter.php');
 include('config/db_connect.php');
 
 
@@ -265,6 +266,22 @@ function function_search_giphy_giph($search, $offset){
 function function_scrap($url){
     scrap($url);
 }
+
+// -----------------------------------------
+
+
+function function_add_newsletter($bdd, $iduser, $mail){
+    add_newsletter($bdd, $iduser, $mail);
+}
+
+function function_add_form_newsletter(){
+    return(add_form_newsletter());
+}
+
+if(isset($_POST['submit']))
+{
+    function_add_newsletter($bdd,  7, $_POST['email']);
+} 
 
 // -----------------------------------------
 ?>
