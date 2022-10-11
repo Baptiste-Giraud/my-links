@@ -19,7 +19,7 @@ function email_exist($bdd,$mail){
 
 
 //inscription
-function register($bdd, $emailuser, $nomuser, $prenomuser, $mdpuser, $usernameuser){
+function register($bdd, $emailuser, $nomuser, $prenomuser, $mdpuser, $usernameuser, $mdpsuruser){
         $mail = htmlspecialchars($emailuser);
         $nom = htmlspecialchars($nomuser);
         $prenom = htmlspecialchars($prenomuser);
@@ -30,10 +30,11 @@ function register($bdd, $emailuser, $nomuser, $prenomuser, $mdpuser, $usernameus
         $requnameexist = name_exist($bdd, $name_user);
 
         $userexist = email_exist($bdd, $mail);
-
-
-        if(strlen($mdpuser) <= 5){
-            echo '<script>swal("Oops!", "Mot de passe inferieur a 5 caracteres", "error");</script>';
+        if($mdpuser != $mdpsuruser){
+            echo '<script>swal("Oops!", "Vos mot de passes sont différents", "error");</script>';
+            exit();
+        }else if(strlen($mdpuser) <= 7){
+            echo '<script>swal("Oops!", "Mot de passe inferieur a 7 caracteres", "error");</script>';
             exit();
         }else if ($name_user == trim($name_user) && strpos($name_user, ' ') !== false) {
             echo '<script>swal("Oops!", "Identifiant impossible avec espace", "error");</script>';
@@ -47,21 +48,21 @@ function register($bdd, $emailuser, $nomuser, $prenomuser, $mdpuser, $usernameus
             for($i=1;$i<$longueurKey;$i++) {
                 $key .= mt_rand(0,9);
             }
-            $insert = $bdd->prepare("INSERT INTO user VALUES (NULL, :name_user ,:email_user, :mdp_user, :nom_user ,:prenom_user , :token, :confirmkey, :uniqid, :token,:path_img, :description ,:confirme, :date_creation,:star_account)");
+            $insert = $bdd->prepare("INSERT INTO user VALUES (NULL, :name_user ,:email_user, :mdp_user, :nom_user ,:prenom_user , :confirmkey, :uniqid, :token,:path_img, :description ,:confirme, :date_creation,:star_account, :type_account)");
             $insert->bindValue(':name_user', $name_user);
             $insert->bindValue(':email_user', $mail);
             $insert->bindValue(':mdp_user', $mdp);
             $insert->bindValue(':nom_user', $nom);
             $insert->bindValue(':prenom_user', $prenom);
-            $insert->bindValue(':token', NULL);
             $insert->bindValue(':confirmkey', $key);
             $insert->bindValue(':uniqid', uniqid());
-            $insert->bindValue(':token', "");
+            $insert->bindValue(':token', NULL);
             $insert->bindValue(':path_img', "");
             $insert->bindValue(':description', "");
             $insert->bindValue(':confirme', "");
             $insert->bindValue(':date_creation', $date);
-            $insert->bindValue(':star_account','0');
+            $insert->bindValue(':star_account',0);
+            $insert->bindValue(':type_account','normal');
         
 
 
@@ -114,8 +115,8 @@ function register($bdd, $emailuser, $nomuser, $prenomuser, $mdpuser, $usernameus
 function connexion($bdd, $email, $mdpenter){
 		$mailconnect = htmlspecialchars($email);
 	
-		$requser = $bdd->prepare('SELECT * FROM user WHERE email_user = ?');
-		$requser->execute(array($mailconnect));
+		$requser = $bdd->prepare('SELECT * FROM user WHERE email_user = ? OR  name_user = ?');
+		$requser->execute(array($mailconnect, $mailconnect));
 		$userexist = $requser->rowCount();
 		if($userexist == 1){
             $userinfo = $requser->fetch();
@@ -129,7 +130,11 @@ function connexion($bdd, $email, $mdpenter){
                 $_SESSION['star_account'] = $userinfo['star_account'];
                 $_SESSION['path_img'] = $userinfo['path_img'];
                 $_SESSION['description'] = $userinfo['description'];
-                $_SESSION['token'] = uniqid()."".rand(100,999)."".date("dmY")."t";
+                if($userinfo['email_user'] == "admin@my-links.fans"){
+                    $_SESSION['token'] = uniqid()."".rand(100,999)."".date("dmY")."t"."1";
+                }else{
+                    $_SESSION['token'] = uniqid()."".rand(100,999)."".date("dmY")."t"."0";
+                }
                 updatetoken($bdd, $userinfo['id_user'], $_SESSION['token']);
             } else {
                 echo '<script>swal("Oops!", "Erreur de login!", "error");</script>';

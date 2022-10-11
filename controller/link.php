@@ -1,9 +1,38 @@
 <?php
 date_default_timezone_set('Europe/Paris');
 
-function insertlink($bdd, $forme, $type, $effect, $url, $color_link, $texte, $text_color_link, $icon, $position, $link_show, $date_start_show, $date_finish_show){
+
+function verifSensiteLink($bdd, $url){
+	$urlParse = parse_url($url, PHP_URL_HOST);
+	
+	$requser = $bdd->prepare('SELECT * FROM link_sensitive WHERE domaine_name = ?');
+    $requser->execute(array($urlParse));
+    $urlexiste = $requser->rowCount();
+
+    return($urlexiste);
+
+}
+
+function insertlink($bdd, $forme, $type, $effect, $url, $color_link, $texte, $text_color_link, $icon, $position, $link_show, $date_start_show, $date_finish_show, $sensitive, $private_pass){
+	if($sensitive == 1){
+		$final_sensitive = 1;
+	}else{
+		if(strstr($url, 'porn')){
+			$final_sensitive = 1;
+		}else if(strstr($url, 'porno')){
+			$final_sensitive = 1;
+		}else if(strstr($url, 'xxx')){
+			$final_sensitive = 1;
+		}
+		else if(verifSensiteLink($bdd, $url) == 1){
+			$final_sensitive = 1;
+		}else{
+			$final_sensitive = 0;
+		}
+	}
+	
 	$iduser = $_SESSION['id_user'];
-				$insert = $bdd->prepare("INSERT INTO link VALUES (NULL, :id_user ,:url, :type, :texte, :forme, :couleur_card, :effect, :text_color_link, icon, position, link_show, date_finish_show)");
+				$insert = $bdd->prepare("INSERT INTO link VALUES (NULL, :id_user ,:url, :type, :texte, :forme, :couleur_card, :effect, :text_color_link, :icon, :position, :link_show,:date_start_show, :date_finish_show, :sensitive, private_pass)");
 				$insert->bindValue(':id_user', $iduser);
 				$insert->bindValue(':url', $url);
 				$insert->bindValue(':type', $type);
@@ -17,6 +46,8 @@ function insertlink($bdd, $forme, $type, $effect, $url, $color_link, $texte, $te
 				$insert->bindValue(':link_show', $link_show);
 				$insert->bindValue(':date_start_show',($date_start_show == NULL ? NULL : $date_start_show));
 				$insert->bindValue(':date_finish_show',($date_finish_show == NULL ? NULL : $date_finish_show));
+				$insert->bindValue(':sensitive',$final_sensitive);
+				$insert->bindValue(':private_pass',$private_pass);
 				$result = $insert->execute();
 
 				if($result == TRUE){
@@ -40,7 +71,7 @@ function selectlinkbyuserid($bdd, $id){
 	$iduser = $id;
 	$date_start_show = date("Y-m-d H:i:s");
 	$date_finish_show = date("Y-m-d H:i:s");
-			$pdoStat = "SELECT * FROM link WHERE id_user='".$iduser."' AND link_show = 1 AND date_start_show <='".$date_start_show."' AND date_finish_show >='".$date_finish_show."' OR  date_start_show IS NULL AND date_finish_show IS NULL ORDER BY position";
+			$pdoStat = "SELECT * FROM link WHERE id_user='".$iduser."' AND link_show = 1 AND date_start_show <='".$date_start_show."' AND date_finish_show >='".$date_finish_show."' OR id_user='".$iduser."' AND link_show = 1 AND  date_start_show IS NULL AND date_finish_show IS NULL ORDER BY position";
 			$stmt = $bdd->prepare($pdoStat);
 			$result = $stmt->execute(array(':id_user' => $iduser));
 			$data = $stmt->fetchAll(PDO::FETCH_BOTH);
@@ -53,7 +84,7 @@ function selectlinkbyusername($bdd, $username){
 	$name_user = $username;
 	$date_start_show = date("Y-m-d H:i:s");
 	$date_finish_show = date("Y-m-d H:i:s");
-			$pdoStat = "SELECT link.* FROM user LEFT JOIN link ON user.id_user = link.id_user WHERE name_user = '".$name_user."' AND link_show = 1 AND date_start_show <='".$date_start_show."' AND date_finish_show >='".$date_finish_show."' OR  date_start_show IS NULL AND date_finish_show IS NULL  ORDER BY position";
+			$pdoStat = "SELECT link.* FROM user LEFT JOIN link ON user.id_user = link.id_user WHERE name_user = '".$name_user."' AND link_show = 1 AND date_start_show <='".$date_start_show."' AND date_finish_show >='".$date_finish_show."' OR name_user='".$name_user."' AND link_show = 1 AND  date_start_show IS NULL AND date_finish_show IS NULL  ORDER BY position";
 			$stmt = $bdd->prepare($pdoStat);
 			$result = $stmt->execute(array(':name_user' => $name_user));
 			$data = $stmt->fetchAll(PDO::FETCH_BOTH);
@@ -71,8 +102,23 @@ function deletelink($bdd, $id) {
     }
 }
 
-function updatelink($bdd, $id, $url, $type, $texte, $forme, $couleur_link, $effect, $text_color_link, $icon, $position, $link_show, $date_start_show, $date_finish_show){
+function updatelink($bdd, $id, $url, $type, $texte, $forme, $couleur_link, $effect, $text_color_link, $icon, $position, $link_show, $date_start_show, $date_finish_show, $sensitive, $private_pass){
 	$iduser = $_SESSION['id_user'];
+	if($sensitive == 1){
+		$final_sensitive = 1;
+	}else{
+		if(strstr($url, 'porn')){
+			$final_sensitive = 1;
+		}else if(strstr($url, 'porno')){
+			$final_sensitive = 1;
+		}else if(strstr($url, 'xxx')){
+			$final_sensitive = 1;
+		}else if(verifSensiteLink($bdd, $url) == 1){
+			$final_sensitive = 1;
+		}else{
+			$final_sensitive = 0;
+		}
+	}
 				$sql = "UPDATE link SET
 					url=:url,
 					type=:type,
@@ -85,7 +131,9 @@ function updatelink($bdd, $id, $url, $type, $texte, $forme, $couleur_link, $effe
 					position=:position,
 					link_show=:link_show,
 					date_start_show=:date_start_show,
-					date_finish_show=:date_finish_show
+					date_finish_show=:date_finish_show,
+					sensitive=:sensitive
+					private_pass=:private_pass
 					WHERE id='".$id."' AND id_user = '".$iduser."'";
 				$stmt= $bdd->prepare($sql);
 				$stmt->bindParam(':url', $url, PDO::PARAM_STR);
@@ -100,6 +148,8 @@ function updatelink($bdd, $id, $url, $type, $texte, $forme, $couleur_link, $effe
 				$stmt->bindParam(':link_show', $link_show);
 				$stmt->bindParam(':date_start_show', $date_start_show);
 				$stmt->bindParam(':date_finish_show', $date_finish_show);
+				$stmt->bindParam(':date_finish_show', $final_sensitive);
+				$stmt->bindParam(':date_finish_show', $private_pass);
 				$resultat = $stmt->execute();
 	
 				if($resultat == TRUE){
