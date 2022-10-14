@@ -13,6 +13,4 @@ catch (Exception $e)
 {
         die('Erreur : ' . $e->getMessage());
 }
-
-echo '<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>';
 ?>

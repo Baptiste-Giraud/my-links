@@ -72,8 +72,10 @@
 #user .user-container .header-user .img-user img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  object-position: center;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: center;
+     object-position: center;
 }
 #user .user-container .name-user h1 {
   color: #fff;
@@ -180,6 +182,18 @@ button:hover {
   background: orangered;
 }
 
+.two {
+  background-color: dodgerblue;
+}
+
+.three {
+  background-color: indigo;
+}
+
+.four {
+  background-color: limegreen;
+}
+
 html * {
   box-sizing: border-box;
 }
@@ -187,6 +201,4 @@ html * {
 body, html {
   margin: 0;
   padding: 0;
-}
-
-/*# sourceMappingURL=style.css.map */
+}/*# sourceMappingURL=main.css.map */

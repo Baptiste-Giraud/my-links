@@ -1,4 +1,12 @@
 <?php 
+
+include('config/db_connect.php');
+
+if (isset($_POST['registration'])){
+    include('controller/navigation.php');
+    exit();
+}
+
 include('controller/confirmation.php');
 include('controller/register.php');
 include('controller/parameter_template.php');
@@ -11,7 +19,6 @@ include('controller/dashboard_parameters.php');
 include('controller/giphy.php');
 include('controller/scrap.php');
 include('controller/newsletter.php');
-include('config/db_connect.php');
 
 
 //

@@ -1,4 +1,5 @@
 <?php
+echo '<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>';
 
 function name_exist($bdd, $name_user){
         $requname = $bdd->prepare('SELECT * FROM user WHERE name_user = ?');
