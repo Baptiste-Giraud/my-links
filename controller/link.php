@@ -32,7 +32,7 @@ function insertlink($bdd, $forme, $type, $effect, $url, $color_link, $texte, $te
 	}
 	
 	$iduser = $_SESSION['id_user'];
-				$insert = $bdd->prepare("INSERT INTO link VALUES (NULL, :id_user ,:url, :type, :texte, :forme, :couleur_card, :effect, :text_color_link, :icon, :position, :link_show,:date_start_show, :date_finish_show, :sensitive, private_pass)");
+				$insert = $bdd->prepare("INSERT INTO link VALUES (NULL, :id_user ,:url, :type, :texte, :forme, :couleur_card, :effect, :text_color_link, :icon, :position, :link_show,:date_start_show, :date_finish_show, :sensitive, :private_pass)");
 				$insert->bindValue(':id_user', $iduser);
 				$insert->bindValue(':url', $url);
 				$insert->bindValue(':type', $type);

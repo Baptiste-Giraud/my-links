@@ -15,10 +15,6 @@ if($_POST['id'] == 0){
 	$stmts->closeCursor();
     header("Content-Type: application/json");
     $parse = $data[0];
-    $parse['id_to_add'] = $_POST['id'];
-    $parse['type'] = $_POST['type'];
-    $parse['posid'] = $_POST['posid'];
-    $parse['posclass'] = $_POST['posclass'];
     echo json_encode($parse);
     exit()
 ?>

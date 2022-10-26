@@ -7,6 +7,7 @@ if (isset($_POST['registration'])){
     exit();
 }
 
+include('controller/language_page.php');
 include('controller/confirmation.php');
 include('controller/register.php');
 include('controller/parameter_template.php');
@@ -277,17 +278,19 @@ function function_scrap($url){
 // -----------------------------------------
 
 
+//newsletter add gestion
 function function_add_newsletter($bdd, $iduser, $mail){
     add_newsletter($bdd, $iduser, $mail);
 }
 
+//affichage newsletter
 function function_add_form_newsletter(){
     return(add_form_newsletter());
 }
 
 if(isset($_POST['submit']))
 {
-    function_add_newsletter($bdd,  7, $_POST['email']);
+    function_add_newsletter($bdd,  $iduser, $_POST['email']);
 } 
 
 // -----------------------------------------

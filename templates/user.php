@@ -1,9 +1,8 @@
 <?php
-function_views_count_insert($bdd, 7);
 
-$links = function_selectlinkbyuserid($bdd,  7);
+function_views_count_insert($bdd, $user['id_user']);
+$links = function_selectlinkbyuserid($bdd,  $user['id_user']);
 
-$user = function_selectinfouserbypseudo($bdd,  'edman');
 $user_name = $user["name_user"];
 $user_img = $user["path_img"];
 $user_description = $user["description"];

@@ -22,7 +22,7 @@ function_connexion($bdd, "edman", "azerty83");
 // echo $_SESSION['token'];
 
 // $value = selectinfouserbypseudo($bdd ,$url);
-//function_insertlink($bdd, 1, "type", "test", "https://onlyfans.porn/eddyass", "", "", "", "", 1, 1, NULL, NULL, 0);
+function_insertlink($bdd, 1, "type", "test", "https://onlyfans.porn/eddyass", "", "", "", "", 1, 1, NULL, NULL, 0, NULL);
 //$value = selectinfouserbypseudo($bdd ,$url);
 
 
@@ -30,6 +30,7 @@ function_connexion($bdd, "edman", "azerty83");
 //     echo "l'user ".$url." existe pas";
     
 // }else{
+    $user = function_selectinfouserbypseudo($bdd,  'edman');
     include 'templates/user.php';
 // }
 //echo $val = function_views_count_select_by_total($bdd);
