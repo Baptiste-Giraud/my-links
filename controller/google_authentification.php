@@ -75,7 +75,7 @@ function updatetoken($bdd, $iduser, $token){
 
 
 function user_register($bdd, $email, $name,$image, $family_name, $prenom, $youtube_descrition){
-  echo $date = date("Y-m-d");
+  $date = date("Y-m-d");
   $insert = $bdd->prepare("INSERT INTO user VALUES (NULL, :name_user ,:email_user, :mdp_user, :nom_user ,:prenom_user , :confirmkey, :uniqid, :token,:path_img, :description ,:confirme, :date_creation,:star_account, :type_account)");
             $insert->bindValue(':name_user', $name);
             $insert->bindValue(':email_user', $email);
@@ -145,6 +145,7 @@ $val = $channel->getItems();
   $requnameexist = name_exist($bdd, $name);
   $userexist = email_exist($bdd, $email);
   if($userexist >= 1){
+    session_regenerate_id(true);
     $userinfo = get_user_by_email($bdd, $email);
     $_SESSION['id_user'] = $userinfo['id_user'];
     $_SESSION['email_user'] = $userinfo['email_user'];
@@ -155,10 +156,11 @@ $val = $channel->getItems();
     $_SESSION['star_account'] = $userinfo['star_account'];
     $_SESSION['path_img'] = $userinfo['path_img'];
     $_SESSION['description'] = $userinfo['description'];
+    $_SESSION['time'] = time();
     if($userinfo['email_user'] == "admin@my-links.fans"){
-      $_SESSION['token'] = uniqid()."".rand(100,999)."".date("dmY")."t"."1";
+      $_SESSION['token'] = uniqid()."".rand(10000,99999)."".date("dmY")."t"."1";
     }else{
-      $_SESSION['token'] = uniqid()."".rand(100,999)."".date("dmY")."t"."0";
+      $_SESSION['token'] = uniqid()."".rand(10000,99999)."".date("dmY")."t"."0";
     }
     updatetoken($bdd, $userinfo['id_user'], $_SESSION['token']);
   }else{
@@ -170,6 +172,7 @@ $val = $channel->getItems();
     }else{
       user_register($bdd, $email, $name, $image, $family_name, $prenom, $youtube_descrition);
     }
+    session_regenerate_id(true);
     $userinfo = get_user_by_email($bdd, $email);
     $_SESSION['id_user'] = $userinfo['id_user'];
     $_SESSION['email_user'] = $userinfo['email_user'];
@@ -180,6 +183,7 @@ $val = $channel->getItems();
     $_SESSION['star_account'] = $userinfo['star_account'];
     $_SESSION['path_img'] = $userinfo['path_img'];
     $_SESSION['description'] = $userinfo['description'];
+    $_SESSION['time'] = time();
     $_SESSION['token'] = uniqid()."".rand(100,999)."".date("dmY")."t";
     updatetoken($bdd, $userinfo['id_user'], $_SESSION['token']);
   }

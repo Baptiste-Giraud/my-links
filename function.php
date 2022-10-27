@@ -291,7 +291,12 @@ function function_add_form_newsletter(){
 if(isset($_POST['submit']))
 {
     function_add_newsletter($bdd,  $iduser, $_POST['email']);
-} 
+}
+
+
+function function_veriftoken($bdd){
+    return(veriftoken($bdd));
+}
 
 // -----------------------------------------
 ?>

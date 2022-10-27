@@ -53,4 +53,27 @@ function selectinfouserbypseudo($bdd, $name_user){
 	$stmts->closeCursor();
 	return($dataparam);
 }
+
+
+
+function veriftoken($bdd){
+	$pdoStats = "SELECT token FROM user WHERE id_user='".$_SESSION['id_user']."' ";
+	$stmts = $bdd->prepare($pdoStats);
+	$stmts->execute();
+	$dataparam = $stmts->fetch(PDO::FETCH_BOTH);
+	$stmts->closeCursor();
+	if($dataparam['token'] == $_SESSION['token']){
+		$return = 'true';
+	}else{
+		$return = 'false';
+	}
+	return($return);
+}
+
+
+if ($_SESSION['time'] < time() - 300) {
+    session_regenerate_id(true);
+    $_SESSION['time'] = time();
+}
+
 ?>

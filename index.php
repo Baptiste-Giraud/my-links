@@ -18,11 +18,15 @@ $url = rtrim($url, '?');
 
 //function_insertbackground_theme_userid($bdd, "Template 8", "template-8", "", "svg", 1, "purple pink");
 //function_register($bdd, "admin@my-links.fans", "admin", "admin", "azerty83", "my-links", "azerty83");
-function_connexion($bdd, "edman", "azerty83");
+// function_connexion($bdd, "edman", "azerty83");
+$token = function_veriftoken($bdd);
+echo $token;
+var_dump($_SESSION);
+echo session_id();
 // echo $_SESSION['token'];
 
 // $value = selectinfouserbypseudo($bdd ,$url);
-function_insertlink($bdd, 1, "type", "test", "https://onlyfans.porn/eddyass", "", "", "", "", 1, 1, NULL, NULL, 0, NULL);
+// function_insertlink($bdd, 1, "type", "test", "https://onlyfans.porn/eddyass", "", "", "", "", 1, 1, NULL, NULL, 0, NULL);
 //$value = selectinfouserbypseudo($bdd ,$url);
 
 
