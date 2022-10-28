@@ -71,9 +71,35 @@ function veriftoken($bdd){
 }
 
 
-if ($_SESSION['time'] < time() - 300) {
+if (isset($_SESSION['id_user']) && $_SESSION['time'] < time() - 300) {
     session_regenerate_id(true);
     $_SESSION['time'] = time();
 }
 
+if(!isset($_SESSION['initialised'])){
+	session_regenerate_id(true);
+	$_SESSION['initialised'] = true;
+}
+
+
+
+$saltuseragent = "f9700bf7-0b83-4fae-99d5-2c90700f6e74";
+$saltipadresse = "bB#6UfRxW7)Qm0d0.Dda";
+
+if(isset($_SESSION['HTTP_USER_AGENT'])){
+	if($_SESSION['HTTP_USER_AGENT'] != md5($_SERVER['HTTP_USER_AGENT'].$saltuseragent)){
+		$_SESSION = array();
+		session_destroy();
+		//page login;
+		exit();
+	}
+}else{
+	$_SESSION['HTTP_USER_AGENT'] = md5($_SERVER['HTTP_USER_AGENT'].$saltuseragent);
+}
+
+if (isset($_SESSION['id_user']) && (getIp().$saltipadresse != $_SESSION['ipaddress']))
+{
+	//pagelogin
+	session_destroy();
+}
 ?>

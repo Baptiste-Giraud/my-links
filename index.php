@@ -17,24 +17,20 @@ $url = rtrim($url, '?');
 //var_dump($data);
 
 //function_insertbackground_theme_userid($bdd, "Template 8", "template-8", "", "svg", 1, "purple pink");
-//function_register($bdd, "admin@my-links.fans", "admin", "admin", "azerty83", "my-links", "azerty83");
-// function_connexion($bdd, "edman", "azerty83");
-$token = function_veriftoken($bdd);
-echo $token;
-var_dump($_SESSION);
-echo session_id();
+// function_register($bdd, "hugo", "hugo", "hugo", "azerty83@", "hugo", "azerty83@");
+function_connexion($bdd, "hugo", "azerty83@");
+// $token = function_veriftoken($bdd);
 // echo $_SESSION['token'];
 
 // $value = selectinfouserbypseudo($bdd ,$url);
-// function_insertlink($bdd, 1, "type", "test", "https://onlyfans.porn/eddyass", "", "", "", "", 1, 1, NULL, NULL, 0, NULL);
+// function_insertlink($bdd, 1, "type", "test", "https://onlyfans.porn/eddyass", "red", "coucou", "", "", 1, 1, NULL, NULL, 0, NULL);
 //$value = selectinfouserbypseudo($bdd ,$url);
-
 
 // if($value == false){
 //     echo "l'user ".$url." existe pas";
     
 // }else{
-    $user = function_selectinfouserbypseudo($bdd,  'edman');
+    $user = function_selectinfouserbypseudo($bdd,  'hugo');
     include 'templates/user.php';
 // }
 //echo $val = function_views_count_select_by_total($bdd);

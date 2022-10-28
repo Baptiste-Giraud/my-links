@@ -298,5 +298,6 @@ function function_veriftoken($bdd){
     return(veriftoken($bdd));
 }
 
+
 // -----------------------------------------
 ?>

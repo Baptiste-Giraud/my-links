@@ -18,13 +18,25 @@ function email_exist($bdd,$mail){
     return($userexist);
 }
 
+function getIp(){
+    if(!empty($_SERVER['HTTP_CLIENT_IP'])){
+      $ip = $_SERVER['HTTP_CLIENT_IP'];
+    }elseif(!empty($_SERVER['HTTP_X_FORWARDED_FOR'])){
+      $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
+    }else{
+      $ip = $_SERVER['REMOTE_ADDR'];
+    }
+    return $ip;
+  }
+
 
 //inscription
 function register($bdd, $emailuser, $nomuser, $prenomuser, $mdpuser, $usernameuser, $mdpsuruser){
         $mail = htmlspecialchars($emailuser);
+        $saltpassword = "7(gj??Uo1hQj^tn{~A^H8*#h";
         $nom = htmlspecialchars($nomuser);
         $prenom = htmlspecialchars($prenomuser);
-        $mdp = password_hash($mdpuser, PASSWORD_DEFAULT);
+        $mdp = password_hash($mdpuser.$saltpassword, PASSWORD_DEFAULT);
         $name_user = htmlspecialchars($usernameuser);
         $date = date("Y-m-d");
 
@@ -115,13 +127,14 @@ function register($bdd, $emailuser, $nomuser, $prenomuser, $mdpuser, $usernameus
 //login
 function connexion($bdd, $email, $mdpenter){
 		$mailconnect = htmlspecialchars($email);
-	
+        $saltpassword = "7(gj??Uo1hQj^tn{~A^H8*#h";
 		$requser = $bdd->prepare('SELECT * FROM user WHERE email_user = ? OR  name_user = ?');
 		$requser->execute(array($mailconnect, $mailconnect));
 		$userexist = $requser->rowCount();
 		if($userexist == 1){
             $userinfo = $requser->fetch();
-            if (password_verify($mdpenter, $userinfo['mdp_user'])) {
+            if (password_verify($mdpenter.$saltpassword, $userinfo['mdp_user'])) {
+                $saltipadresse = "bB#6UfRxW7)Qm0d0.Dda";
                 session_regenerate_id(true);
                 $_SESSION['id_user'] = $userinfo['id_user'];
                 $_SESSION['email_user'] = $userinfo['email_user'];
@@ -133,10 +146,11 @@ function connexion($bdd, $email, $mdpenter){
                 $_SESSION['path_img'] = $userinfo['path_img'];
                 $_SESSION['description'] = $userinfo['description'];
                 $_SESSION['time'] = time();
+                $_SESSION['ipaddress'] = getIp().$saltipadresse;
                 if($userinfo['email_user'] == "admin@my-links.fans"){
-                    $_SESSION['token'] = uniqid()."".rand(10000,99999)."".date("dmY")."t"."1";
+                    $_SESSION['token'] = uniqid()."".rand(10000,99999)."".date("dmYHis")."t"."1";
                 }else{
-                    $_SESSION['token'] = uniqid()."".rand(10000,99999)."".date("dmY")."t"."0";
+                    $_SESSION['token'] = uniqid()."".rand(10000,99999)."".date("dmYHis")."t"."0";
                 }
                 updatetoken($bdd, $userinfo['id_user'], $_SESSION['token']);
             } else {

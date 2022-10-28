@@ -71,6 +71,17 @@ function updatetoken($bdd, $iduser, $token){
   }
 }
 
+function getIp(){
+  if(!empty($_SERVER['HTTP_CLIENT_IP'])){
+    $ip = $_SERVER['HTTP_CLIENT_IP'];
+  }elseif(!empty($_SERVER['HTTP_X_FORWARDED_FOR'])){
+    $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
+  }else{
+    $ip = $_SERVER['REMOTE_ADDR'];
+  }
+  return $ip;
+}
+
 
 
 
@@ -141,6 +152,7 @@ if (isset($_GET['code'])) {
     'maxResults' => 1,
 ]);
 $val = $channel->getItems();
+$saltipadresse = "bB#6UfRxW7)Qm0d0.Dda";
   $youtube_descrition = ($val[0]['snippet']['description'] != "" ? $val[0]['snippet']['description'] : "" );
   $requnameexist = name_exist($bdd, $name);
   $userexist = email_exist($bdd, $email);
@@ -157,10 +169,11 @@ $val = $channel->getItems();
     $_SESSION['path_img'] = $userinfo['path_img'];
     $_SESSION['description'] = $userinfo['description'];
     $_SESSION['time'] = time();
+    $_SESSION['ipaddress'] = getIp().$saltipadresse;
     if($userinfo['email_user'] == "admin@my-links.fans"){
-      $_SESSION['token'] = uniqid()."".rand(10000,99999)."".date("dmY")."t"."1";
+      $_SESSION['token'] = uniqid()."".rand(10000,99999)."".date("dmYHis")."t"."1";
     }else{
-      $_SESSION['token'] = uniqid()."".rand(10000,99999)."".date("dmY")."t"."0";
+      $_SESSION['token'] = uniqid()."".rand(10000,99999)."".date("dmYHis")."t"."0";
     }
     updatetoken($bdd, $userinfo['id_user'], $_SESSION['token']);
   }else{
@@ -185,6 +198,7 @@ $val = $channel->getItems();
     $_SESSION['description'] = $userinfo['description'];
     $_SESSION['time'] = time();
     $_SESSION['token'] = uniqid()."".rand(100,999)."".date("dmY")."t";
+    $_SESSION['ipaddress'] = getIp().$saltipadresse;
     updatetoken($bdd, $userinfo['id_user'], $_SESSION['token']);
   }
 } else {
