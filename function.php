@@ -20,6 +20,7 @@ include('controller/dashboard_parameters.php');
 include('controller/giphy.php');
 include('controller/scrap.php');
 include('controller/newsletter.php');
+include('controller/vcard.php');
 
 
 //
@@ -114,9 +115,9 @@ include('controller/newsletter.php');
     }
 
     //fonction qui permet de supprimer le lien par l'ID
-    //function_deletelink($bdd, 1)
-    function function_deletelink($bdd , $id){
-        deletelink($bdd, $id);
+    //function_deletelink($bdd, 1, 'vcard')
+    function function_deletelink($bdd, $id, $type){
+        deletelink($bdd, $id, $type);
     }
 
     //fonction qui permet d'inserer un lien
@@ -300,4 +301,51 @@ function function_veriftoken($bdd){
 
 
 // -----------------------------------------
+
+//
+// Les fonctions se trouve dans le fichier vcard.php
+//
+
+//elle permet de créer un vcard
+// function_insert_vcard($bdd, "Emilie", "spina", "emilie@epitech.eu", "26 rue voltaire", "residence", "83000","Toulon",  "france", "0601370524", "0494256374", "http://lol.com", "etudiant", "epitech");
+function function_insert_vcard($bdd, $nom, $prenom, $email, $adresse, $complement_adresse, $code_postal, $ville, $pays, $tel_portable, $tel_fixe, $url_vcard, $role, $nom_entreprise){
+    return(insert_vcard($bdd, $nom, $prenom, $email, $adresse, $complement_adresse, $code_postal, $ville, $pays, $tel_portable, $tel_fixe, $url_vcard, $role, $nom_entreprise));
+}
+
+// elle permet de créer un lien en même temps que la Vcard
+// function_insertlink_and_vcard($bdd, "Bagra", "lola", "julia@epitech.eu", "26 rue voltaire", "residence", "83000","Toulon",  "france", "0601370524", "0494256374", "http://lol.com", "etudiant", "Tesla", 1, "vcard", "test", "", "bleu", "lol", "text_color-green", "icon_vcard", 1, 1, NULL, NULL, 0, NULL, NULL, );
+function function_insertlink_and_vcard($bdd, $nom, $prenom, $email, $adresse, $complement_adresse, $code_postal, $ville, $pays, $tel_portable, $tel_fixe, $url_vcard, $role, $nom_entreprise, $type, $url, $texte, $forme, $color_link, $effect, $text_color_link, $icon, $position, $link_show, $date_start_show, $date_finish_show, $sensitive, $private_pass){
+    function_insert_vcard($bdd, $nom, $prenom, $email, $adresse, $complement_adresse, $code_postal, $ville, $pays, $tel_portable, $tel_fixe, $url_vcard, $role, $nom_entreprise);
+    function_insertlink($bdd, $type, $url, $texte, $forme, $color_link, $effect, $text_color_link, $icon, $position, $link_show, $date_start_show, $date_finish_show, $sensitive, $private_pass);
+}
+
+
+//elle permet de mettre à jour la vcard
+// function_update_vcard($bdd, 27, "Quentin", "Thomas", "julia@epitech.eu", "26 rue voltaire", "residence", "83000","Toulon",  "france", "0601370524", "0494256374", "http://lol.com", "etudiant", "epitech" );
+function function_update_vcard($bdd, $id, $nom, $prenom, $email, $adresse, $complement_adresse, $code_postal, $ville, $pays, $tel_portable, $tel_fixe, $url, $role, $nom_entreprise){
+    return(update_vcard($bdd, $id, $nom, $prenom, $email, $adresse, $complement_adresse, $code_postal, $ville, $pays, $tel_portable, $tel_fixe, $url, $role, $nom_entreprise));
+}
+
+//elle permet de télécharger la vcard
+// function_downloadvcard($bdd, 29);
+function function_downloadvcard($bdd, $id){
+    return(downloadvcard($bdd, $id));
+}
+
+//elle permet de supprimer la vcard
+// function_deletevcardlinks($bdd, 34);
+function function_deletevcardlinks($bdd, $id_vcard){
+    return(deletevcardlinks($bdd, $id_vcard));
+}
+
+//elle permet de supprimer la vcard et le lien en même temps
+// function_deletevcard_and_link($bdd, 46, 'vcard', 34);
+function function_deletevcard_and_link($bdd, $id_link, $type_link, $id_vcard){
+    deletevcardlinks($bdd, $id_vcard);
+    deletelink($bdd, $id_link, $type_link);
+}
+
+function function_add_button_vcard(){
+    return(add_button_vcard());
+}
 ?>

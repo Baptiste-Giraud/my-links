@@ -92,9 +92,9 @@ function selectlinkbyusername($bdd, $username){
 			return($data);
 }
 
-function deletelink($bdd, $id) {
+function deletelink($bdd, $id, $type) {
 	$id_user = $_SESSION['id_user'];
-    $result = $bdd->query("DELETE FROM link WHERE id='".$id."' AND id_user = '".$id_user."'");
+    $result = $bdd->query("DELETE FROM link WHERE id='".$id."' AND type='".$type."' AND id_user = '".$id_user."'");
     if($result == TRUE ){
         echo '400';
     }else{

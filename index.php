@@ -25,6 +25,7 @@ function_connexion($bdd, "flo", "azerty83@");
 // $value = selectinfouserbypseudo($bdd ,$url);
 // function_insertlink($bdd, 1, "type", "test", "https://onlyfans.porn/eddyass", "red", "coucou", "", "", 1, 1, NULL, NULL, 0, NULL);
 //$value = selectinfouserbypseudo($bdd ,$url);
+//function_insertlink($bdd, 1, "type", "effect", "url", "color_link", "texte", "red", "facebook", 1, 1);
 
 // if($value == false){
 //     echo "l'user ".$url." existe pas";
