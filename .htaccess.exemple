@@ -104,6 +104,21 @@ RewriteRule ^node_modules/(.*)?$ / [R=301,L]
 
 RewriteRule ^templates/(.*)?$ / [R=301,L]
 
+RewriteRule ^socials-embed/(.*)?$ / [R=301,L]
+
+
+
+<Files "*.md">
+    Order Deny,Allow
+    Deny from all
+</Files>
+
+
+<Files "*.json">
+    Order Deny,Allow
+    Deny from all
+</Files>
+
 order allow,deny
 deny from 185.221.181.30
 allow from all

@@ -61,6 +61,9 @@ function register($bdd, $emailuser, $nomuser, $prenomuser, $mdpuser, $usernameus
             for($i=1;$i<$longueurKey;$i++) {
                 $key .= mt_rand(0,9);
             }
+
+            $cookieid = uniqid();
+
             $insert = $bdd->prepare("INSERT INTO user VALUES (NULL, :name_user ,:email_user, :mdp_user, :nom_user ,:prenom_user , :confirmkey, :uniqid, :token,:path_img, :description ,:confirme, :date_creation,:star_account, :type_account)");
             $insert->bindValue(':name_user', $name_user);
             $insert->bindValue(':email_user', $mail);
@@ -81,8 +84,17 @@ function register($bdd, $emailuser, $nomuser, $prenomuser, $mdpuser, $usernameus
 
             $resultats = $insert->execute();
             if($resultats == TRUE){
+                setcookie("69mkMJiQdJ", $cookieid);
 
                 $last_id = $bdd->lastInsertId();
+
+                $insert = $bdd->prepare("INSERT INTO browser_id VALUES (NULL, :id_user, :cookie)");
+                $insert->bindValue(':id_user', $last_id);
+                $insert->bindValue(':cookie', $cookieid);
+                $cookieresult = $insert->execute();
+                if($cookieresult == TRUE){
+
+
                 $insert = $bdd->prepare("INSERT INTO page_parameter VALUES (NULL, :id_user, :type_composition, :theme_id ,:color_page, :police, :views_count, :texte_color)");
                 $insert->bindValue(':id_user', $last_id);
                 $insert->bindValue(':type_composition', "Couleur");
@@ -120,12 +132,32 @@ function register($bdd, $emailuser, $nomuser, $prenomuser, $mdpuser, $usernameus
             }else{
                 echo '500';
             }
+        }else{
+            echo '500';
+        }
+        }
+}
+
+
+function cookieid($bdd,$cookieid){
+    $requser = $bdd->prepare('SELECT * FROM browser_id WHERE cookie = ?');
+		$requser->execute(array($cookieid));
+		$userexist = $requser->rowCount();
+		if($userexist == 1){
+           return('400');
+        }else{
+            return('500');
         }
 }
 
 
 //login
 function connexion($bdd, $email, $mdpenter){
+        if(cookieid($bdd, $_COOKIE['69mkMJiQdJ']) == "400"){
+            echo 'votre navigateur est connu';
+        }else{
+            echo 'navigateur inconnu';
+        }
 		$mailconnect = htmlspecialchars($email);
         $saltpassword = "7(gj??Uo1hQj^tn{~A^H8*#h";
 		$requser = $bdd->prepare('SELECT * FROM user WHERE email_user = ? OR  name_user = ?');
