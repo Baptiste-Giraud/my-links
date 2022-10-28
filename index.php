@@ -21,13 +21,13 @@ $url = rtrim($url, '?');
 //function_connexion($bdd, "eddy.mahmoud@epitech.eu", "azerty83");
 //function_insertlink($bdd, 1, "type", "effect", "url", "color_link", "texte exemple");
 $value = selectinfouserbypseudo($bdd ,$url);
-if($value == false){
-    echo "l'user ".$url." existe pas";
+// if($value == false){
+//     echo "l'user ".$url." existe pas";
     
-}else{
-    function_views_count_insert($bdd, $value['id_user']);
-    include 'templates/user.php';
-}
+// }else{
+//     function_views_count_insert($bdd, $value['id_user']);
+//     include 'templates/user.php';
+// }
 // function_connexion($bdd, "eddy.mahmoud@epitech.eu", "azerty83");
 // echo $_SESSION['token'];
 //function_insertlink($bdd, 1, "type", "effect", "url", "color_link", "texte exemple", 'red', "facebook", 1);

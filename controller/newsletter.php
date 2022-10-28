@@ -22,3 +22,13 @@ function add_newsletter($bdd, $iduser, $mail){
     }
         
 }
+
+function delete_newsletter($bdd, $id){
+    $id_user = $_SESSION['id_user'];
+    $result = $bdd->query("DELETE FROM newsletter WHERE id='".$id."' AND id_user = '".$id_user."'");
+    if($result == TRUE ){
+        echo '400';
+    }else{
+        echo '500';
+    }
+}
