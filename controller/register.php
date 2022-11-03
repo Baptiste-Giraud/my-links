@@ -153,11 +153,16 @@ function cookieid($bdd,$cookieid){
 
 //login
 function connexion($bdd, $email, $mdpenter){
+    if(isset($_COOKIE['69mkMJiQdJ'])){
         if(cookieid($bdd, $_COOKIE['69mkMJiQdJ']) == "400"){
             echo 'votre navigateur est connu';
         }else{
             echo 'navigateur inconnu';
-        }
+        } 
+    }else{
+        echo 'cookie non definis';
+    }
+    
 		$mailconnect = htmlspecialchars($email);
         $saltpassword = "7(gj??Uo1hQj^tn{~A^H8*#h";
 		$requser = $bdd->prepare('SELECT * FROM user WHERE email_user = ? OR  name_user = ?');
