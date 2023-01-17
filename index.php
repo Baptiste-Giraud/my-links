@@ -18,7 +18,7 @@ $url = rtrim($url, '?');
 
 //function_insertbackground_theme_userid($bdd, "Template 8", "template-8", "", "svg", 1, "purple pink");
 // function_register($bdd, "flo", "flo", "flo", "azerty83@", "flo", "azerty83@");
-function_connexion($bdd, "flo", "azerty83@");
+// function_connexion($bdd, "flo", "azerty83@");
 // $token = function_veriftoken($bdd);
 // echo $_SESSION['token'];
 
@@ -31,7 +31,7 @@ function_connexion($bdd, "flo", "azerty83@");
 //     echo "l'user ".$url." existe pas";
     
 // }else{
-    $user = function_selectinfouserbypseudo($bdd,  'edman');
+    $user = function_selectinfouserbypseudo($bdd,  'hugo');
     include 'templates/user.php';
 // }
 //echo $val = function_views_count_select_by_total($bdd);

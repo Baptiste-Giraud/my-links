@@ -1,7 +1,7 @@
 <?php
 
 function_views_count_insert($bdd, $user['id_user']);
-$links = function_selectlinkbyuserid($bdd,  $user['id_user']);
+$links = function_selectlinkbyuserid($bdd, $user['id_user']);
 
 $user_name = $user["name_user"];
 $user_img = $user["path_img"];
@@ -93,7 +93,7 @@ $theme_class = $theme["slug"] . " " . $theme_type . " " . $style_compo;
                 $link_textColor = $link['text_color_link'];
                 echo '<a href="' . $link_url . '" id="link-'. $link_id .'" class="' . $link_type . " " . $link_forme . '"><span>' . $link_text . '</span></a>';
             }
-            function_add_form_newsletter();
+            //function_add_form_newsletter();
         ?>
         </section>
     </main>

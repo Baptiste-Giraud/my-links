@@ -7,20 +7,20 @@ if (isset($_POST['registration'])){
     exit();
 }
 
-include('controller/language_page.php');
-include('controller/confirmation.php');
-include('controller/register.php');
-include('controller/parameter_template.php');
-include('controller/link.php');
-include('controller/link_parameter_template.php');
-include('controller/background_theme_user.php');
-include('controller/user.php');
-include('controller/views_count.php');
-include('controller/dashboard_parameters.php');
-include('controller/giphy.php');
-include('controller/scrap.php');
-include('controller/newsletter.php');
-include('controller/vcard.php');
+include_once('controller/language_page.php');
+include_once('controller/confirmation.php');
+include_once('controller/register.php');
+include_once('controller/parameter_template.php');
+include_once('controller/link.php');
+include_once('controller/link_parameter_template.php');
+include_once('controller/background_theme_user.php');
+include_once('controller/user.php');
+include_once('controller/views_count.php');
+include_once('controller/dashboard_parameters.php');
+include_once('controller/giphy.php');
+include_once('controller/scrap.php');
+include_once('controller/newsletter.php');
+include_once('controller/vcard.php');
 
 
 //
@@ -292,6 +292,10 @@ function function_add_form_newsletter(){
 if(isset($_POST['submit']))
 {
     function_add_newsletter($bdd,  $iduser, $_POST['email']);
+}
+
+if(isset($_POST['vcardcreate'])){
+    echo 'lol';
 }
 
 

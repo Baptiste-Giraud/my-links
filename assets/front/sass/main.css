@@ -182,18 +182,6 @@ button:hover {
   background: orangered;
 }
 
-.two {
-  background-color: dodgerblue;
-}
-
-.three {
-  background-color: indigo;
-}
-
-.four {
-  background-color: limegreen;
-}
-
 html * {
   box-sizing: border-box;
 }

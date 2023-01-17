@@ -124,7 +124,8 @@ function downloadvcard($bdd, $id){
 }
 
 function add_button_vcard(){
-	echo '<button href="post" type="button">Télécharger la vcard</button>';
+	echo '
+	<button href="post" type="button">Télécharger la vcard</button>';
 }
 
 ?>

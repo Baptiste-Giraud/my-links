@@ -3,8 +3,6 @@
 
  include('simple_html_dom.php');
 
-//$val = scrap('https://snipfeed.co/cecerose');
-//var_dump($val);
  function scrap($url){
     $value = parse_url($url);
     if($value["host"] == "linktr.ee"){
