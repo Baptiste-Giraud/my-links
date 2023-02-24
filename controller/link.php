@@ -18,8 +18,9 @@ function insertlink($bdd, $forme, $type, $effect, $url, $color_link, $texte, $te
                 $final_sensitive = 1;
             }
         }
-        $iduser = $_SESSION['id_user'];
-        $insert = $bdd->prepare("INSERT INTO link VALUES (NULL, :id_user ,:url, :type, :texte, :forme, :couleur_card, :effect, :text_color_link, :icon, :position, :link_show,:date_start_show, :date_finish_show, :sensitive, :private_pass)");
+        // $iduser = $_SESSION['id_user'];
+        $iduser = 7;
+        $insert = $bdd->prepare("INSERT INTO link (id_user, url, type, texte, forme, couleur_card, effect, text_color_link, icon, position, link_show, date_start_show, date_finish_show, `sensitive`, private_pass) VALUES (:id_user, :url, :type, :texte, :forme, :couleur_card, :effect, :text_color_link, :icon, :position, :link_show, :date_start_show, :date_finish_show, :sensitive, :private_pass)");
         $insert->bindValue(':id_user', $iduser);
         $insert->bindValue(':url', $url);
         $insert->bindValue(':type', $type);
@@ -36,16 +37,21 @@ function insertlink($bdd, $forme, $type, $effect, $url, $color_link, $texte, $te
         $insert->bindValue(':sensitive', $final_sensitive);
         $insert->bindValue(':private_pass', $private_pass);
         if ($insert->execute()) {
-            echo '400';
+            http_response_code(200);
+            return(200);
         } else {
-            echo '500';
+            http_response_code(500);
+            return(500);
         }
     } catch (PDOException $e) {
         // log error
         error_log($e->getMessage());
-        echo '500';
+        http_response_code(500);
     }
 }
+
+
+
 
 function selectalllinkuser($bdd) {
     $iduser = $_SESSION['id_user'];

@@ -1,6 +1,4 @@
 <?php
-echo '<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>';
-
 function name_exist($bdd, $name_user){
         $requname = $bdd->prepare('SELECT * FROM user WHERE name_user = ?');
         $requname->execute(array($name_user));
@@ -32,6 +30,8 @@ function getIp(){
 
 //inscription
 function register($bdd, $emailuser, $nomuser, $prenomuser, $mdpuser, $usernameuser, $mdpsuruser){
+    echo '<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>';
+
         $mail = htmlspecialchars($emailuser);
         $saltpassword = "7(gj??Uo1hQj^tn{~A^H8*#h";
         $nom = htmlspecialchars($nomuser);
@@ -153,6 +153,7 @@ function cookieid($bdd,$cookieid){
 
 //login
 function connexion($bdd, $email, $mdpenter){
+    echo '<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>';
     if(isset($_COOKIE['69mkMJiQdJ'])){
         if(cookieid($bdd, $_COOKIE['69mkMJiQdJ']) == "400"){
             echo 'votre navigateur est connu';

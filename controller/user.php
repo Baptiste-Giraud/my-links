@@ -71,15 +71,15 @@ function veriftoken($bdd){
 }
 
 
-if (isset($_SESSION['id_user']) && $_SESSION['time'] < time() - 300) {
-    session_regenerate_id(true);
-    $_SESSION['time'] = time();
-}
+// if (isset($_SESSION['id_user']) && $_SESSION['time'] < time() - 300) {
+//     session_regenerate_id(true);
+//     $_SESSION['time'] = time();
+// }
 
-if(!isset($_SESSION['initialised'])){
-	session_regenerate_id(true);
-	$_SESSION['initialised'] = true;
-}
+// if(!isset($_SESSION['initialised'])){
+// 	session_regenerate_id(true);
+// 	$_SESSION['initialised'] = true;
+// }
 
 
 

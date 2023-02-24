@@ -8,7 +8,7 @@ if (isset($_POST['registration'])){
 }
 
 include('controller/language_page.php');
-include('controller/confirmation.php');
+// include('controller/confirmation.php');
 include('controller/register.php');
 include('controller/parameter_template.php');
 include('controller/link.php');
@@ -21,6 +21,7 @@ include('controller/giphy.php');
 include('controller/scrap.php');
 include('controller/newsletter.php');
 include('controller/vcard.php');
+
 
 
 //
@@ -121,7 +122,7 @@ include('controller/vcard.php');
     }
 
     //fonction qui permet d'inserer un lien
-    //function_insertlink($bdd, 1, "type", "effect", "url", "color_link", "texte", "red", "facebook", 1, 1, "", "", 1, NULL);
+    // insertlink($bdd, 1, "effect", "eee", "red", "texte", "red", "facebook", 1, 1, 1, NULL, NULL, 0, NULL);
     function function_insertlink($bdd, $forme, $type, $effect, $url, $color_link, $texte, $text_color_link, $icon, $position, $link_show, $date_start_show, $date_finish_show, $sensitive, $private_pass){
         insertlink($bdd, $forme, $type, $effect, $url, $color_link, $texte, $text_color_link, $icon, $position, $link_show, $date_start_show, $date_finish_show, $sensitive, $private_pass);
     }
@@ -309,13 +310,13 @@ function function_veriftoken($bdd){
 //elle permet de créer un vcard
 // function_insert_vcard($bdd, "Emilie", "spina", "emilie@epitech.eu", "26 rue voltaire", "residence", "83000","Toulon",  "france", "0601370524", "0494256374", "http://lol.com", "etudiant", "epitech");
 function function_insert_vcard($bdd, $nom, $prenom, $email, $adresse, $complement_adresse, $code_postal, $ville, $pays, $tel_portable, $tel_fixe, $url_vcard, $role, $nom_entreprise){
-    return(insert_vcard($bdd, $nom, $prenom, $email, $adresse, $complement_adresse, $code_postal, $ville, $pays, $tel_portable, $tel_fixe, $url_vcard, $role, $nom_entreprise));
+    // return(insert_vcards($bdd, $nom, $prenom, $email, $adresse, $complement_adresse, $code_postal, $ville, $pays, $tel_portable, $tel_fixe, $url_vcard, $role, $nom_entreprise));
 }
 
 // elle permet de créer un lien en même temps que la Vcard
 // function_insertlink_and_vcard($bdd, "Bagra", "lola", "julia@epitech.eu", "26 rue voltaire", "residence", "83000","Toulon",  "france", "0601370524", "0494256374", "http://lol.com", "etudiant", "Tesla", 1, "vcard", "test", "", "bleu", "lol", "text_color-green", "icon_vcard", 1, 1, NULL, NULL, 0, NULL, NULL, );
 function function_insertlink_and_vcard($bdd, $nom, $prenom, $email, $adresse, $complement_adresse, $code_postal, $ville, $pays, $tel_portable, $tel_fixe, $url_vcard, $role, $nom_entreprise, $type, $url, $texte, $forme, $color_link, $effect, $text_color_link, $icon, $position, $link_show, $date_start_show, $date_finish_show, $sensitive, $private_pass){
-    function_insert_vcard($bdd, $nom, $prenom, $email, $adresse, $complement_adresse, $code_postal, $ville, $pays, $tel_portable, $tel_fixe, $url_vcard, $role, $nom_entreprise);
+    // function_insert_vcard($bdd, $nom, $prenom, $email, $adresse, $complement_adresse, $code_postal, $ville, $pays, $tel_portable, $tel_fixe, $url_vcard, $role, $nom_entreprise);
     function_insertlink($bdd, $type, $url, $texte, $forme, $color_link, $effect, $text_color_link, $icon, $position, $link_show, $date_start_show, $date_finish_show, $sensitive, $private_pass);
 }
 
@@ -323,29 +324,57 @@ function function_insertlink_and_vcard($bdd, $nom, $prenom, $email, $adresse, $c
 //elle permet de mettre à jour la vcard
 // function_update_vcard($bdd, 27, "Quentin", "Thomas", "julia@epitech.eu", "26 rue voltaire", "residence", "83000","Toulon",  "france", "0601370524", "0494256374", "http://lol.com", "etudiant", "epitech" );
 function function_update_vcard($bdd, $id, $nom, $prenom, $email, $adresse, $complement_adresse, $code_postal, $ville, $pays, $tel_portable, $tel_fixe, $url, $role, $nom_entreprise){
-    return(update_vcard($bdd, $id, $nom, $prenom, $email, $adresse, $complement_adresse, $code_postal, $ville, $pays, $tel_portable, $tel_fixe, $url, $role, $nom_entreprise));
+    // return(update_vcard($bdd, $id, $nom, $prenom, $email, $adresse, $complement_adresse, $code_postal, $ville, $pays, $tel_portable, $tel_fixe, $url, $role, $nom_entreprise));
 }
 
 //elle permet de télécharger la vcard
 // function_downloadvcard($bdd, 29);
 function function_downloadvcard($bdd, $id){
-    return(downloadvcard($bdd, $id));
+    // return(downloadvcard($bdd, $id));
 }
 
 //elle permet de supprimer la vcard
 // function_deletevcardlinks($bdd, 34);
 function function_deletevcardlinks($bdd, $id_vcard){
-    return(deletevcardlinks($bdd, $id_vcard));
+    // return(deletevcardlinks($bdd, $id_vcard));
 }
 
 //elle permet de supprimer la vcard et le lien en même temps
 // function_deletevcard_and_link($bdd, 46, 'vcard', 34);
 function function_deletevcard_and_link($bdd, $id_link, $type_link, $id_vcard){
-    deletevcardlinks($bdd, $id_vcard);
+    // deletevcardlinks($bdd, $id_vcard);
     deletelink($bdd, $id_link, $type_link);
 }
 
 function function_add_button_vcard(){
-    return(add_button_vcard());
+    // return(add_button_vcard());
 }
+
+if (isset($_POST['function']) && $_POST['function'] === 'insertlink') {
+    $forme = $_POST['forme'];
+    $type = $_POST['type'];
+    $effect = $_POST['effect'];
+    $url = $_POST['url'];
+    $color_link = $_POST['couleur_link'];
+    $texte = $_POST['texte'];
+    $text_color_link = $_POST['text_color_link'];
+    $icon = $_POST['icon'];
+    $position = $_POST['position'];
+    $link_show = $_POST['link_show'];
+    $date_start_show = $_POST['date_start_show'];
+    $date_finish_show = $_POST['date_finish_show'];
+    $sensitive = isset($_POST['sensitive']) ? $_POST['sensitive'] : 0;
+    $private_pass = isset($_POST['private_pass']) ? $_POST['private_pass'] : NULL;
+
+    $result = insertlink($bdd, $forme, $type, $effect, $url, $color_link, $texte, $text_color_link, $icon, $position, $link_show, $date_start_show, $date_finish_show, $sensitive, $private_pass);
+    // Récupérer le nombre de lignes affectées
+    if ($result == 200) {
+        http_response_code(400);
+        echo "Le lien a été inséré avec succès !";
+    } else {
+        http_response_code(500);
+        echo "Une erreur s'est produite lors de l'insertion du lien.";
+    }    
+}
+
 ?>
