@@ -1,5 +1,5 @@
 <?php
-echo '<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>';
+session_start();
 
 function name_exist($bdd, $name_user){
         $requname = $bdd->prepare('SELECT * FROM user WHERE name_user = ?');
@@ -32,6 +32,8 @@ function getIp(){
 
 //inscription
 function register($bdd, $emailuser, $nomuser, $prenomuser, $mdpuser, $usernameuser, $mdpsuruser){
+    echo '<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>';
+
         $mail = htmlspecialchars($emailuser);
         $saltpassword = "7(gj??Uo1hQj^tn{~A^H8*#h";
         $nom = htmlspecialchars($nomuser);
@@ -153,52 +155,58 @@ function cookieid($bdd,$cookieid){
 
 //login
 function connexion($bdd, $email, $mdpenter){
-    if(isset($_COOKIE['69mkMJiQdJ'])){
-        if(cookieid($bdd, $_COOKIE['69mkMJiQdJ']) == "400"){
-            echo 'votre navigateur est connu';
-        }else{
-            echo 'navigateur inconnu';
-        } 
-    }else{
-        echo 'cookie non definis';
-    }
+    // if(isset($_COOKIE['69mkMJiQdJ'])){
+    //     if(cookieid($bdd, $_COOKIE['69mkMJiQdJ']) == "400"){
+    //         http_response_code(403);
+    //         exit('votre navigateur est connu');
+    //     }else{
+    //         http_response_code(403);
+    //         exit('navigateur inconnu');
+    //     } 
+    // }else{
+    //     http_response_code(403);
+    //     exit('cookie non definis');
+    // }
     
-		$mailconnect = htmlspecialchars($email);
-        $saltpassword = "7(gj??Uo1hQj^tn{~A^H8*#h";
-		$requser = $bdd->prepare('SELECT * FROM user WHERE email_user = ? OR  name_user = ?');
-		$requser->execute(array($mailconnect, $mailconnect));
-		$userexist = $requser->rowCount();
-		if($userexist == 1){
-            $userinfo = $requser->fetch();
-            if (password_verify($mdpenter.$saltpassword, $userinfo['mdp_user'])) {
-                $saltipadresse = "bB#6UfRxW7)Qm0d0.Dda";
-                session_regenerate_id(true);
-                $_SESSION['id_user'] = $userinfo['id_user'];
-                $_SESSION['email_user'] = $userinfo['email_user'];
-                $_SESSION['name_user'] = $userinfo['name_user'];
-                $_SESSION['nom_user'] = $userinfo['nom_user'];
-                $_SESSION['prenom_user'] = $userinfo['prenom_user'];
-                $_SESSION['confirme'] = $userinfo['confirme'];
-                $_SESSION['star_account'] = $userinfo['star_account'];
-                $_SESSION['path_img'] = $userinfo['path_img'];
-                $_SESSION['description'] = $userinfo['description'];
-                $_SESSION['time'] = time();
-                $_SESSION['ipaddress'] = getIp().$saltipadresse;
-                if($userinfo['email_user'] == "admin@my-links.fans"){
-                    $_SESSION['token'] = uniqid()."".rand(10000,99999)."".date("dmYHis")."t"."1";
-                }else{
-                    $_SESSION['token'] = uniqid()."".rand(10000,99999)."".date("dmYHis")."t"."0";
-                }
-                updatetoken($bdd, $userinfo['id_user'], $_SESSION['token']);
-            } else {
-                echo '<script>swal("Oops!", "Erreur de login!", "error");</script>';
-                exit();
+    $mailconnect = htmlspecialchars($email);
+    $saltpassword = "7(gj??Uo1hQj^tn{~A^H8*#h";
+    $requser = $bdd->prepare('SELECT * FROM user WHERE email_user = ? OR name_user = ?');
+    $requser->execute(array($mailconnect, $mailconnect));
+    $userexist = $requser->rowCount();
+    if($userexist == 1){
+        $userinfo = $requser->fetch();
+        if (password_verify($mdpenter.$saltpassword, $userinfo['mdp_user'])) {
+            $saltipadresse = "bB#6UfRxW7)Qm0d0.Dda";
+            session_regenerate_id(true);
+            $_SESSION['id_user'] = $userinfo['id_user'];
+            $_SESSION['email_user'] = $userinfo['email_user'];
+            $_SESSION['name_user'] = $userinfo['name_user'];
+            $_SESSION['nom_user'] = $userinfo['nom_user'];
+            $_SESSION['prenom_user'] = $userinfo['prenom_user'];
+            $_SESSION['confirme'] = $userinfo['confirme'];
+            $_SESSION['star_account'] = $userinfo['star_account'];
+            $_SESSION['path_img'] = $userinfo['path_img'];
+            $_SESSION['description'] = $userinfo['description'];
+            $_SESSION['time'] = time();
+            $_SESSION['ipaddress'] = getIp().$saltipadresse;
+            if($userinfo['email_user'] == "admin@my-links.fans"){
+                $_SESSION['token'] = uniqid()."".rand(10000,99999)."".date("dmYHis")."t"."1";
+            }else{
+                $_SESSION['token'] = uniqid()."".rand(10000,99999)."".date("dmYHis")."t"."0";
             }
-		}else{
-			echo '<script>swal("Oops!", "Erreur de login!", "error");</script>';
-            exit();
-		}
-	}
+            updatetoken($bdd, $userinfo['id_user'], $_SESSION['token']);
+            http_response_code(200);
+            return(200);
+        } else {
+            http_response_code(403);
+
+            return(403);
+        }
+    } else {
+        http_response_code(403);
+        return(403);
+    }
+}
 
     //token
 function updatetoken($bdd, $iduser, $token){

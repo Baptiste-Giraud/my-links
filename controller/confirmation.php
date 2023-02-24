@@ -1,29 +1,39 @@
 <?php
 //confirmation mail
 
-if(isset($_GET['name_user'], $_GET['key']) AND !empty($_GET['name_user']) AND !empty($_GET['key'])) {
-   $pseudo = htmlspecialchars(urldecode($_GET['name_user']));
+if(isset($_GET['name_user'], $_GET['key']) && !empty($_GET['name_user']) && !empty($_GET['key'])) {
+   $pseudo = urldecode(htmlspecialchars($_GET['name_user']));
    $key = htmlspecialchars($_GET['key']);
-   $requser = $bdd->prepare("SELECT * FROM user WHERE name_user = ? AND confirmkey = ?");
-   $requser->execute(array($pseudo, $key));
-   $userexist = $requser->rowCount();
-   if($userexist == 1) {
-      $user = $requser->fetch();
-      if($user['confirme'] == 0) {
-         $updateuser = $bdd->prepare("UPDATE user SET confirme = 1 WHERE name_user = ? AND confirmkey = ?");
-         $updateuser->execute(array($pseudo,$key));
-         echo "<p></p>";
-         echo '<script>swal("Parfait!", "Votre compte a bien été confirmé ! Vous serez redirigé automatiquement dans 3 secondes", "success");</script>';
-         header("refresh:3;url=index.php");
-      } else {
-         echo "<p></p>";
-         echo '<script>swal("Parfait!", "Votre compte a déjà été confirmé ! Vous serez redirigé automatiquement dans 3 secondes",  "success");</script>';
-         header("refresh:3;url=index.php");
-      }
-   } else {
-      echo "<p></p>";
-      echo '<script>swal("Oops!", "L\'utilisateur n\'existe pas ! Vous serez redirigé automatiquement dans 3 secondes !", "error");</script>';
-      header("refresh:3;url=index.php");
+   $stmt = $bdd->prepare("SELECT * FROM user WHERE name_user = :pseudo AND confirmkey = :key");
+   $stmt->execute([
+       'pseudo' => $pseudo,
+       'key' => $key,
+   ]);
+   $user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+   if ($user) {
+       if ($user['confirme'] == 0) {
+           $stmt = $bdd->prepare("UPDATE user SET confirme = 1 WHERE name_user = :pseudo AND confirmkey = :key");
+           $stmt->execute([
+               'pseudo' => $pseudo,
+               'key' => $key,
+           ]);
+           echo "<p></p>";
+           echo '<script>swal("Parfait!", "Votre compte a bien été confirmé ! Vous serez redirigé automatiquement dans 3 secondes", "success");</script>';
+           header("refresh:3;url=index.php");
+           exit;
+       } else {
+           echo "<p></p>";
+           echo '<script>swal("Parfait!", "Votre compte a déjà été confirmé ! Vous serez redirigé automatiquement dans 3 secondes",  "success");</script>';
+           header("refresh:3;url=index.php");
+           exit;
+       }
    }
 }
+
+echo "<p></p>";
+echo '<script>swal("Oops!", "L\'utilisateur n\'existe pas ! Vous serez redirigé automatiquement dans 3 secondes !", "error");</script>';
+header("refresh:3;url=index.php");
+exit;
+
 ?>
