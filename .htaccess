@@ -102,7 +102,6 @@ RewriteRule ^controller/(.*)?$ / [R=301,L]
 
 RewriteRule ^node_modules/(.*)?$ / [R=301,L]
 
-RewriteRule ^templates/(.*)?$ / [R=301,L]
 
 RewriteRule ^socials-embed/(.*)?$ / [R=301,L]
 
