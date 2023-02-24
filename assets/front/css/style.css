@@ -180,22 +180,20 @@ button:hover {
   background: orangered;
 }
 
-body {
+#linkpage body {
   font-family: Arial, sans-serif;
   background-color: #f1f3f6;
 }
-
-header {
+#linkpage header {
   background-color: #007bff;
   color: white;
   padding: 1rem;
   text-align: center;
 }
-header h1 {
+#linkpage header h1 {
   margin: 0;
 }
-
-main {
+#linkpage main {
   background-color: white;
   border-radius: 6px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
@@ -204,24 +202,21 @@ main {
   padding: 2rem;
   text-align: center;
 }
-
-form {
+#linkpage form {
   display: grid;
   grid-gap: 1rem;
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: repeat(8, min-content);
   align-items: center;
 }
-
-label {
+#linkpage label {
   display: inline-block;
   font-weight: bold;
   margin-bottom: 0.5rem;
   text-align: left;
 }
-
-input,
-select {
+#linkpage input,
+#linkpage select {
   background-color: #f8f9fa;
   border: none;
   border-radius: 6px;
@@ -231,18 +226,16 @@ select {
   padding: 0.5rem;
   transition: all 0.2s ease;
 }
-input:focus,
-select:focus {
+#linkpage input:focus,
+#linkpage select:focus {
   outline: none;
   box-shadow: 0 0 0 3px #007bff;
 }
-
-input[type=color] {
+#linkpage input[type=color] {
   padding: 0;
   vertical-align: middle;
 }
-
-input[type=submit] {
+#linkpage input[type=submit] {
   background-color: #007bff;
   border: none;
   border-radius: 6px;
@@ -253,13 +246,12 @@ input[type=submit] {
   padding: 0.5rem;
   transition: all 0.2s ease;
 }
-input[type=submit]:hover {
+#linkpage input[type=submit]:hover {
   background-color: #0062cc;
 }
-input[type=submit].submit-animation {
+#linkpage input[type=submit].submit-animation {
   animation: submit 1s ease;
 }
-
 @keyframes submit {
   0% {
     transform: scale(1);
@@ -271,27 +263,26 @@ input[type=submit].submit-animation {
     transform: scale(1);
   }
 }
-input[type=datetime-local] {
+#linkpage input[type=datetime-local] {
   background-color: white;
 }
-
-.checkbox {
+#linkpage .checkbox {
   display: inline-block;
   position: relative;
 }
-.checkbox input[type=checkbox] {
+#linkpage .checkbox input[type=checkbox] {
   position: absolute;
   opacity: 0;
   cursor: pointer;
 }
-.checkbox label {
+#linkpage .checkbox label {
   position: relative;
   cursor: pointer;
   padding-left: 25px;
   margin-bottom: 0;
   display: inline-block;
 }
-.checkbox label::before {
+#linkpage .checkbox label::before {
   content: "";
   position: absolute;
   left: 0;
@@ -302,7 +293,7 @@ input[type=datetime-local] {
   border-radius: 3px;
   transition: all 0.2s ease;
 }
-.checkbox label::after {
+#linkpage .checkbox label::after {
   content: "";
   position: absolute;
   left: 7px;
@@ -314,32 +305,31 @@ input[type=datetime-local] {
   transform: rotate(45deg);
   transition: all 0.2s ease;
 }
-.checkbox input[type=checkbox]:checked ~ label::before {
+#linkpage .checkbox input[type=checkbox]:checked ~ label::before {
   background-color: #007bff;
   border-color: #007bff;
 }
-.checkbox input[type=checkbox]:checked ~ label::after {
+#linkpage .checkbox input[type=checkbox]:checked ~ label::after {
   transform: rotate(45deg) translate(-4px, 4px);
 }
-
 @media screen and (max-width: 600px) {
-  form {
+  #linkpage form {
     grid-template-columns: 1fr;
     grid-template-rows: repeat(15, min-content);
   }
 }
 @media screen and (max-width: 400px) {
-  form {
+  #linkpage form {
     grid-gap: 0.5rem;
   }
 }
-.form-group.password-input-container {
+#linkpage .form-group.password-input-container {
   position: relative;
 }
-.form-group.password-input-container input[type=password] {
+#linkpage .form-group.password-input-container input[type=password] {
   padding-right: 30px;
 }
-.form-group.password-input-container .password-toggle-icon {
+#linkpage .form-group.password-input-container .password-toggle-icon {
   position: absolute;
   top: 50%;
   right: 10px;
@@ -348,24 +338,23 @@ input[type=datetime-local] {
   color: #6c757d;
   cursor: pointer;
 }
-
-.form-group.checkbox-input-container {
+#linkpage .form-group.checkbox-input-container {
   display: inline-block;
   position: relative;
 }
-.form-group.checkbox-input-container input[type=checkbox] {
+#linkpage .form-group.checkbox-input-container input[type=checkbox] {
   position: absolute;
   opacity: 0;
   cursor: pointer;
 }
-.form-group.checkbox-input-container .checkbox-custom {
+#linkpage .form-group.checkbox-input-container .checkbox-custom {
   position: relative;
   cursor: pointer;
   padding-left: 25px;
   display: inline-block;
   vertical-align: middle;
 }
-.form-group.checkbox-input-container .checkbox-custom::before {
+#linkpage .form-group.checkbox-input-container .checkbox-custom::before {
   content: "";
   position: absolute;
   left: 0;
@@ -376,7 +365,7 @@ input[type=datetime-local] {
   border-radius: 3px;
   transition: all 0.2s ease;
 }
-.form-group.checkbox-input-container .checkbox-custom::after {
+#linkpage .form-group.checkbox-input-container .checkbox-custom::after {
   content: "";
   position: absolute;
   left: 7px;
@@ -388,19 +377,17 @@ input[type=datetime-local] {
   transform: rotate(45deg);
   transition: all 0.2s ease;
 }
-.form-group.checkbox-input-container input[type=checkbox]:checked ~ .checkbox-custom::before {
+#linkpage .form-group.checkbox-input-container input[type=checkbox]:checked ~ .checkbox-custom::before {
   background-color: #007bff;
   border-color: #007bff;
 }
-.form-group.checkbox-input-container input[type=checkbox]:checked ~ .checkbox-custom::after {
+#linkpage .form-group.checkbox-input-container input[type=checkbox]:checked ~ .checkbox-custom::after {
   transform: rotate(45deg) translate(-4px, 4px);
 }
-
-#private_pass {
+#linkpage #private_pass {
   width: 100%;
 }
-
-#toggle-password {
+#linkpage #toggle-password {
   position: absolute;
   transform: translate(-110%, 60%);
   cursor: pointer;
