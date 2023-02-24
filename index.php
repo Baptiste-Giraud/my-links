@@ -26,10 +26,8 @@ $url = rtrim($url, '?');
 // function_insertlink($bdd, 1, "type", "test", "https://onlyfans.porn/eddyass", "red", "coucou", "", "", 1, 1, NULL, NULL, 0, NULL);
 $value = selectinfouserbypseudo($bdd ,$url);
 //function_insertlink($bdd, 1, "type", "effect", "url", "color_link", "texte", "red", "facebook", 1, 1);
-echo $value;
 
-if($value == false){
-    echo $value;
+if($value == false || $value == ""){
     if($value == "login"){
         include 'templates/login.php';
     }else if($value == "link"){
