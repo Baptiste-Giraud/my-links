@@ -377,4 +377,19 @@ if (isset($_POST['function']) && $_POST['function'] === 'insertlink') {
     }    
 }
 
+
+if (isset($_POST['email']) && isset($_POST['password'])) {
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+    $result = connexion($bdd, $email, $password);
+    if ($result == 200) {
+        http_response_code(200);
+        echo json_encode(array('message' => 'Connexion réussie !'));
+    } else {
+        http_response_code(401);
+        echo json_encode(array('message' => 'Erreur de connexion : '));
+    }
+}
+
+
 ?>

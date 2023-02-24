@@ -1,3 +1,7 @@
+<?php
+
+session_start();
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -6,7 +10,13 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../assets/front/css/style.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-</head>
+<!-- jsDelivr  -->
+<script src="https://cdn.jsdelivr.net/npm/fireworks-js@2.x/dist/index.umd.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+
+
+<!-- UNPKG -->
+<script src="https://unpkg.com/fireworks-js@2.x/dist/index.umd.js"></script></head>
 <body id="linkpage">
 	<header>
 		<h1>Ajouter un lien</h1>
@@ -89,13 +99,17 @@
 			<input type="hidden" name="function" value="insertlink">
 
 
-			<input type="submit" name="function" value="insertlink">
+			<input type="submit" name="function">
 		</form>
 	</main>
+	<div class="fireworks">
+
+	</div>
 </body>
 </html>
 
 <script>
+	
     // Récupérer le formulaire
     var form = document.getElementById("myForm");
 
@@ -136,5 +150,65 @@ showPasswordIcon.addEventListener('click', function(event) {
   }
 
 });
+
+
+function animatePopupIn() {
+  const popup = document.querySelector(".popup");
+  anime({
+    targets: popup,
+    translateY: ["-50%", "-50%"],
+    scale: [0.1, 1],
+    opacity: [0, 1],
+    duration: 1000,
+    easing: "easeInOutQuad"
+  });
+}
+
+function animatePopupOut() {
+  const popup = document.querySelector(".popup");
+  anime({
+    targets: popup,
+    translateY: ["-50%", "-50%"],
+    scale: [1, 0.1],
+    opacity: [1, 0],
+    duration: 1000,
+    easing: "easeInOutQuad"
+  });
+}
+
+document.addEventListener("DOMContentLoaded", function(event) {
+  // Récupérer le nom d'utilisateur de la variable de session PHP
+  var username = "<?php echo $_SESSION['name_user']; ?>";
+
+  // Créer une nouvelle popup avec le message de bienvenue personnalisé
+  var popup = document.createElement("div");
+  popup.className = "popup";
+  popup.innerHTML = "<h2>Bienvenue, " + username + " !</h2><p>Nous sommes heureux de vous revoir.</p>";
+  popup.style.opacity = 0;
+	popup.style.transform = "scale(0.1)";
+	popup.style.position = "absolute";
+	popup.style.left = "50%";
+	popup.style.top = "50%";
+	popup.style.transform = "translate(-50%, -50%) scale(0.1)";
+
+  // Ajouter la popup à la page
+  document.body.appendChild(popup);
+
+  animatePopupIn();
+
+  const container = document.querySelector('.fireworks')
+  const fireworks = new Fireworks.default(container)
+  fireworks.start()
+
+  // Supprimer la popup après 5 secondes
+  setTimeout(function() {
+    animatePopupOut();
+    fireworks.stop(true);
+    setTimeout(function() {
+      popup.remove();
+    }, 1000);
+  }, 5000);
+});
+
 
 </script>
