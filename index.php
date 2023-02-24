@@ -31,7 +31,7 @@ if($value == false){
     echo "l'user ".$url." existe pas";
     
 }else{
-    $user = function_selectinfouserbypseudo($bdd,  $user["name_user"]);
+    $user = function_selectinfouserbypseudo($bdd,  $value["name_user"]);
     include 'templates/user.php';
 }
 //echo $val = function_views_count_select_by_total($bdd);
