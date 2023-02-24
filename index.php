@@ -28,7 +28,13 @@ $value = selectinfouserbypseudo($bdd ,$url);
 //function_insertlink($bdd, 1, "type", "effect", "url", "color_link", "texte", "red", "facebook", 1, 1);
 
 if($value == false){
-    echo "l'user ".$url." existe pas";
+    if($value == "login"){
+        include 'templates/login.php';
+    }else if($value == "link"){
+        include 'templates/link.php';
+    }else{
+        echo "l'user ".$url." existe pas";
+    }
     
 }else{
     $user = function_selectinfouserbypseudo($bdd,  $value["name_user"]);
