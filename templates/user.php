@@ -1,5 +1,7 @@
 <?php
 
+
+
 function_views_count_insert($bdd, $user['id_user']);
 $links = function_selectlinkbyuserid($bdd,  $user['id_user']);
 

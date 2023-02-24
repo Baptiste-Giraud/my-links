@@ -18,7 +18,8 @@ $url = rtrim($url, '?');
 
 //function_insertbackground_theme_userid($bdd, "Template 8", "template-8", "", "svg", 1, "purple pink");
 // function_register($bdd, "flo", "flo", "flo", "azerty83@", "flo", "azerty83@");
-function_connexion($bdd, "flo", "azerty83@");
+// $var = function_connexion($bdd, "flo@gmail.com", "azerty83@");
+// var_dump($var);
 // $token = function_veriftoken($bdd);
 // echo $_SESSION['token'];
 
