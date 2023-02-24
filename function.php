@@ -21,6 +21,7 @@ include('controller/giphy.php');
 include('controller/scrap.php');
 include('controller/newsletter.php');
 include('controller/vcard.php');
+include('controller/etablissement.php');
 
 
 
@@ -376,5 +377,32 @@ if (isset($_POST['function']) && $_POST['function'] === 'insertlink') {
         echo "Une erreur s'est produite lors de l'insertion du lien.";
     }    
 }
+
+// -----------------------------------------
+
+//
+// Les fonctions se trouve dans le fichier etablissement.php
+//
+if (isset($_POST['function']) && $_POST['function'] === 'insert_etablissement') {
+    $nom = $_POST['nom'];
+    $adresse = $_POST['adresse'];
+    $complement_adresse = $_POST['complement_adresse'];
+    $code_postal = $_POST['code_postal'];
+    $ville = $_POST['ville'];
+    $num_tel = $_POST['num_tel'];
+    $num_fixe = $_POST['num_fixe'];
+
+    $result = insert_etablissement($bdd, $nom, $adresse, $complement_adresse, $code_postal, $ville, $num_tel, $num_fixe);
+
+    // Récupérer le nombre de lignes affectées
+    if ($result == 200) {
+        http_response_code(201);
+        echo "Le lien a été inséré avec succès !";
+    } else {
+        http_response_code(500);
+        echo "Une erreur s'est produite lors de l'insertion du lien.";
+    }
+}
+
 
 ?>
