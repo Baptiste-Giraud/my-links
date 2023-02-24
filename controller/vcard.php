@@ -123,15 +123,8 @@ use JeroenDesloovere\VCard\VCard;
 //     //$vcard->save();
 // }
 
-<<<<<<< HEAD
-function add_button_vcard(){
-	echo '
-	<button href="post" type="button">Télécharger la vcard</button>';
-}
-=======
 // function add_button_vcard(){
 // 	echo '<button href="post" type="button">Télécharger la vcard</button>';
 // }
->>>>>>> dev
 
 ?>
