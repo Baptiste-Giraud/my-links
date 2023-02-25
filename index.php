@@ -32,7 +32,7 @@ $value = selectinfouserbypseudo($bdd ,$url);
 //     include 'templates/login.php';
 // }else{
 
-    if($value == false || $value == null  || $url == ""){
+    if($value == false || $value == null){
         include 'templates/home.php';
     }else{
         $user = function_selectinfouserbypseudo($bdd,  $value["name_user"]);
