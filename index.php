@@ -27,18 +27,17 @@ $url = rtrim($url, '?');
 $value = selectinfouserbypseudo($bdd ,$url);
 //function_insertlink($bdd, 1, "type", "effect", "url", "color_link", "texte", "red", "facebook", 1, 1);
 
-if($value == false || $value == ""){
-    if($value == "login"){
-        include 'templates/login.php';
-    }else if($value == "link"){
-        include 'templates/link.php';
-    }else{
-        echo "l'user ".$url." existe pas";
-    }
-    
+if($url == "link"){
+    include 'templates/link.php';
+}else if($url == "login"){
+    include 'templates/login.php';
 }else{
-    $user = function_selectinfouserbypseudo($bdd,  $value["name_user"]);
-    include 'templates/user.php';
+    if($value == false || $value == null){
+        echo "l'user ".$url." existe pas";
+    }else{
+        $user = function_selectinfouserbypseudo($bdd,  $value["name_user"]);
+        include 'templates/user.php';
+    }
 }
 //echo $val = function_views_count_select_by_total($bdd);
 //function_updateinfouser($bdd, 3, "baba", "eddy.mahmoud@epitech.eu", "eddy", "mhd");
