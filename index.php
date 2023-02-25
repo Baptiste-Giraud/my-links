@@ -26,18 +26,18 @@ $url = rtrim($url, '?');
 $value = selectinfouserbypseudo($bdd ,$url);
 //function_insertlink($bdd, 1, "type", "effect", "url", "color_link", "texte", "red", "facebook", 1, 1);
 
-// if($url == "link"){
-//     include 'templates/link.php';
-// }else if($url == "login"){
-//     include 'templates/login.php';
-// }else{
-//     if($value == false || $value == null){
-//         echo "l'user ".$url." existe pas";
-//     }else{
+if($url == "link"){
+    include 'templates/link.php';
+}else if($url == "login"){
+    include 'templates/login.php';
+}else{
+    if($value == false || $value == null){
+        echo "l'user ".$url." existe pas";
+    }else{
         $user = function_selectinfouserbypseudo($bdd,  $value["name_user"]);
         include 'templates/user.php';
-//     }
-// }
+    }
+}
 //echo $val = function_views_count_select_by_total($bdd);
 //function_updateinfouser($bdd, 3, "baba", "eddy.mahmoud@epitech.eu", "eddy", "mhd");
 // $data = function_select_parameter_and_link_by_current_user($bdd, "baba");
