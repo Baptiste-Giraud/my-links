@@ -33,6 +33,7 @@
 		
 		<section class="features" id="features">
 			<h2>Fonctionnalités clés</h2>
+			<div class="main_features">
 			<div class="feature">
 				<img src="./assets/front/img/mylinks.png" alt="Icon for feature 1">
 				<h3>Personnalisation</h3>
@@ -48,11 +49,13 @@
 				<h3>Liens illimités</h3>
 				<p>Ajoutez autant de liens que vous le souhaitez à votre page de liens personnalisée.</p>
 			</div>
+			</div>
 		</section>
 		
 		<section class="pricing" id="pricing">
 			<h2>Plans et tarifs</h2>
 			<p>My-Links est gratuit pour toujours, mais si vous voulez encore plus de fonctionnalités, découvrez nos plans payants.</p>
+			<div class="plans">
 			<div class="plan">
 				<h3>Basique</h3>
 				<p>Gratuit</p>
@@ -73,6 +76,7 @@
 			</ul>
 			<a href="/signup" class="cta-btn">Essayez gratuitement pendant 14 jours</a>
 		</div>
+			</div>
 	</section>
 
     <section class="socials">

@@ -31,6 +31,7 @@ $value = selectinfouserbypseudo($bdd ,$url);
 // }else if($url == "login"){
 //     include 'templates/login.php';
 // }else{
+    // include 'templates/home.php';
 
     if($value == false || $value == null){
         include 'templates/home.php';
