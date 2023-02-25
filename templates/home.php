@@ -15,7 +15,7 @@
 		<nav>
 			<a href="#features">Fonctionnalités</a>
 			<a href="#pricing">Tarifs</a>
-			<a href="login">Se connecter</a>
+			<a href="./login">Se connecter</a>
 		</nav>
 	</header>
 	
