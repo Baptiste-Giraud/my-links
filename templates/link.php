@@ -1,5 +1,10 @@
 <?php
 require_once '../function.php';
+
+if (!isset($_SESSION['name_user'])) {
+    header('Location: login.php');
+    exit;
+}
 ?>
 <!DOCTYPE html>
 <html>

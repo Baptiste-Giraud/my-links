@@ -57,7 +57,7 @@
                     messages.innerHTML = `<div class="alert alert-success">Connexion réussie. Redirection dans ${count} secondes...</div>`;
                 } else {
                     clearInterval(intervalId);
-                    window.location.href = "link.php";
+                    window.location.href = "link";
                 }
                 }, 1000);
             } else {
