@@ -7,7 +7,7 @@
 	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </head>
-<body class="signup">
+<body id="signup">
 	<header>
 		<div class="logo">
 			<img src="./assets/front/img/mylinks.png" alt="My-Links logo">
