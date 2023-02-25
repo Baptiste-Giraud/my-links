@@ -110,30 +110,40 @@ session_start();
 
 <script>
 	
-    // Récupérer le formulaire
-    var form = document.getElementById("myForm");
+  // Récupérer le formulaire
+var form = document.getElementById("myForm");
 
-    // Empêcher le comportement par défaut du formulaire
-    form.addEventListener("submit", function(event) {
-        event.preventDefault();
+// Empêcher le comportement par défaut du formulaire
+form.addEventListener("submit", function(event) {
+    event.preventDefault();
 
-        // Envoyer la requête au serveur
-        var xhr = new XMLHttpRequest({responseType: 'text'});
-        xhr.open(form.method, form.action);
-        xhr.onload = function() {
-            if (xhr.status === 400) {
-                alert("Le lien a été inséré avec succès !");
-            } else {
-                alert("Une erreur s'est produite lors de l'insertion du lien.");
-            }
-        };
-        xhr.send(new FormData(form));
-    });
+    // Envoyer la requête au serveur
+    var xhr = new XMLHttpRequest({responseType: 'text'});
+    xhr.open(form.method, form.action);
+    xhr.onload = function() {
+        if (xhr.status === 400) {
+            swal({
+                title: "Succès",
+                text: "Le lien a été inséré avec succès !",
+                icon: "success",
+                button: "OK",
+            }).then(() => {
+                location.reload();
+            });
+        } else {
+            swal({
+                title: "Erreur",
+                text: "Une erreur s'est produite lors de l'insertion du lien.",
+                icon: "error",
+                button: "OK",
+            });
+        }
+    };
+    xhr.send(new FormData(form));
+});
 
 const passwordInput = document.getElementById('private_pass');
 const showPasswordIcon = document.getElementById('toggle-password');
-
-//<i class="fa-solid fa-eye"></i>
 
 showPasswordIcon.addEventListener('click', function(event) {
   event.preventDefault();
@@ -141,16 +151,15 @@ showPasswordIcon.addEventListener('click', function(event) {
   passwordInput.setAttribute('type', type);
 
   if(showPasswordIcon.classList.contains('fa-eye')) {
-	showPasswordIcon.classList.add('fa-eye-slash');
-	showPasswordIcon.classList.remove('fa-eye');
+    showPasswordIcon.classList.add('fa-eye-slash');
+    showPasswordIcon.classList.remove('fa-eye');
   }
   else {
-	showPasswordIcon.classList.add('fa-eye');
-	showPasswordIcon.classList.remove('fa-eye-slash');
+    showPasswordIcon.classList.add('fa-eye');
+    showPasswordIcon.classList.remove('fa-eye-slash');
   }
 
 });
-
 
 function animatePopupIn() {
   const popup = document.querySelector(".popup");
@@ -185,11 +194,11 @@ document.addEventListener("DOMContentLoaded", function(event) {
   popup.className = "popup";
   popup.innerHTML = "<h2>Bienvenue, " + username + " !</h2><p>Nous sommes heureux de vous revoir.</p>";
   popup.style.opacity = 0;
-	popup.style.transform = "scale(0.1)";
-	popup.style.position = "absolute";
-	popup.style.left = "50%";
-	popup.style.top = "50%";
-	popup.style.transform = "translate(-50%, -50%) scale(0.1)";
+  popup.style.transform = "scale(0.1)";
+  popup.style.position = "absolute";
+  popup.style.left = "50%";
+  popup.style.top = "50%";
+  popup.style.transform = "translate(-50%, -50%) scale(0.1)";
 
   // Ajouter la popup à la page
   document.body.appendChild(popup);
@@ -209,6 +218,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
     }, 1000);
   }, 5000);
 });
+
 
 
 </script>
