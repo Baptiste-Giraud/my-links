@@ -8,6 +8,8 @@ ServerSignature Off
     RewriteRule ^login$ /templates/login.php [L]
     RewriteRule ^link$ /templates/link.php [L]
     RewriteRule ^home$ /templates/home.php [L]
+    RewriteRule ^signup$ /templates/signup.php [L]
+
 
     # Redirection vers HTTPS
     RewriteCond %{SERVER_PORT} 80
