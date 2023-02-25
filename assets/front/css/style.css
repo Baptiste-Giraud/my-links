@@ -477,13 +477,13 @@
   }
 }
 
-#body body {
+#home body {
   font-family: sans-serif;
   margin: 0;
   padding: 0;
   background-color: #f5f5f5;
 }
-#body header {
+#home header {
   background-color: rgba(255, 255, 255, 0.9);
   backdrop-filter: blur(10px);
   position: fixed;
@@ -496,25 +496,25 @@
   align-items: center;
   padding: 20px;
 }
-#body header .logo {
+#home header .logo {
   display: flex;
   align-items: center;
   gap: 10px;
 }
-#body header .logo img {
+#home header .logo img {
   width: 40px;
   height: 40px;
 }
-#body header nav a {
+#home header nav a {
   color: #333;
   text-decoration: none;
   margin-right: 20px;
   transition: all 0.3s ease;
 }
-#body header nav a:hover {
+#home header nav a:hover {
   color: #000;
 }
-#body .hero {
+#home .hero {
   background-image: linear-gradient(120deg, #8e24aa 0%, #0077c2 100%);
   background-color: rgba(255, 255, 255, 0.9);
   backdrop-filter: blur(10px);
@@ -523,20 +523,20 @@
   align-items: center;
   padding: 50px;
 }
-#body .hero .hero-text {
+#home .hero .hero-text {
   color: #fff;
   flex: 1;
   margin-right: 50px;
 }
-#body .hero .hero-text h2 {
+#home .hero .hero-text h2 {
   font-size: 36px;
   margin-bottom: 20px;
 }
-#body .hero .hero-text p {
+#home .hero .hero-text p {
   font-size: 18px;
   margin-bottom: 30px;
 }
-#body .hero .hero-text .cta-btn {
+#home .hero .hero-text .cta-btn {
   display: inline-block;
   background-color: #fff;
   color: #8e24aa;
@@ -545,18 +545,18 @@
   text-decoration: none;
   transition: all 0.3s ease;
 }
-#body .hero .hero-text .cta-btn:hover {
+#home .hero .hero-text .cta-btn:hover {
   background-color: #8e24aa;
   color: #fff;
 }
-#body .hero .hero-img {
+#home .hero .hero-img {
   flex: 1;
 }
-#body .hero .hero-img img {
+#home .hero .hero-img img {
   width: 100%;
   max-width: 600px;
 }
-#body .features {
+#home .features {
   background-color: rgba(255, 255, 255, 0.9);
   backdrop-filter: blur(10px);
   display: flex;
@@ -566,37 +566,37 @@
   padding: 50px;
   flex-direction: column;
 }
-#body .features .main_features {
+#home .features .main_features {
   display: flex;
 }
-#body .features h2 {
+#home .features h2 {
   text-align: center;
   font-size: 36px;
   margin-bottom: 50px;
   color: #8e24aa;
 }
-#body .features .feature {
+#home .features .feature {
   display: flex;
   flex-direction: column;
   align-items: center;
   margin: 30px;
   max-width: 300px;
 }
-#body .features .feature img {
+#home .features .feature img {
   width: 50px;
   height: 50px;
   margin-bottom: 20px;
 }
-#body .features .feature h3 {
+#home .features .feature h3 {
   font-size: 24px;
   margin-bottom: 10px;
   color: #8e24aa;
 }
-#body .features .feature p {
+#home .features .feature p {
   font-size: 18px;
   text-align: center;
 }
-#body .pricing {
+#home .pricing {
   background-color: rgba(255, 255, 255, 0.9);
   backdrop-filter: blur(10px);
   display: flex;
@@ -606,23 +606,23 @@
   flex-direction: column;
   padding: 50px;
 }
-#body .pricing .plans {
+#home .pricing .plans {
   display: flex;
 }
-#body .pricing h2 {
+#home .pricing h2 {
   text-align: center;
   font-size: 36px;
   margin-bottom: 50px;
   color: #8e24aa;
 }
-#body .pricing p {
+#home .pricing p {
   font-size: 18px;
   text-align: center;
   color: black;
   max-width: 600px;
   margin-bottom: 50px;
 }
-#body .pricing .plan {
+#home .pricing .plan {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -633,26 +633,26 @@
   padding: 30px;
   box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
 }
-#body .pricing .plan h3 {
+#home .pricing .plan h3 {
   font-size: 24px;
   margin-bottom: 10px;
   color: #8e24aa;
 }
-#body .pricing .plan p {
+#home .pricing .plan p {
   font-size: 18px;
   margin-bottom: 20px;
 }
-#body .pricing .plan ul {
+#home .pricing .plan ul {
   list-style: none;
   padding: 0;
   margin: 0;
   margin-bottom: 30px;
 }
-#body .pricing .plan ul li {
+#home .pricing .plan ul li {
   font-size: 16px;
   margin-bottom: 10px;
 }
-#body .pricing .plan .cta-btn {
+#home .pricing .plan .cta-btn {
   display: inline-block;
   background-color: #8e24aa;
   color: #fff;
@@ -661,10 +661,10 @@
   text-decoration: none;
   transition: all 0.3s ease;
 }
-#body .pricing .plan .cta-btn:hover {
+#home .pricing .plan .cta-btn:hover {
   background-color: #0077c2;
 }
-#body .socials {
+#home .socials {
   background-image: linear-gradient(120deg, #0077c2 0%, #8e24aa 100%);
   background-color: rgba(255, 255, 255, 0.9);
   backdrop-filter: blur(10px);
@@ -674,19 +674,19 @@
   align-items: center;
   padding: 50px;
 }
-#body .socials h2 {
+#home .socials h2 {
   text-align: center;
   font-size: 36px;
   margin-bottom: 50px;
   color: #fff;
 }
-#body .socials .social-icons {
+#home .socials .social-icons {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 30px;
 }
-#body .socials .social-icons .social-icon {
+#home .socials .social-icons .social-icon {
   width: 50px;
   height: 50px;
   display: flex;
@@ -694,18 +694,18 @@
   align-items: center;
   transition: all 0.3s ease;
 }
-#body .socials .social-icons .social-icon:hover {
+#home .socials .social-icons .social-icon:hover {
   background-color: #8e24aa;
 }
-#body .socials .social-icons .social-icon:hover img {
+#home .socials .social-icons .social-icon:hover img {
   filter: invert(1);
 }
-#body .socials .social-icons .social-icon img {
+#home .socials .social-icons .social-icon img {
   width: 30px;
   height: 30px;
   filter: invert(0);
 }
-#body footer {
+#home footer {
   background-color: #333;
   color: #fff;
   text-align: center;
