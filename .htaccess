@@ -131,3 +131,4 @@ RewriteRule ^(.*)$ index.php [F,L]
 
 
 RewriteRule ^login$ /templates/login.php [L]
+RewriteRule ^link$ /templates/link.php [L]
