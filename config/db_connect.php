@@ -1,5 +1,5 @@
 <?php
-require 'vendor/autoload.php';
+require  __DIR__ . '/../vendor/autoload.php';
 
 // Chargement des variables d'environnement
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);

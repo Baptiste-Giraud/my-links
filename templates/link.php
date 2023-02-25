@@ -1,6 +1,5 @@
 <?php
-
-session_start();
+require_once '../function.php';
 ?>
 <!DOCTYPE html>
 <html>
@@ -188,6 +187,7 @@ function animatePopupOut() {
 document.addEventListener("DOMContentLoaded", function(event) {
   // Récupérer le nom d'utilisateur de la variable de session PHP
   var username = "<?php echo $_SESSION['name_user']; ?>";
+
 
   // Créer une nouvelle popup avec le message de bienvenue personnalisé
   var popup = document.createElement("div");

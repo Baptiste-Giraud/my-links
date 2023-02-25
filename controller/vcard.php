@@ -1,8 +1,8 @@
 <?php
 
-require 'vendor/autoload.php';
+// require 'vendor/autoload.php';
 
-use JeroenDesloovere\VCard\VCard;
+// use JeroenDesloovere\VCard\VCard;
 
 
 // function insert_vcards($bdd, $nom, $prenom, $email, $adresse, $complement_adresse, $code_postal, $ville, $pays, $tel_portable, $tel_fixe, $url_vcard, $role, $nom_entreprise){

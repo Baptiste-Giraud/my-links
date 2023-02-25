@@ -102,7 +102,6 @@ RewriteRule ^controller/(.*)?$ / [R=301,L]
 
 RewriteRule ^node_modules/(.*)?$ / [R=301,L]
 
-RewriteRule ^templates/(.*)?$ / [R=301,L]
 
 RewriteRule ^socials-embed/(.*)?$ / [R=301,L]
 
@@ -129,3 +128,7 @@ RewriteCond %{QUERY_STRING} (<|%3C).*script.*(>|%3E) [NC,OR]
 RewriteCond %{QUERY_STRING} GLOBALS(=|[|%[0-9A-Z]{0,2}) [OR]
 RewriteCond %{QUERY_STRING} _REQUEST(=|[|%[0-9A-Z]{0,2})
 RewriteRule ^(.*)$ index.php [F,L]
+
+
+RewriteRule ^login$ /templates/login.php [L]
+RewriteRule ^link$ /templates/link.php [L]

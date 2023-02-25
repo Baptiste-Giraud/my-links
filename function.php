@@ -1,27 +1,28 @@
 <?php 
-
-include('config/db_connect.php');
+session_start();
+include __DIR__ . '/config/db_connect.php';
 
 if (isset($_POST['registration'])){
-    include('controller/navigation.php');
+    include __DIR__ . '/controller/navigation.php';
     exit();
 }
 
-include('controller/language_page.php');
-// include('controller/confirmation.php');
-include('controller/register.php');
-include('controller/parameter_template.php');
-include('controller/link.php');
-include('controller/link_parameter_template.php');
-include('controller/background_theme_user.php');
-include('controller/user.php');
-include('controller/views_count.php');
-include('controller/dashboard_parameters.php');
-include('controller/giphy.php');
-include('controller/scrap.php');
-include('controller/newsletter.php');
-include('controller/vcard.php');
-include('controller/etablissement.php');
+include __DIR__ . '/controller/language_page.php';
+// include __DIR__ . '/controller/confirmation.php';
+include __DIR__ . '/controller/register.php';
+include __DIR__ . '/controller/parameter_template.php';
+include __DIR__ . '/controller/link.php';
+include __DIR__ . '/controller/link_parameter_template.php';
+include __DIR__ . '/controller/background_theme_user.php';
+include __DIR__ . '/controller/user.php';
+include __DIR__ . '/controller/views_count.php';
+include __DIR__ . '/controller/dashboard_parameters.php';
+include __DIR__ . '/controller/giphy.php';
+include __DIR__ . '/controller/scrap.php';
+include __DIR__ . '/controller/newsletter.php';
+include __DIR__ . '/controller/vcard.php';
+include __DIR__ . '/controller/etablissement.php';
+
 
 
 
@@ -387,24 +388,24 @@ if (isset($_POST['function']) && $_POST['function'] === 'insertlink') {
 //
 // Les fonctions se trouve dans le fichier etablissement.php
 //
-if (isset($_POST['function']) && $_POST['function'] === 'insert_etablissement') {
-    $nom = $_POST['nom'];
-    $adresse = $_POST['adresse'];
-    $complement_adresse = $_POST['complement_adresse'];
-    $code_postal = $_POST['code_postal'];
-    $ville = $_POST['ville'];
-    $num_tel = $_POST['num_tel'];
-    $num_fixe = $_POST['num_fixe'];
+// if (isset($_POST['function']) && $_POST['function'] === 'insert_etablissement') {
+//     $nom = $_POST['nom'];
+//     $adresse = $_POST['adresse'];
+//     $complement_adresse = $_POST['complement_adresse'];
+//     $code_postal = $_POST['code_postal'];
+//     $ville = $_POST['ville'];
+//     $num_tel = $_POST['num_tel'];
+//     $num_fixe = $_POST['num_fixe'];
 
-    $result = insert_etablissement($bdd, $nom, $adresse, $complement_adresse, $code_postal, $ville, $num_tel, $num_fixe);
+//     $result = insert_etablissement($bdd, $nom, $adresse, $complement_adresse, $code_postal, $ville, $num_tel, $num_fixe);
 
-    // Récupérer le nombre de lignes affectées
-    if ($result == 200) {
-        http_response_code(201);
-        echo "Le lien a été inséré avec succès !";
-    } else {
-        http_response_code(500);
-        echo "Une erreur s'est produite lors de l'insertion du lien.";
+//     // Récupérer le nombre de lignes affectées
+//     if ($result == 200) {
+//         http_response_code(201);
+//         echo "Le lien a été inséré avec succès !";
+//     } else {
+//         http_response_code(500);
+//         echo "Une erreur s'est produite lors de l'insertion du lien.";
 
 if (isset($_POST['email']) && isset($_POST['password'])) {
     $email = $_POST['email'];
