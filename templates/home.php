@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="./assets/front/css/style.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js" integrity="sha512-STof4xm1wgkfm7heWqFJVn58Hm3EtS31XFaagaa8VMReCXAkQnJZ+jEy8PCC/iT18dFy95WcExNHFTqLyp72eQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
-<body>
+<body id="home">
 	<header>
 		<div class="logo">
 			<img src="./assets/front/img/mylinks.png" alt="My-Links logo">
@@ -15,7 +15,7 @@
 		<nav>
 			<a href="#features">Fonctionnalités</a>
 			<a href="#pricing">Tarifs</a>
-			<a href="/login">Se connecter</a>
+			<a href="login">Se connecter</a>
 		</nav>
 	</header>
 	
