@@ -31,12 +31,14 @@ $value = selectinfouserbypseudo($bdd ,$url);
 // }else if($url == "login"){
 //     include 'templates/login.php';
 // }else{
-    if($value == false || $value == null){
-        echo "l'user ".$url." existe pas";
-    }else{
-        $user = function_selectinfouserbypseudo($bdd,  $value["name_user"]);
-        include 'templates/user.php';
-    }
+          include 'templates/home.php';
+
+    // if($value == false || $value == null  || $url == ""){
+    //     include 'templates/home.php';
+    // }else{
+    //     $user = function_selectinfouserbypseudo($bdd,  $value["name_user"]);
+    //     include 'templates/user.php';
+    // }
 // }
 //echo $val = function_views_count_select_by_total($bdd);
 //function_updateinfouser($bdd, 3, "baba", "eddy.mahmoud@epitech.eu", "eddy", "mhd");
