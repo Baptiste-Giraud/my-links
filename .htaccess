@@ -9,6 +9,7 @@ ServerSignature Off
     RewriteRule ^link$ /templates/link.php [L]
     RewriteRule ^home$ /templates/home.php [L]
     RewriteRule ^signup$ /templates/signup.php [L]
+    RewriteRule ^dashboard$ /templates/dashboard.php [L]
 
 
     # Redirection vers HTTPS
