@@ -4,10 +4,10 @@
   <meta charset="UTF-8">
   <title>CodePen - Glassmorphism Creative Cloud App Redesign</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
-<link rel="stylesheet" href="../assets/front/css/style.css">
+<link rel="stylesheet" href="../assets/front/css/dashboard.css">
 
 </head>
-<body id="dashboard">
+<body>
 <!-- partial:index.partial.html -->
 <div class="video-bg">
  <video width="320" height="240" autoplay loop muted>
