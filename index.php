@@ -1,49 +1,17 @@
 <?php
+include("function.php");
 
-include "function.php";
+$url = $_SERVER['REQUEST_URI'];
+$url = str_replace("/", "", $url);
+$url = rtrim($url, '?');
 
-class Router {
-  private $bdd;
 
-  public function __construct($bdd) {
-    $this->bdd = $bdd;
-  }
+$value = selectinfouserbypseudo($bdd ,$url);
 
-  public function route($url) {
-    // Diviser l'URL en segments
-    $segments = explode('/', $url);
-
-    // Appeler la méthode appropriée en fonction du premier segment
-    switch ($segments[0]) {
-      case '':
-        $this->home();
-        break;
-      case 'user':
-        $this->user($segments[1]);
-        break;
-      default:
-        $this->notFound();
-        break;
+    if($value == false || $value == null){
+        include 'templates/home.php';
+    }else{
+        $user = function_selectinfouserbypseudo($bdd,  $value["name_user"]);
+        include 'templates/user.php';
     }
-  }
-
-  private function home() {
-    // Traiter la page d'accueil
-    include "templates/home.php";
-  }
-
-  private function user($username) {
-    // Traiter la page de profil de l'utilisateur
-    $data = selectinfouserbypseudo($this->bdd, $username);
-    include "templates/user.php";
-  }
-
-  private function notFound() {
-    // Traiter la page 404
-    include "templates/404.php";
-  }
-}
-
-// Utiliser le routeur pour afficher la page demandée
-$router = new Router($bdd);
-$router->route($_SERVER['REQUEST_URI']);
+?>
