@@ -2,7 +2,7 @@
 <html lang="en" >
 <head>
   <meta charset="UTF-8">
-  <title>CodePen - Glassmorphism Creative Cloud App Redesign</title>
+  <title>Dashboard</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
 <link rel="stylesheet" href="../assets/front/css/dashboard.css">
 
@@ -21,15 +21,14 @@ Your browser does not support the video tag.
    </div>
 <div class="app">
  <div class="header">
-  <div class="menu-circle"></div>
   <div class="header-menu">
-   <a class="menu-link is-active" href="#">Apps</a>
-   <a class="menu-link notify" href="#">Your work</a>
-   <a class="menu-link" href="#">Discover</a>
-   <a class="menu-link notify" href="#">Market</a>
+   <a class="menu-link is-active" href="#">Page</a>
+   <a class="menu-link notify" href="#">Statistiques</a>
+   <a class="menu-link" href="#">Publication</a>
+   <a class="menu-link" href="#">Découvrir</a>
   </div>
   <div class="search-bar">
-   <input type="text" placeholder="Search">
+   <input type="text" placeholder="Recherche d'un utilisateur">
   </div>
   <div class="header-profile">
    <div class="notification">
@@ -47,7 +46,7 @@ Your browser does not support the video tag.
  <div class="wrapper">
   <div class="left-side">
    <div class="side-wrapper">
-    <div class="side-title">Apps</div>
+    <div class="side-title">Apparences</div>
     <div class="side-menu">
      <a href="#">
       <svg viewBox="0 0 512 512">
@@ -69,7 +68,7 @@ Your browser does not support the video tag.
     </div>
    </div>
    <div class="side-wrapper">
-    <div class="side-title">Categories</div>
+    <div class="side-title">lien</div>
     <div class="side-menu">
      <a href="#">
       <svg viewBox="0 0 488.455 488.455" fill="currentColor">
@@ -113,7 +112,7 @@ Your browser does not support the video tag.
     </div>
    </div>
    <div class="side-wrapper">
-    <div class="side-title">Fonts</div>
+    <div class="side-title">Paramètre</div>
     <div class="side-menu">
      <a href="#">
       <svg viewBox="0 0 332 332" fill="currentColor">
@@ -123,7 +122,7 @@ Your browser does not support the video tag.
      </a>
     </div>
    </div>
-   <div class="side-wrapper">
+   <!-- <div class="side-wrapper">
     <div class="side-title">Resource Links</div>
     <div class="side-menu">
      <a href="#">
@@ -161,7 +160,7 @@ Your browser does not support the video tag.
       Social Forum
      </a>
     </div>
-   </div>
+   </div> -->
   </div>
   <div class="main-container">
    <div class="main-header">
