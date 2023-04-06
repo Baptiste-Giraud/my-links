@@ -99,3 +99,21 @@ $theme_class = $theme["slug"] . " " . $theme_type . " " . $style_compo;
 </body>
 
 </html>
+<script>
+$(document).ready(function() {
+  $('a').click(function(e) {
+    console.log('rrr')
+    e.preventDefault();
+    var linkId = $(this).attr('id').split('-')[1];
+    $.ajax({
+      type: 'POST',
+      url: '../my-links/function.php',
+      data: { link_id: linkId },
+      success: function() {
+        console.log('Clic enregistré avec succès !');
+      }
+    });
+    window.location.href = $(this).attr('href');
+  });
+});
+</script>

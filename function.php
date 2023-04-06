@@ -420,5 +420,15 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
     }
 }
 
-
+if (isset($_POST['link_id'])) {
+    // Récupération de l'ID du lien
+    $link_id = $_POST['link_id'];
+  
+    // Insertion du clic dans la base de données
+    $stmt = $bdd->prepare("INSERT INTO statClick (id_link, click_time) VALUES (:id_link, NOW())");
+    $stmt->execute(array(
+      ':id_link' => $link_id,
+    ));
+  }
+  
 ?>
