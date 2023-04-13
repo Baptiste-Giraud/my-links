@@ -23,7 +23,7 @@ Your browser does not support the video tag.
  <div class="header">
   <div class="header-menu">
    <a class="menu-link is-active" href="#">Page</a>
-   <a class="menu-link notify" href="#">Statistiques</a>
+   <a class="menu-link notify" href="/statistique">Statistiques</a>
    <a class="menu-link" href="#">Publication</a>
    <a class="menu-link" href="#">Découvrir</a>
   </div>

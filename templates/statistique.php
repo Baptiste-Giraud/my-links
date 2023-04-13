@@ -22,8 +22,8 @@ Your browser does not support the video tag.
 <div class="app">
  <div class="header">
   <div class="header-menu">
-   <a class="menu-link" href="dashboard.php">Page</a>
-   <a class="menu-link is-active" href="statistique.php">Statistiques</a>
+   <a class="menu-link" href="dashboard">Page</a>
+   <a class="menu-link is-active" href="statistique">Statistiques</a>
    <a class="menu-link" href="#">Publication</a>
    <a class="menu-link" href="#">Découvrir</a>
   </div>
