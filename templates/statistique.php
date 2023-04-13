@@ -1,3 +1,8 @@
+<?php 
+
+include("../function.php")
+?>
+
 <!DOCTYPE html>
 <html lang="en" >
 <head>
@@ -163,8 +168,21 @@ Your browser does not support the video tag.
    </div> -->
   </div>
   <div class="main-container">
-        <h1>Statistique ici</h1>
-   </div>
+    <h1>Statistiques de clics</h1>
+    <div class="filters">
+        <label for="filter">Filtrer par:</label>
+        <select id="filter">
+            <option value="day">Jour</option>
+            <option value="week">Semaine</option>
+            <option value="month">Mois</option>
+            <option value="year">Année</option>
+            <option value="total">Total</option>
+        </select>
+    </div>
+    <div class="chart-container">
+        <canvas id="click-chart"></canvas>
+    </div>
+  </div>
   </div>
  </div>
  <div class="overlay-app"></div>
@@ -174,3 +192,47 @@ Your browser does not support the video tag.
 
 </body>
 </html>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+$(document).ready(function() {
+    // Initialiser le graphique avec les données totales
+    var data = <?php echo json_encode(getClicksData("total")); ?>;
+    var chart = new Chart($("#click-chart"), {
+        type: "bar",
+        data: {
+            labels: ["Total"],
+            datasets: [{
+                label: "Clics",
+                data: [data[0].clicks],
+                backgroundColor: "rgba(54, 162, 235, 0.5)"
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+        }
+    });
+
+    // Changer les données du graphique en fonction du filtre sélectionné
+    $("#filter").change(function() {
+        var filter = $(this).val();
+        var data = <?php echo json_encode(getClicksData("' + filter + '")); ?>;
+        chart.data.labels = [capitalizeFirstLetter(filter)];
+        chart.data.datasets[0].data = [data[0].clicks];
+        chart.update();
+    });
+
+    // Fonction pour mettre la première lettre d'une chaîne en majuscule
+    function capitalizeFirstLetter(string) {
+        return string.charAt(0).toUpperCase() + string.slice(1);
+    }
+});
+</script>
