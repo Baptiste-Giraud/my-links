@@ -1,0 +1,105 @@
+#user_login * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+#user_login body {
+  background: linear-gradient(#f5f5f5, #e8e8e8);
+  font-family: "Open Sans", sans-serif;
+}
+#user_login .wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+#user_login .card {
+  width: 400px;
+  padding: 2rem;
+  background-color: white;
+  border-radius: 6px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.15);
+  transition: transform 0.5s cubic-bezier(0.5, 0.1, 0.5, 1.4);
+  animation: popin 0.8s ease forwards;
+  margin-top: -200px;
+}
+#user_login .card.active {
+  transform: translate(0, 200px);
+}
+#user_login .card-header {
+  text-align: center;
+  font-size: 24px;
+  font-weight: 700;
+  color: #007bff;
+  margin-bottom: 1rem;
+}
+#user_login .form-group {
+  margin-bottom: 1.5rem;
+}
+#user_login .form-group label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #6c757d;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+#user_login .form-group input {
+  width: 100%;
+  padding: 0.5rem;
+  font-size: 16px;
+  border-radius: 6px;
+  border: none;
+  background-color: #f8f9fa;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+  transition: box-shadow 0.5s cubic-bezier(0.5, 0.1, 0.5, 1.4);
+  color: #555;
+}
+#user_login .form-group input:focus {
+  outline: none;
+  box-shadow: 0 0 15px #007bff;
+}
+#user_login .form-group .btn {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 0.5rem 1rem;
+  font-size: 16px;
+  font-weight: 600;
+  transition: all 0.3s cubic-bezier(0.5, 0.1, 0.5, 1.4);
+  width: 100%;
+}
+#user_login .form-group .btn:hover {
+  background-color: #006fe6;
+}
+#user_login .form-group .alert {
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border-radius: 6px;
+  font-weight: 600;
+}
+#user_login .form-group .alert.alert-success {
+  background-color: #28a745;
+  color: white;
+}
+#user_login .form-group .alert.alert-warning {
+  background-color: #ffc107;
+  color: white;
+}
+#user_login .form-group .alert.alert-danger {
+  background-color: #dc3545;
+  color: white;
+}
+#user_login .form-group form .form-group input:invalid {
+  border-color: #dc3545;
+}
+@keyframes popin {
+  0% {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}

@@ -1,0 +1,241 @@
+#linkpage html, #linkpage body {
+  height: 100%;
+  overflow: hidden;
+}
+#linkpage body {
+  font-family: Arial, sans-serif;
+  background-color: #f1f3f6;
+}
+#linkpage header {
+  background-color: #007bff;
+  color: white;
+  padding: 1rem;
+  text-align: center;
+}
+#linkpage header h1 {
+  margin: 0;
+}
+#linkpage main {
+  background-color: white;
+  border-radius: 6px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  margin: 2rem auto;
+  max-width: 600px;
+  padding: 2rem;
+  text-align: center;
+}
+#linkpage form {
+  display: grid;
+  grid-gap: 1rem;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(8, min-content);
+  align-items: center;
+}
+#linkpage label {
+  display: inline-block;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  text-align: left;
+}
+#linkpage input,
+#linkpage select {
+  background-color: #f8f9fa;
+  border: none;
+  border-radius: 6px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  color: #444;
+  font-size: 1rem;
+  padding: 0.5rem;
+  transition: all 0.2s ease;
+}
+#linkpage input:focus,
+#linkpage select:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px #007bff;
+}
+#linkpage input[type=color] {
+  padding: 0;
+  vertical-align: middle;
+}
+#linkpage input[type=submit] {
+  background-color: #007bff;
+  border: none;
+  border-radius: 6px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  color: white;
+  cursor: pointer;
+  font-size: 1rem;
+  padding: 0.5rem;
+  transition: all 0.2s ease;
+}
+#linkpage input[type=submit]:hover {
+  background-color: #0062cc;
+}
+#linkpage input[type=submit].submit-animation {
+  animation: submit 1s ease;
+}
+@keyframes submit {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+#linkpage input[type=datetime-local] {
+  background-color: white;
+}
+#linkpage .checkbox {
+  display: inline-block;
+  position: relative;
+}
+#linkpage .checkbox input[type=checkbox] {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+#linkpage .checkbox label {
+  position: relative;
+  cursor: pointer;
+  padding-left: 25px;
+  margin-bottom: 0;
+  display: inline-block;
+}
+#linkpage .checkbox label::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 17px;
+  height: 17px;
+  border: 2px solid #007bff;
+  border-radius: 3px;
+  transition: all 0.2s ease;
+}
+#linkpage .checkbox label::after {
+  content: "";
+  position: absolute;
+  left: 7px;
+  top: 4px;
+  width: 5px;
+  height: 10px;
+  border: solid #007bff;
+  border-width: 0 3px 3px 0;
+  transform: rotate(45deg);
+  transition: all 0.2s ease;
+}
+#linkpage .checkbox input[type=checkbox]:checked ~ label::before {
+  background-color: #007bff;
+  border-color: #007bff;
+}
+#linkpage .checkbox input[type=checkbox]:checked ~ label::after {
+  transform: rotate(45deg) translate(-4px, 4px);
+}
+@media screen and (max-width: 600px) {
+  #linkpage form {
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(15, min-content);
+  }
+}
+@media screen and (max-width: 400px) {
+  #linkpage form {
+    grid-gap: 0.5rem;
+  }
+}
+#linkpage .form-group.password-input-container {
+  position: relative;
+}
+#linkpage .form-group.password-input-container input[type=password] {
+  padding-right: 30px;
+}
+#linkpage .form-group.password-input-container .password-toggle-icon {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  font-size: 16px;
+  color: #6c757d;
+  cursor: pointer;
+}
+#linkpage .form-group.checkbox-input-container {
+  display: inline-block;
+  position: relative;
+}
+#linkpage .form-group.checkbox-input-container input[type=checkbox] {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+#linkpage .form-group.checkbox-input-container .checkbox-custom {
+  position: relative;
+  cursor: pointer;
+  padding-left: 25px;
+  display: inline-block;
+  vertical-align: middle;
+}
+#linkpage .form-group.checkbox-input-container .checkbox-custom::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 17px;
+  height: 17px;
+  border: 2px solid #007bff;
+  border-radius: 3px;
+  transition: all 0.2s ease;
+}
+#linkpage .form-group.checkbox-input-container .checkbox-custom::after {
+  content: "";
+  position: absolute;
+  left: 7px;
+  top: 4px;
+  width: 5px;
+  height: 10px;
+  border: solid #007bff;
+  border-width: 0 3px 3px 0;
+  transform: rotate(45deg);
+  transition: all 0.2s ease;
+}
+#linkpage .form-group.checkbox-input-container input[type=checkbox]:checked ~ .checkbox-custom::before {
+  background-color: #007bff;
+  border-color: #007bff;
+}
+#linkpage .form-group.checkbox-input-container input[type=checkbox]:checked ~ .checkbox-custom::after {
+  transform: rotate(45deg) translate(-4px, 4px);
+}
+#linkpage #private_pass {
+  width: 100%;
+}
+#linkpage #toggle-password {
+  position: absolute;
+  transform: translate(-110%, 60%);
+  cursor: pointer;
+}
+#linkpage .popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.1);
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+  z-index: 9999;
+}
+#linkpage .popup h2 {
+  margin-top: 0;
+}
+#linkpage .popup p {
+  margin-bottom: 0;
+}
+#linkpage .fireworks {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}

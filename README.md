@@ -38,3 +38,11 @@ STEP 4 -> Setup de l'environnement
 Pour merge sur le serveur validation de la merge request par un membre du groupe.
 
 __ Si scss npm run sass pour compiler__
+
+gulp en cours :
+
+gulp sass : compile les fichiers SCSS en CSS et les place dans le dossier dist/css.
+gulp js : concatène et minifie les fichiers JavaScript en un seul fichier nommé bundle.js et le place dans le dossier dist/js.
+gulp css : concatène et minifie les fichiers CSS en un seul fichier nommé bundle.css et le place dans le dossier dist/css.
+gulp watch : surveille les fichiers source pour les modifications et exécute automatiquement les tâches appropriées lorsque des modifications sont détectées.
+gulp ou gulp default : exécute les tâches par défaut (sass, js, css, images, watch) en parallèle.
