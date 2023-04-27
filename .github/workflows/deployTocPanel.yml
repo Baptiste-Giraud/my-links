@@ -18,13 +18,6 @@ jobs:
           npm install --save-dev eslint prettier stylelint stylelint-config-standard
           npm run lint
           npm run format
-
-          if [ $? -eq 0 ]
-          then
-            echo "Code verification passed"
-          else
-            echo "Code verification failed"
-          fi
       
       - name: 📂 Sync files
         uses: SamKirkland/FTP-Deploy-Action@4.3.3
