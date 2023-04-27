@@ -9,7 +9,8 @@ include("../function.php")
   <meta charset="UTF-8">
   <title>Dashboard Statistique</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
-  <link rel="stylesheet" href="../dist/css/bundle.css">
+<link rel="stylesheet" href="../assets/front/css/dashboard.css">
+
 </head>
 <body>
 <!-- partial:index.partial.html -->
