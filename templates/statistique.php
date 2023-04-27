@@ -131,16 +131,28 @@ Your browser does not support the video tag.
    </div>
   </div>
   <div class="main-container">
-  <table id="topLinks">
+  <div>
+    <label for="start_date">Date de début :</label>
+    <input type="date" id="start_date" name="start_date">
+</div>
+<div>
+    <label for="end_date">Date de fin :</label>
+    <input type="date" id="end_date" name="end_date">
+</div>
+
+<table id="topLinks" class="display">
     <thead>
         <tr>
-            <th>Top Links</th>
-            <th>Nombre de cliques</th>
+            <th>URL</th>
+            <th>Clics</th>
+            <th>Date de début</th>
+            <th>Date de fin</th>
         </tr>
     </thead>
     <tbody>
     </tbody>
 </table>
+
 
   </div>
   </div>
@@ -148,7 +160,6 @@ Your browser does not support the video tag.
  <div class="overlay-app"></div>
 </div>
 <!-- partial -->
-  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script><script  src="../assets/front/js/script.js"></script>
 
 </body>
 </html>
@@ -160,44 +171,73 @@ Your browser does not support the video tag.
 
 <script>
  $(document).ready(function() {
-    // Effectue une requête AJAX pour récupérer les données de la base de données
-    $.ajax({
-        url: "../function.php",
-        type: "POST",
-        dataType: "json",
-        data: {getClick: 7},
-        success: function(data) {
-            // Initialise la table DataTable
-            var table = $('#topLinks').DataTable({
-                data: data,
-                columns: [
-                    { data: 'url' },
-                    { data: 'clicks' }
-                ],
-                order: [[1, 'desc']] // Tri par ordre décroissant du nombre de clics
-            });
+    // Initialise la table DataTable
+    var table = $('#topLinks').DataTable({
+        columns: [
+            { data: 'url' },
+            { data: 'clicks' },
+            { data: 'start_date' },
+            { data: 'end_date' }
+        ],
+        order: [[1, 'desc']] // Tri par ordre décroissant du nombre de clics
+    });
 
-            // Ajoute la fonctionnalité de filtre
-            $('#topLinks thead tr').clone(true).appendTo( '#topLinks thead' );
-            $('#topLinks thead tr:eq(1) th').each( function (i) {
-                var title = $(this).text();
-                $(this).html( '<input type="text" placeholder="Filtrer '+title+'" />' );
-         
-                $( 'input', this ).on( 'keyup change', function () {
-                    if ( table.column(i).search() !== this.value ) {
-                        table
-                            .column(i)
-                            .search( this.value )
-                            .draw();
-                    }
-                } );
-            } );
-        },
-        error: function(jqXHR, textStatus, errorThrown) {
-            console.error(textStatus, errorThrown);
+    // Effectue une requête AJAX pour récupérer les données de la base de données
+    function getClickData() {
+        var startDate = $('#start_date').val();
+        var endDate = $('#end_date').val();
+        var defaults = false;
+
+        // Vérifie si les dates sont renseignées ou non
+        if (startDate == '' || endDate == '') {
+            defaults = false;
+            startDate = '1970-01-01'; // date de début par défaut
+            endDate = new Date().toISOString().slice(0, 10); // date de fin par défaut (aujourd'hui)
+        }else{
+          defaults = true;
         }
+
+        $.ajax({
+            url: "../function.php",
+            type: "POST",
+            dataType: "json",
+            data: {
+              getClick: 7,
+              start_date: startDate,
+              end_date: endDate
+            },
+            success: function(data) {
+                // Supprime les anciennes données de la table DataTable
+                table.clear();
+              console.log(defaults)
+                $.each(data, function(index, row) {
+                  if(defaults == true){
+                    if ((row.start_date != 'Aucun click' && row.end_date != 'Aucun click') || (startDate == '' && endDate == '')) {
+                        table.row.add(row).draw();
+                    }
+
+                  }else{
+                      table.row.add(row).draw();
+                  }
+                });
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                console.error(textStatus, errorThrown);
+            }
+        });
+    }
+
+    // Appelle la fonction getClickData() lors du chargement de la page
+    getClickData();
+
+    // Lie la fonction getClickData() aux événements "change" des champs de dates
+    $('#start_date, #end_date').on('change', function() {
+        getClickData();
     });
 });
+
+
+
 </script>
 
 

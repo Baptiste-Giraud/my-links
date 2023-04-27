@@ -420,34 +420,55 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
     }
 }
 
-if (isset($_POST['link_id'])) {
-    // Récupération de l'ID du lien
-    $link_id = $_POST['link_id'];
-    $user_id = $_POST['polk'];
-    
-    // Insertion du clic dans la base de données
-    $stmt = $bdd->prepare("INSERT INTO statClick (id_link, click_time, id_user) VALUES (:id_link, NOW(), :id_user)");
-    $stmt->execute(array(
-      ':id_link' => $link_id,
-      ':id_user' => $user_id
-    ));
-}
-
 if (isset($_POST['getClick'])) {
     $userId = $_POST['getClick'];
-    $stmt = $bdd->prepare("SELECT link.url, COUNT(statClick.id) AS clicks FROM link LEFT JOIN statClick ON link.id = statClick.id_link WHERE link.id_user = :userId GROUP BY link.id ORDER BY clicks DESC");
+
+    // Vérifier si la date de début est définie et la lier à une valeur par défaut si elle ne l'est pas
+    $start_date = isset($_POST['start_date']) ? $_POST['start_date'] . ' 00:00:00' : '1970-01-01 00:00:00';
+    $end_date = isset($_POST['end_date']) ? $_POST['end_date'] . ' 23:59:59' : date('Y-m-d H:i:s');
+
+    $stmt = $bdd->prepare("
+    SELECT link.url, 
+    COUNT(statClick.id) AS clicks, 
+    MIN(statClick.click_time) AS start_date, 
+    MAX(statClick.click_time) AS end_date 
+FROM link 
+LEFT JOIN statClick 
+    ON link.id = statClick.id_link 
+    AND statClick.click_time >= :start_date 
+    AND statClick.click_time <= :end_date 
+WHERE link.id_user = :userId
+AND (statClick.id_user = :userId OR statClick.id_user IS NULL)
+GROUP BY link.id 
+ORDER BY clicks DESC
+
+    ");
+
     $stmt->bindParam(':userId', $userId, PDO::PARAM_INT);
+    $stmt->bindParam(':start_date', $start_date, PDO::PARAM_STR);
+    $stmt->bindParam(':end_date', $end_date, PDO::PARAM_STR);
     $stmt->execute();
-    
-    // Debugging: Afficher la requête SQL générée
-    
-    // Convertit les résultats en données JSON et les renvoie
+
     $data = array();
     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-        $data[] = array("url" => $row["url"], "clicks" => $row["clicks"]);
+        $start_date = isset($row['start_date']) ? $row['start_date'] : 'Aucun click';
+        $end_date = isset($row['end_date']) ? $row['end_date'] : 'Aucun click';
+
+        $data[] = array(
+            "url" => $row["url"],
+            "clicks" => $row["clicks"],
+            "start_date" => $start_date,
+            "end_date" => $end_date
+        );
     }
+
     echo json_encode($data);
-    
 }
+
+
+
+
+
+
 
 ?>
