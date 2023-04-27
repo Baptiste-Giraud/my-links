@@ -1,0 +1,71 @@
+Options -Indexes
+ServerSignature Off
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # Redirection vers les pages
+    RewriteRule ^login$ /templates/login.php [L]
+    RewriteRule ^link$ /templates/link.php [L]
+    RewriteRule ^home$ /templates/home.php [L]
+    RewriteRule ^signup$ /templates/signup.php [L]
+    RewriteRule ^dashboard$ /templates/dashboard.php [L]
+    RewriteRule ^statistique$ /templates/statistique.php [L]
+
+
+    # Redirection vers HTTPS
+    RewriteCond %{SERVER_PORT} 80
+    RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+
+    # Redirection des fichiers PHP sans extension
+    RewriteCond %{REQUEST_FILENAME}.php -f
+    RewriteRule !.*\.php$ %{REQUEST_FILENAME}.php [QSA,L]
+
+    # Redirection vers index.php si le fichier n'existe pas
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule . index.php [L]
+
+    # Bloquer les requêtes malveillantes contenant des scripts
+    RewriteCond %{QUERY_STRING} (<|%3C).*script.*(>|%3E) [NC,OR]
+    RewriteCond %{QUERY_STRING} GLOBALS(=|[|%[0-9A-Z]{0,2}) [OR]
+    RewriteCond %{QUERY_STRING} _REQUEST(=|[|%[0-9A-Z]{0,2})
+    RewriteRule ^(.*)$ index.php [F,L]
+</IfModule>
+
+<IfModule mod_headers.c>
+    # Configurer la sécurité des en-têtes HTTP
+    Header set X-XSS-Protection "1; mode=block"
+    Header always append X-Frame-Options SAMEORIGIN
+    Header set X-Content-Type-Options nosniff
+    Header set Access-Control-Allow-Origin "*"
+</IfModule>
+
+<IfModule mod_autoindex.c>
+    # Désactiver l'indexation des répertoires
+    Options -Indexes
+</IfModule>
+
+# Bloquer l'accès aux fichiers .htaccess et .ini
+<Files .htaccess>
+    Order allow,deny
+    Deny from all
+</Files>
+
+<FilesMatch "\.(ini|sh)$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# Bloquer l'accès aux fichiers commençant par un point
+<FilesMatch "^\.">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# Bloquer les hotlinks vers les images
+<IfModule mod_rewrite.c>
+    RewriteCond %{HTTP_REFERER} !^$
+    RewriteCond %{HTTP_REFERER} !^https://dev.my-links.fans/.*$ [NC]
+    RewriteRule .(gif|jpg|swf|flv|png)$ https://dev.my-links.fans/hotlink.gif [R,L]
+</IfModule>
