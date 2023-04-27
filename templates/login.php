@@ -4,8 +4,7 @@
     <meta charset="UTF-8" />
     <title>Connexion</title>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="../assets/front/css/style.css" />
-  </head>
+    <link rel="stylesheet" href="../dist/css/bundle.css">  </head>
   <body id="user_login">
     <div class="wrapper">
       <div class="card">

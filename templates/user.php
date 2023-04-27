@@ -37,7 +37,7 @@ $theme_class = $theme["slug"] . " " . $theme_type . " " . $style_compo;
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
 
-    <link rel="stylesheet" href="./assets/front/css/style.css">
+    <link rel="stylesheet" href="../dist/css/bundle.css">   
     <title><?php echo $user_name; ?> - MyLinks.fans</title>
 
     
