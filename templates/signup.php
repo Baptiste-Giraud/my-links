@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Inscription - My-Links</title>
-	<link rel="stylesheet" href="../dist/css/bundle.css">	
+	<link rel="stylesheet" href="./dist/css/bundle.css">   
 	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </head>

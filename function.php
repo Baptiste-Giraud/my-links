@@ -423,45 +423,31 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
 if (isset($_POST['link_id'])) {
     // Récupération de l'ID du lien
     $link_id = $_POST['link_id'];
+    $user_id = $_POST['polk'];
     
     // Insertion du clic dans la base de données
-    $stmt = $bdd->prepare("INSERT INTO statClick (id_link, click_time) VALUES (:id_link, NOW())");
+    $stmt = $bdd->prepare("INSERT INTO statClick (id_link, click_time, id_user) VALUES (:id_link, NOW(), :id_user)");
     $stmt->execute(array(
       ':id_link' => $link_id,
+      ':id_user' => $user_id
     ));
-  }
-  
-
-
-
-// Fonction pour récupérer les données de clics en fonction du filtre sélectionné
-function getClicksData($filter) {
-    global $bdd;
-    $data = array();
-    $sql = "";
-    switch ($filter) {
-        case "day":
-            $sql = "SELECT DATE(click_time) AS date, COUNT(*) AS clicks FROM statClick WHERE click_time >= DATE(NOW()) GROUP BY date ORDER BY date ASC";
-            break;
-        case "week":
-            $sql = "SELECT YEARWEEK(click_time) AS week, COUNT(*) AS clicks FROM statClick WHERE click_time >= DATE_SUB(NOW(), INTERVAL 1 WEEK) GROUP BY week ORDER BY week ASC";
-            break;
-        case "month":
-            $sql = "SELECT DATE_FORMAT(click_time, '%Y-%m') AS month, COUNT(*) AS clicks FROM statClick WHERE click_time >= DATE_SUB(NOW(), INTERVAL 1 MONTH) GROUP BY month ORDER BY month ASC";
-            break;
-        case "year":
-            $sql = "SELECT YEAR(click_time) AS year, COUNT(*) AS clicks FROM statClick WHERE click_time >= DATE_SUB(NOW(), INTERVAL 1 YEAR) GROUP BY year ORDER BY year ASC";
-            break;
-        default:
-            $sql = "SELECT COUNT(*) AS clicks FROM statClick";
-    }
-    $stmt = $bdd->query($sql);
-    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-        $data[] = $row;
-    }
-    return $data;
 }
-?>
 
+if (isset($_POST['getClick'])) {
+    $userId = $_POST['getClick'];
+    $stmt = $bdd->prepare("SELECT link.url, COUNT(statClick.id) AS clicks FROM link LEFT JOIN statClick ON link.id = statClick.id_link WHERE link.id_user = :userId GROUP BY link.id ORDER BY clicks DESC");
+    $stmt->bindParam(':userId', $userId, PDO::PARAM_INT);
+    $stmt->execute();
+    
+    // Debugging: Afficher la requête SQL générée
+    
+    // Convertit les résultats en données JSON et les renvoie
+    $data = array();
+    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+        $data[] = array("url" => $row["url"], "clicks" => $row["clicks"]);
+    }
+    echo json_encode($data);
+    
+}
 
 ?>

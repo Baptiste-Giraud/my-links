@@ -10,6 +10,8 @@ include("../function.php")
   <title>Dashboard Statistique</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
 <link rel="stylesheet" href="../assets/front/css/dashboard.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.css" />
+
 
 </head>
 <body>
@@ -127,61 +129,19 @@ Your browser does not support the video tag.
      </a>
     </div>
    </div>
-   <!-- <div class="side-wrapper">
-    <div class="side-title">Resource Links</div>
-    <div class="side-menu">
-     <a href="#">
-      <svg viewBox="0 0 512 512" fill="currentColor">
-       <path d="M467 0H45C20.186 0 0 20.186 0 45v422c0 24.814 20.186 45 45 45h422c24.814 0 45-20.186 45-45V45c0-24.814-20.186-45-45-45zM181 241c41.353 0 75 33.647 75 75s-33.647 75-75 75-75-33.647-75-75c0-8.291 6.709-15 15-15s15 6.709 15 15c0 24.814 20.186 45 45 45s45-20.186 45-45-20.186-45-45-45c-41.353 0-75-33.647-75-75s33.647-75 75-75 75 33.647 75 75c0 8.291-6.709 15-15 15s-15-6.709-15-15c0-24.814-20.186-45-45-45s-45 20.186-45 45 20.186 45 45 45zm180 120h30c8.291 0 15 6.709 15 15s-6.709 15-15 15h-30c-24.814 0-45-20.186-45-45V211h-15c-8.291 0-15-6.709-15-15s6.709-15 15-15h15v-45c0-8.291 6.709-15 15-15s15 6.709 15 15v45h45c8.291 0 15 6.709 15 15s-6.709 15-15 15h-45v135c0 8.276 6.724 15 15 15z" />
-      </svg>
-      Stock
-     </a>
-     <a href="#">
-      <svg viewBox="0 0 511.441 511.441" fill="currentColor">
-       <path d="M255.721 347.484L90.22 266.751v106.57l165.51 73.503 165.509-73.503V266.742z" />
-       <path d="M511.441 189.361L255.721 64.617 0 189.361l255.721 124.744 195.522-95.378v111.032h30V204.092z" />
-      </svg>
-      Tutorials
-     </a>
-     <a href="#">
-      <svg viewBox="0 0 512 512" fill="currentColor">
-       <path d="M196 151h-75v90h75c24.814 0 45-20.186 45-45s-20.186-45-45-45z" />
-       <path d="M467 0H45C20.186 0 0 20.186 0 45v422c0 24.814 20.186 45 45 45h422c24.814 0 45-20.186 45-45V45c0-24.814-20.186-45-45-45zM196 271h-75v105c0 8.291-6.709 15-15 15s-15-6.709-15-15V136c0-8.291 6.709-15 15-15h90c41.353 0 75 33.647 75 75s-33.647 75-75 75zm210-60c8.291 0 15 6.709 15 15s-6.709 15-15 15h-45v135c0 8.291-6.709 15-15 15s-15-6.709-15-15V241h-15c-8.291 0-15-6.709-15-15s6.709-15 15-15h15v-45c0-24.814 20.186-45 45-45h30c8.291 0 15 6.709 15 15s-6.709 15-15 15h-30c-8.276 0-15 6.724-15 15v45h45z" />
-      </svg>
-      Portfolio
-     </a>
-     <a href="#">
-      <svg viewBox="0 0 512 512" fill="currentColor">
-       <path d="M181 181h-60v60h60c16.54 0 30-13.46 30-30s-13.46-30-30-30zm0 0M181 271h-60v60h60c16.54 0 30-13.46 30-30s-13.46-30-30-30zm0 0M346 241c-19.555 0-36.238 12.54-42.438 30h84.875c-6.199-17.46-22.882-30-42.437-30zm0 0" />
-       <path d="M436 0H75C33.648 0 0 33.648 0 75v362c0 41.352 33.648 75 75 75h361c41.352 0 76-33.648 76-75V75c0-41.352-34.648-75-76-75zM286 151h120v30H286zm-45 150c0 33.09-26.91 60-60 60H91V151h90c33.09 0 60 26.91 60 60 0 18.008-8.133 33.996-20.73 45 12.597 11.004 20.73 26.992 20.73 45zm180 0H303.562c6.196 17.46 22.883 30 42.438 30 16.012 0 30.953-8.629 38.992-22.516l25.957 15.032C397.58 346.629 372.687 361 346 361c-41.352 0-75-33.648-75-75s33.648-75 75-75 75 33.648 75 75zm0 0" />
-      </svg>
-      Behance
-     </a>
-     <a href="#">
-      <svg viewBox="0 0 512 512" fill="currentColor">
-       <path d="M352 0H64C28.704 0 0 28.704 0 64v320a16.02 16.02 0 009.216 14.496A16.232 16.232 0 0016 400c3.68 0 7.328-1.248 10.24-3.712L117.792 320H352c35.296 0 64-28.704 64-64V64c0-35.296-28.704-64-64-64z" />
-       <path d="M464 128h-16v128c0 52.928-43.072 96-96 96H129.376L128 353.152V400c0 26.464 21.536 48 48 48h234.368l75.616 60.512A16.158 16.158 0 00496 512c2.336 0 4.704-.544 6.944-1.6A15.968 15.968 0 00512 496V176c0-26.464-21.536-48-48-48z" />
-      </svg>
-      Social Forum
-     </a>
-    </div>
-   </div> -->
   </div>
   <div class="main-container">
-    <h1>Statistiques de clics</h1>
-    <div class="filters">
-        <label for="filter">Filtrer par:</label>
-        <select id="filter">
-            <option value="day">Jour</option>
-            <option value="week">Semaine</option>
-            <option value="month">Mois</option>
-            <option value="year">Année</option>
-            <option value="total">Total</option>
-        </select>
-    </div>
-    <div class="chart-container">
-        <canvas id="click-chart"></canvas>
-    </div>
+  <table id="topLinks">
+    <thead>
+        <tr>
+            <th>Top Links</th>
+            <th>Nombre de cliques</th>
+        </tr>
+    </thead>
+    <tbody>
+    </tbody>
+</table>
+
   </div>
   </div>
  </div>
@@ -195,44 +155,101 @@ Your browser does not support the video tag.
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+
 
 <script>
-$(document).ready(function() {
-    // Initialiser le graphique avec les données totales
-    var data = <?php echo json_encode(getClicksData("total")); ?>;
-    var chart = new Chart($("#click-chart"), {
-        type: "bar",
-        data: {
-            labels: ["Total"],
-            datasets: [{
-                label: "Clics",
-                data: [data[0].clicks],
-                backgroundColor: "rgba(54, 162, 235, 0.5)"
-            }]
-        },
-        options: {
-            scales: {
-                yAxes: [{
-                    ticks: {
-                        beginAtZero: true
+ $(document).ready(function() {
+    // Effectue une requête AJAX pour récupérer les données de la base de données
+    $.ajax({
+        url: "../function.php",
+        type: "POST",
+        dataType: "json",
+        data: {getClick: 7},
+        success: function(data) {
+            // Initialise la table DataTable
+            var table = $('#topLinks').DataTable({
+                data: data,
+                columns: [
+                    { data: 'url' },
+                    { data: 'clicks' }
+                ],
+                order: [[1, 'desc']] // Tri par ordre décroissant du nombre de clics
+            });
+
+            // Ajoute la fonctionnalité de filtre
+            $('#topLinks thead tr').clone(true).appendTo( '#topLinks thead' );
+            $('#topLinks thead tr:eq(1) th').each( function (i) {
+                var title = $(this).text();
+                $(this).html( '<input type="text" placeholder="Filtrer '+title+'" />' );
+         
+                $( 'input', this ).on( 'keyup change', function () {
+                    if ( table.column(i).search() !== this.value ) {
+                        table
+                            .column(i)
+                            .search( this.value )
+                            .draw();
                     }
-                }]
-            }
+                } );
+            } );
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+            console.error(textStatus, errorThrown);
         }
     });
-
-    // Changer les données du graphique en fonction du filtre sélectionné
-    $("#filter").change(function() {
-        var filter = $(this).val();
-        var data = <?php echo json_encode(getClicksData("' + filter + '")); ?>;
-        chart.data.labels = [capitalizeFirstLetter(filter)];
-        chart.data.datasets[0].data = [data[0].clicks];
-        chart.update();
-    });
-
-    // Fonction pour mettre la première lettre d'une chaîne en majuscule
-    function capitalizeFirstLetter(string) {
-        return string.charAt(0).toUpperCase() + string.slice(1);
-    }
 });
 </script>
+
+
+<style>
+  #topLinks_wrapper {
+  background: rgba(255, 255, 255, 0.3);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  padding: 20px;
+}
+
+#topLinks th {
+  font-weight: bold;
+  color: #fff;
+  background-color: #2c3e50;
+  padding: 12px;
+  text-align: center;
+}
+
+#topLinks td {
+  color: #000;
+  padding: 8px;
+  text-align: center;
+}
+
+#topLinks tbody tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+#topLinks_filter label input[type="search"] {
+  background-color: transparent;
+  border: none;
+  color: #fff;
+  font-size: 14px;
+  padding: 8px;
+  border-bottom: 1px solid #fff;
+  margin-right: 8px;
+  background-color: white;
+}
+
+#topLinks_filter label input[type="search"]::placeholder {
+  color: #fff;
+  opacity: 0.5;
+}
+
+table.dataTable.no-footer{
+  padding-top: 12px;
+}
+</style>
+
+
+</style>

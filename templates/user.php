@@ -37,7 +37,7 @@ $theme_class = $theme["slug"] . " " . $theme_type . " " . $style_compo;
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
 
-    <link rel="stylesheet" href="../dist/css/bundle.css">   
+    <link rel="stylesheet" href="./dist/css/bundle.css">   
     <title><?php echo $user_name; ?> - MyLinks.fans</title>
 
     
@@ -101,14 +101,14 @@ $theme_class = $theme["slug"] . " " . $theme_type . " " . $style_compo;
 </html>
 <script>
 $(document).ready(function() {
+  var polk = JSON.parse('<?php echo $user['id_user']; ?>');
   $('a').click(function(e) {
-    console.log('rrr')
     e.preventDefault();
     var linkId = $(this).attr('id').split('-')[1];
     $.ajax({
       type: 'POST',
-      url: '../my-links/function.php',
-      data: { link_id: linkId },
+      url: './function.php',
+      data: { link_id: linkId, polk: polk },
       success: function() {
         console.log('Clic enregistré avec succès !');
       }
@@ -116,4 +116,5 @@ $(document).ready(function() {
     window.location.href = $(this).attr('href');
   });
 });
+
 </script>
