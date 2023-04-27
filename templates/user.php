@@ -48,7 +48,7 @@ $theme_class = $theme["slug"] . " " . $theme_type . " " . $style_compo;
             <?php } else if($theme_type == "color") { ?>
                 background-color: <?php echo $style_colorPage; ?>
             <?php } ?>
-        }
+            }
     </style>
 </head>
 
