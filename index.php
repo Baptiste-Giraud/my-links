@@ -7,7 +7,7 @@ $url = rtrim($url, '?');
 
 
 $value = selectinfouserbypseudo($bdd ,$url);
-// $value['name_user'] = "edman";
+$value['name_user'] = "edman";
 
     if($value == false || $value == null){
         include 'templates/home.php';

@@ -153,6 +153,14 @@ Your browser does not support the video tag.
     </tbody>
 </table>
 
+<div>
+    <canvas id="dailyVisitsChart"></canvas>
+  </div>
+
+  <div>
+    <canvas id="deviceVisitsChart"></canvas>
+  </div>
+
 
   </div>
   </div>
@@ -170,6 +178,7 @@ Your browser does not support the video tag.
 
 
 <script>
+  //Rajouter ID utilisateur quand le systeme de connexion sera fait
  $(document).ready(function() {
     // Initialise la table DataTable
     var table = $('#topLinks').DataTable({
@@ -237,6 +246,149 @@ Your browser does not support the video tag.
 });
 
 
+$(document).ready(function() {
+  // Fonction pour récupérer les données du graphique
+  function getChartData(start_date, end_date, callback) {
+    $.ajax({
+      url: "../function.php",
+      type: "POST",
+      data: { getChart: 7, start_date: start_date, end_date: end_date, },
+      dataType: "json",
+      success: function (data) {
+        var chartData = {};
+
+        // Données pour le graphique des visites quotidiennes
+        chartData.daily_visits = {};
+        chartData.dates = data.dates;
+        for (var i = 0; i < data.devices.length; i++) {
+          var device = data.devices[i];
+          chartData.daily_visits[device] = [];
+
+          // Ajouter les données de visites pour chaque jour
+          // Ajouter les données de visites pour chaque jour
+          for (var j = 0; j < data.dates.length; j++) {
+            var date = data.dates[j];
+            if (device in data.daily_visits && date in data.daily_visits[device]) {
+              chartData.daily_visits[device].push(data.daily_visits[device][date]);
+            } else {
+              var previousValue = (j > 0) ? chartData.daily_visits[device][chartData.daily_visits[device].length-1] : 0;
+              chartData.daily_visits[device].push(previousValue);
+            }
+          }
+
+        }
+
+        // Données pour le graphique des visites par type de dispositif
+        chartData.device_visits = {};
+        chartData.devices = data.devices;
+        for (var i = 0; i < data.devices.length; i++) {
+          var device = data.devices[i];
+          chartData.device_visits[device] = data.device_visits[device];
+        }
+
+        // Appeler le callback avec les données du graphique
+        callback(chartData);
+      }
+    });
+  }
+
+  // Graphique des visites quotidiennes
+  var dailyVisitsChart = new Chart($("#dailyVisitsChart"), {
+    type: "line",
+    data: {
+      labels: [],
+      datasets: []
+    },
+    options: {
+      scales: {
+        yAxes: [{
+          ticks: {
+            beginAtZero: true
+          }
+        }]
+      }
+    }
+  });
+
+  // Graphique des visites par type de dispositif
+  var deviceVisitsChart = new Chart($("#deviceVisitsChart"), {
+    type: "pie",
+    data: {
+      labels: [],
+      datasets: [{
+        label: "Visites",
+        data: [],
+        backgroundColor: [
+          "rgba(255, 99, 132, 0.2)",
+          "rgba(54, 162, 235, 0.2)"
+        ],
+        borderColor: [
+          "rgba(255, 99, 132, 1)",
+          "rgba(54, 162, 235, 1)"
+        ],
+        borderWidth: 1
+      }]
+    },
+    options: {
+      scales: {
+        yAxes: [{
+          ticks: {
+            beginAtZero: true
+          }
+        }]
+      }
+    }
+  });
+
+  // Fonction pour mettre à jour les graphiques en fonction des dates sélectionnées
+  function updateCharts() {
+    var start_date = $("#start_date").val();
+    var end_date = $("#end_date").val();
+
+    getChartData(start_date, end_date, function(data) {
+      // Mettre à jour les labels et les données des graphiques
+
+      // Graphique des visites quotidiennes
+      dailyVisitsChart.data.labels = data.dates;
+      dailyVisitsChart.data.datasets = [];
+
+        // Réinitialiser les datasets pour éviter les duplications
+  for (var device in data.daily_visits) {
+    var dataset = {
+      label: device,
+      data: data.daily_visits[device],
+      backgroundColor: (device == 'desktop') ? "rgba(54, 162, 235, 0.2)" : "rgba(255, 99, 132, 0.2)",
+      borderColor: (device == 'desktop') ? "rgba(54, 162, 235, 1)" : "rgba(255, 99, 132, 1)",
+      borderWidth: 1,
+      fill: false
+    };
+    dailyVisitsChart.data.datasets.push(dataset);
+  }
+  dailyVisitsChart.update();
+
+  // Graphique des visites par type de dispositif
+  deviceVisitsChart.data.labels = data.devices;
+  deviceVisitsChart.data.datasets[0].data = [];
+  for (var i = 0; i < data.devices.length; i++) {
+    var device = data.devices[i];
+    deviceVisitsChart.data.datasets[0].data.push(data.device_visits[device]);
+  }
+  deviceVisitsChart.update();
+});
+}
+
+// Initialiser les graphiques
+updateCharts();
+
+// Mettre à jour les graphiques lorsque les dates sont modifiées
+$("#start_date, #end_date").change(function() {
+updateCharts();
+});
+});
+
+
+
+
 
 </script>
 
@@ -289,7 +441,4 @@ Your browser does not support the video tag.
 table.dataTable.no-footer{
   padding-top: 12px;
 }
-</style>
-
-
 </style>

@@ -405,6 +405,7 @@ body.light-mode .video-bg:before {
   flex-direction: column;
   flex-grow: 1;
   margin: 30px;
+  overflow: auto;
 }
 
 .menu-link-main {

@@ -466,6 +466,74 @@ ORDER BY clicks DESC
 }
 
 
+if(isset($_POST['getChart'])) {
+    
+    // Récupération des paramètres de la requête
+    $id_user = $_POST['getChart'];
+    $start_date = isset($_POST['start_date']) ? $_POST['start_date'] . ' 00:00:00' : '1970-01-01 00:00:00';
+    $end_date = isset($_POST['end_date']) ? $_POST['end_date'] . ' 23:59:59' : date('Y-m-d H:i:s');
+    
+    // Requête pour récupérer les données
+    $stmt = $bdd->prepare("
+      SELECT
+        DATE_FORMAT(date, '%Y-%m-%d') AS date,
+        device,
+        COUNT(*) AS daily_visits
+      FROM views_count_insert
+      WHERE id_user = :id_user AND date >= :start_date AND date <= :end_date
+      GROUP BY date, device
+      ORDER BY date, device
+    ");
+    
+    $stmt->bindParam(':id_user', $id_user, PDO::PARAM_INT);
+    $stmt->bindParam(':start_date', $start_date, PDO::PARAM_STR);
+    $stmt->bindParam(':end_date', $end_date, PDO::PARAM_STR);
+    $stmt->execute();
+    
+    // Traitement des résultats
+    $dates = array();
+    $daily_visits = array();
+    $devices = array();
+    $device_visits = array();
+    
+    while($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+      // Récupération des données pour le graphique des visites quotidiennes
+      $date = $row['date'];
+      if(!in_array($date, $dates)) {
+        $dates[] = $date;
+      }
+      if(!isset($daily_visits[$row['device']])) {
+        $daily_visits[$row['device']] = array_fill(0, count($dates), 0);
+      }
+      $index = array_search($date, $dates);
+      $daily_visits[$row['device']][$index] = $row['daily_visits'];
+    
+      // Récupération des données pour le graphique des visites par type de dispositif
+      $device = $row['device'];
+      if(!in_array($device, $devices)) {
+        $devices[] = $device;
+      }
+      if(isset($device_visits[$device])) {
+        $device_visits[$device] += $row['daily_visits'];
+      } else {
+        $device_visits[$device] = $row['daily_visits'];
+      }
+    }
+    
+    // Préparation des données pour le renvoi au format JSON
+    $data = array(
+      "dates" => $dates,
+      "daily_visits" => $daily_visits,
+      "devices" => $devices,
+      "device_visits" => $device_visits
+    );
+    
+    echo json_encode($data);
+    
+}
+
+
+
 
 
 
