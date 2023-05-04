@@ -33,9 +33,10 @@ STEP 4 -> Setup de l'environnement
   dans /config copier les information du .env.example
   puis coller les dans un .env dans le /config 
   puis remplacer vos information de connexion du .env
+  supprimer pour un environnement de dev local le contenue du .htaccess et le remettre avant le push (le contenue est dans le .htaccess.exemple)
 ```
 
-Pour merge sur le serveur validation de la merge request par un membre du groupe.
+
 
 __ Si scss npm run sass pour compiler__
 
